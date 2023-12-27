@@ -2,11 +2,14 @@ package qiwa.gov.sa.host
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -16,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import qiwa.gov.sa.R
 import qiwa.gov.sa.base.presentation.ProgressLoader
 import qiwa.gov.sa.databinding.ActivityMainBinding
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -57,13 +61,14 @@ class MainActivity : AppCompatActivity() {
         observeLiveData()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        return false
-    }
-
     private fun showOrHideProgress(showProgress: Boolean) {
         progressLoader.showOrHideProgress(showProgress)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.main, menu)
+        return true
     }
 
     private fun observeLiveData() {
