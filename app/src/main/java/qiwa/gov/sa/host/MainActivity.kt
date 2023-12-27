@@ -1,24 +1,33 @@
 package qiwa.gov.sa.host
 
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.View
+import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import qiwa.gov.network.DefaultNetworkPreferencesManager
+import qiwa.gov.network.NetworkPreferencesManager
+import qiwa.gov.network.providers.AppLocaleProvider
+import qiwa.gov.network.providers.DefaultAppLocaleProvider
 import qiwa.gov.sa.R
+import qiwa.gov.sa.base.domain.ContextWrapper
 import qiwa.gov.sa.base.presentation.ProgressLoader
 import qiwa.gov.sa.databinding.ActivityMainBinding
+import qiwa.gov.sa.extentions.hideKeyboard
+import qiwa.gov.sa.extentions.inverse
+import java.util.Locale
 
 
 @AndroidEntryPoint
@@ -26,6 +35,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var appLocaleProvider: AppLocaleProvider
+    private lateinit var networkPreferencesManager: NetworkPreferencesManager
     private val hostViewModel: HostViewModel by viewModels()
     private val progressLoader: ProgressLoader by lazy {
         ProgressLoader(this)
@@ -65,16 +76,35 @@ class MainActivity : AppCompatActivity() {
         progressLoader.showOrHideProgress(showProgress)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
     private fun observeLiveData() {
         hostViewModel.run {
             loadingLiveData.observe(this@MainActivity, ::showOrHideProgress)
         }
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val view: View = currentFocus ?: return super.dispatchTouchEvent(ev)
+        if ((ev.action == MotionEvent.ACTION_UP || ev.action == MotionEvent.ACTION_MOVE) &&
+            view is EditText && view.javaClass.name.startsWith("android.webkit.").inverse
+        ) {
+            val array = IntArray(2)
+            view.getLocationOnScreen(array)
+            val x: Float = ev.rawX + view.left - array[0]
+            val y: Float = ev.rawY + view.top - array[1]
+            if (x < view.left || x > view.right || y < view.top || y > view.bottom) {
+                view.hideKeyboard()
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        newBase?.let {
+            networkPreferencesManager = DefaultNetworkPreferencesManager(context = newBase)
+            appLocaleProvider = DefaultAppLocaleProvider(newBase, networkPreferencesManager)
+            val locale = Locale(appLocaleProvider.getLocaleCode())
+            super.attachBaseContext(ContextWrapper.wrap(newBase, locale))
+        } ?: super.attachBaseContext(newBase)
     }
 
     override fun onSupportNavigateUp(): Boolean {

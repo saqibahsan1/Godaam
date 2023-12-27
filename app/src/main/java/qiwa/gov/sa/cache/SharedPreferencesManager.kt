@@ -13,6 +13,7 @@ import javax.inject.Inject
 interface SharedPreferencesManager {
     fun setAuthToken(token: String?)
     fun setEmail(email: String?)
+    fun setLocale(locale: String?)
     fun getEmail(): String
     fun getAuthToken(): String
     fun removeAuthToken()
@@ -41,6 +42,10 @@ class DefaultSharedPreferencesManager @Inject constructor(
 
     override fun setEmail(email: String?) {
         setString(USER_EMAIL,email.default)
+    }
+
+    override fun setLocale(locale: String?) {
+        setString(LOCALE,locale.default)
     }
 
     override fun getEmail(): String =
@@ -90,5 +95,6 @@ class DefaultSharedPreferencesManager @Inject constructor(
     companion object {
         private const val IS_ON_BOARDING_VISITED = "IS_ON_BOARDING_VISITED"
         private const val USER_EMAIL = "email"
+        private const val LOCALE = "locale"
     }
 }

@@ -1,6 +1,8 @@
 package qiwa.gov.network
 
 import com.android.network.servicetype.DefaultThirdPartyRetrofitProvider
+import qiwa.gov.network.providers.AppLocaleProvider
+import qiwa.gov.network.providers.DefaultAppLocaleProvider
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -35,6 +37,9 @@ interface NetworkBindingModule {
 
     @Binds
     fun bindApiHeadersProvider(default: DefaultApiHeadersProvider): ApiHeadersProvider
+
+    @Binds
+    fun bindAppLocaleProvider(default: DefaultAppLocaleProvider): AppLocaleProvider
 
     @Binds
     fun bindRetrofitProvider(default: DefaultRetrofitProvider): AppRetrofitProvider
