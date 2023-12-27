@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomEditTextField">
+        <attr name="optional" format="boolean" />
+        <attr name="text" format="string" />
+        <attr name="prefixText" format="string" />
+        <attr name="textColor" format="color" />
+        <attr name="textColorHint" format="color" />
+        <attr name="hintText" format="string" />
+        <attr name="hint_text_animate" format="string" />
+        <attr name="textSize" format="dimension" />
+        <attr name="rightIconDrawable" format="reference" />
+        <attr name="fieldBackground" format="reference" />
+        <attr name="type" format="enum">
+            <enum name="email" value="0" />
+            <enum name="password" value="1" />
+            <enum name="phone" value="2" />
+            <enum name="number" value="3" />
+            <enum name="plainText" value="4" />
+            <enum name="multiLinePlainText" value="5" />
+            <enum name="pin" value="6" />
+        </attr>
+        <attr name="maxLength" format="integer" />
+        <attr name="android:layout_height" format="dimension" />
+        <attr name="editTextHeight" format="dimension" />
+        <attr name="imeOptions" format="enum">
+            <enum name="actionNext" value="0" />
+            <enum name="actionDone" value="1" />
+        </attr>
+        <attr name="instantValidation" format="boolean" />
+        <attr name="label" format="string" />
+        <attr name="defaultErrorMessage" format="string" />
+        <attr name="android:gravity" format="integer" />
+        <attr name="android:textAllCaps" format="boolean" />
+        <attr name="android:enabled" format="boolean" />
+        <attr name="android:textAlignment" />
+        <attr name="change_appearance_on_focus" format="boolean" />
+        <attr name="is_numbers_and_symbols_allowed" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomDropDownView">
+        <attr name="defaultText" format="string" />
+        <attr name="label" />
+
+    </declare-styleable>
+
+    <declare-styleable name="TranslationTextView">
+        <attr name="translation" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="HorizontalMenuItem">
+        <attr name="menu_type" format="enum">
+            <enum name="none" value="0" />
+            <enum name="chevron" value="1" />
+            <enum name="switch_view" value="2" />
+            <enum name="check" value="3" />
+        </attr>
+        <attr name="text" />
+        <attr name="showDivider" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="UserImageView">
+        <attr name="android:layout_width" />
+        <attr name="android:layout_height" />
+        <attr name="android:strokeColor" />
+        <attr name="android:strokeWidth" />
+        <attr name="url" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ExpandableLayout">
+        <attr name="topLayout" format="reference" />
+        <attr name="expandableLayout" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CenteredButton">
+        <attr name="iconRes" format="reference" />
+        <attr name="android:tint" format="color" />
+        <attr name="text" />
+        <attr name="iconOnLeft" format="boolean" />
+        <attr name="state_timer_cancel" format="boolean"/>
+    </declare-styleable>
+
+</resources>

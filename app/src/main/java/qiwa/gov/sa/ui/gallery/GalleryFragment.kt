@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import qiwa.gov.sa.databinding.FragmentGalleryBinding
 
+@AndroidEntryPoint
 class GalleryFragment : Fragment() {
 
     private var _binding: FragmentGalleryBinding? = null
@@ -23,7 +25,7 @@ class GalleryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val galleryViewModel =
-            ViewModelProvider(this).get(GalleryViewModel::class.java)
+            ViewModelProvider(this)[GalleryViewModel::class.java]
 
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root

@@ -14,12 +14,13 @@
     <fragment
         android:id="@+id/nav_gallery"
         android:name="qiwa.gov.sa.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/menu_calculators"
         tools:layout="@layout/fragment_gallery" />
 
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="qiwa.gov.sa.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+<!--    <action-->
+<!--        android:id="@+id/global_action_to_login"-->
+<!--        app:destination="@id/nav_home"-->
+<!--        app:popUpTo="@id/mobile_navigation"-->
+<!--        app:popUpToInclusive="true"/>-->
+
 </navigation>
