@@ -29,6 +29,7 @@
         android:layout_gravity="bottom|start"
         android:layout_marginStart="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
+        android:visibility="gone"
         app:srcCompat="@drawable/feedback_icon"
         app:backgroundTint="@color/title_bar_color"
         app:tint="@android:color/white"

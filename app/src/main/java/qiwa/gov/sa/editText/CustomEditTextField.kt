@@ -63,8 +63,8 @@ open class CustomEditTextField @JvmOverloads constructor(
 
     val binding = getBinding<CustomEditTextFieldBinding>(R.layout.custom_edit_text_field)
     private val defaultTextColor = colorStateList(R.color.black)
-    private val defaultHintTextColor = colorStateList(R.color.stroke_color)
-    private val primaryHintTextColor = colorStateList(R.color.text_color_dark)
+    private val defaultHintTextColor = colorStateList(R.color.text_hint_color)
+    private val primaryHintTextColor = colorStateList(R.color.text_hint_color)
     private var isValid: Boolean = false
     private var doInstantValidation: Boolean = true
     val editText: TextInputEditText by lazy {
@@ -179,13 +179,13 @@ open class CustomEditTextField @JvmOverloads constructor(
             }
         }
 
-    var fieldBackground: Int = R.drawable.edit_text_empty_background
-        set(value) {
-            field = value
-            if (isValidResourceId(value)) {
-                binding.fieldLayout.background = drawable(fieldBackground)
-            }
-        }
+//    var fieldBackground: Int = R.drawable.edit_text_empty_background
+//        set(value) {
+//            field = value
+//            if (isValidResourceId(value)) {
+//                binding.fieldLayout.background = drawable(fieldBackground)
+//            }
+//        }
 
     private var editTextHeight: Int = ViewGroup.LayoutParams.WRAP_CONTENT
         set(value) {
@@ -253,8 +253,8 @@ open class CustomEditTextField @JvmOverloads constructor(
                     getColorStateList(R.styleable.CustomEditTextField_textColor) ?: defaultTextColor
                 hintTextColor = getColorStateList(R.styleable.CustomEditTextField_textColorHint)
                     ?: defaultHintTextColor
-                fieldBackground =
-                    getResourceValueId(this, R.styleable.CustomEditTextField_fieldBackground)
+//                fieldBackground =
+//                    getResourceValueId(this, R.styleable.CustomEditTextField_fieldBackground)
                 enableInstantValidation(
                     getBoolean(
                         R.styleable.CustomEditTextField_instantValidation,
@@ -280,7 +280,7 @@ open class CustomEditTextField @JvmOverloads constructor(
                     TEXT_ALIGNMENT_VIEW_START
                 )
                 if (getBoolean(R.styleable.CustomEditTextField_change_appearance_on_focus, true)) {
-                    attachFocusChangeListener()
+//                    attachFocusChangeListener()
                 }
                 isSymbolAndNumbersAllowed =
                     getBoolean(R.styleable.CustomEditTextField_is_numbers_and_symbols_allowed, true)
@@ -330,18 +330,18 @@ open class CustomEditTextField @JvmOverloads constructor(
         }
     }
 
-    private fun attachFocusChangeListener() {
-        editText.setOnFocusChangeListener { _, hasFocus ->
-            fieldBackground =
-                if (hasFocus) {
-                    textInputLayout.hintTextColor = primaryHintTextColor
-                    R.drawable.edit_text_empty_background
-                } else {
-                    textInputLayout.hintTextColor = defaultHintTextColor
-                    R.drawable.edit_text_empty_background
-                }
-        }
-    }
+//    private fun attachFocusChangeListener() {
+//        editText.setOnFocusChangeListener { _, hasFocus ->
+//            fieldBackground =
+//                if (hasFocus) {
+//                    textInputLayout.hintTextColor = primaryHintTextColor
+//                    R.drawable.edit_text_empty_background
+//                } else {
+//                    textInputLayout.hintTextColor = defaultHintTextColor
+//                    R.drawable.edit_text_empty_background
+//                }
+//        }
+//    }
 
     private fun attachTextChangeListener() {
         if (doInstantValidation) {
@@ -429,99 +429,95 @@ open class CustomEditTextField @JvmOverloads constructor(
     }
 
     fun setError(errorMessage: String, editTextField: CustomEditTextField) {
-        when {
-            isValid.inverse -> {
-                binding.error.text = errorMessage
-                showErrorViews(errorMessage.isNotEmpty())
-                shake(editTextField).setDuration(800).start()
-            }
+        binding.error.text = errorMessage
+        showErrorViews(errorMessage.isNotEmpty())
+        shake(editTextField).setDuration(800).start()
 
-            else -> showErrorViews(false)
-        }
     }
 
-    fun showErrorViews(show: Boolean) {
-        binding.run {
-            viewVisibility(error, show)
-            when {
+
+fun showErrorViews(show: Boolean) {
+    binding.run {
+        viewVisibility(error, show)
+        when {
 //                isPasswordField && show -> {
 //                    attachPasswordIconClickListener()
 //                }
-                else -> {
-                    rightIcon.imageTintList = null
-                    showSupportIconIfRequired()
-                }
+            else -> {
+                rightIcon.imageTintList = null
+                showSupportIconIfRequired()
             }
         }
     }
+}
 
-    private fun showSupportIconIfRequired() {
-        binding.run {
-            if (isValidDrawableRes(iconRes)) {
-                rightIcon.apply {
-                    setImageResource(iconRes)
-                    rightIcon.show()
-                }
-            } else {
-                rightIcon.hide()
+private fun showSupportIconIfRequired() {
+    binding.run {
+        if (isValidDrawableRes(iconRes)) {
+            rightIcon.apply {
+                setImageResource(iconRes)
+                rightIcon.show()
             }
+        } else {
+            rightIcon.hide()
         }
     }
+}
 
-    fun setErrorExplicitly(errorMessage: String) {
-        binding.error.text = errorMessage
-        showErrorViews(errorMessage.isNotEmpty())
+fun setErrorExplicitly(errorMessage: String) {
+    binding.error.text = errorMessage
+    showErrorViews(errorMessage.isNotEmpty())
+}
+
+fun isValid() = when {
+    isOptional -> isOptional
+    isGone -> true
+    else -> {
+        validateTextWithInputType(getFieldText())
+        isValid
     }
+}
 
-    fun isValid() = when {
-        isOptional -> isOptional
-        isGone -> true
-        else -> {
-            validateTextWithInputType(getFieldText())
-            isValid
-        }
-    }
-
-    private fun getInputType(inputType: CustomEditTextType) =
-        when (inputType) {
-            CustomEditTextType.PASSWORD -> {
-                textInputLayout.editText?.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
-                InputType.TYPE_TEXT_VARIATION_PASSWORD
-            }
-
-            CustomEditTextType.EMAIL -> InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-            CustomEditTextType.PHONE -> InputType.TYPE_CLASS_PHONE
-            CustomEditTextType.NUMBER -> InputType.TYPE_CLASS_NUMBER
-            CustomEditTextType.PLAIN_TEXT -> InputType.TYPE_CLASS_TEXT
-            CustomEditTextType.MULTI_LINE_PLAIN_TEXT -> {
-                editText.isElegantTextHeight = true
-                InputType.TYPE_TEXT_FLAG_MULTI_LINE
-            }
-
-            CustomEditTextType.PIN -> InputType.TYPE_CLASS_NUMBER
+private fun getInputType(inputType: CustomEditTextType) =
+    when (inputType) {
+        CustomEditTextType.PASSWORD -> {
+            textInputLayout.editText?.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+            InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
 
-    private fun getImeOption(imeOption: ImeOptions) =
-        when (imeOption) {
-            ImeOptions.ACTION_NEXT -> EditorInfo.IME_ACTION_NEXT
-            ImeOptions.ACTION_DONE -> EditorInfo.IME_ACTION_DONE
+        CustomEditTextType.EMAIL -> InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        CustomEditTextType.PHONE -> InputType.TYPE_CLASS_PHONE
+        CustomEditTextType.NUMBER -> InputType.TYPE_CLASS_NUMBER
+        CustomEditTextType.PLAIN_TEXT -> InputType.TYPE_CLASS_TEXT
+        CustomEditTextType.MULTI_LINE_PLAIN_TEXT -> {
+            editText.isElegantTextHeight = true
+            InputType.TYPE_TEXT_FLAG_MULTI_LINE
         }
 
-    fun isOptional(optional: Boolean) {
-        isOptional = optional
+        CustomEditTextType.PIN -> InputType.TYPE_CLASS_NUMBER
     }
 
-    private fun enableInstantValidation(enable: Boolean) {
-        doInstantValidation = enable
-        attachTextChangeListener()
+private fun getImeOption(imeOption: ImeOptions) =
+    when (imeOption) {
+        ImeOptions.ACTION_NEXT -> EditorInfo.IME_ACTION_NEXT
+        ImeOptions.ACTION_DONE -> EditorInfo.IME_ACTION_DONE
     }
 
-    fun setMovementMethod(movementMethod: MovementMethod) {
-        editText.movementMethod = movementMethod
-    }
+fun isOptional(optional: Boolean) {
+    isOptional = optional
+}
 
-    @Parcelize
-    data class SavedState(val state: Parcelable, val text: String) : BaseSavedState(state)
+private fun enableInstantValidation(enable: Boolean) {
+    doInstantValidation = enable
+    attachTextChangeListener()
+}
+
+fun setMovementMethod(movementMethod: MovementMethod) {
+    editText.movementMethod = movementMethod
+}
+
+@Parcelize
+data class SavedState(val state: Parcelable, val text: String) : BaseSavedState(state)
 }
 
 
@@ -636,7 +632,7 @@ fun CustomEditTextField.removeError(remove: Boolean) {
     editText.doAfterTextChanged {
         if (remove) {
             editText.error = null
-            fieldBackground = R.drawable.edit_text_empty_background
+//            fieldBackground = R.drawable.edit_text_empty_background
             showErrorViews(false)
         }
     }

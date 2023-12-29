@@ -99,12 +99,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(newBase: Context?) {
-        newBase?.let {
-            networkPreferencesManager = DefaultNetworkPreferencesManager(context = newBase)
-            appLocaleProvider = DefaultAppLocaleProvider(newBase, networkPreferencesManager)
-            val locale = Locale(appLocaleProvider.getLocaleCode())
-            super.attachBaseContext(ContextWrapper.wrap(newBase, locale))
-        } ?: super.attachBaseContext(newBase)
+//        newBase?.let {
+//            networkPreferencesManager = DefaultNetworkPreferencesManager(context = newBase)
+//            appLocaleProvider = DefaultAppLocaleProvider(newBase, networkPreferencesManager)
+//            val locale = Locale(appLocaleProvider.getLocaleCode())
+//            super.attachBaseContext(ContextWrapper.wrap(newBase, locale))
+        /*} ?: */super.attachBaseContext(newBase)
     }
 
     override fun onSupportNavigateUp(): Boolean {
