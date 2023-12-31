@@ -83,7 +83,6 @@ dependencies {
     implementation(libs.hiltNavigationFragment)
     kapt(libs.hilt.android.compiler)
     kapt(libs.lifeCycle.compiler)
-
     // retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
@@ -92,10 +91,13 @@ dependencies {
     implementation(libs.coil)
     // coroutines
     implementation(libs.coroutines)
-    // dimenions
+    // dimensions
     implementation(libs.dimension)
     // Timber
     implementation(libs.timber)
     // lottie
     implementation(libs.lottie)
+    // searchable spinner
+    implementation(libs.searchable.spinner)
+
 }

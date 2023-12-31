@@ -10,6 +10,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_calculators">Calculators</string>
     <string name="ok">Ok</string>
+    <string name="subEconomic">Sub-economic Activity</string>
     <string name="navigation_exception">No direction found from this fragment</string>
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="no_internet_connection_description">Your connection is lost. Please check your internet connection</string>
@@ -18,12 +19,33 @@
     <string name="national_id_or_iqama">National ID or Iqama</string>
     <string name="feedback">Feedback</string>
     <string name="email">Email</string>
+    <string name="numberOfNonSaudis">number-of-nonsaudis</string>
+    <string name="numberOfSaudis">Number-of-saudis</string>
     <string name="feedbackMessage">Feedback Message</string>
     <string name="hint">hint</string>
     <string name="message">Message</string>
     <string name="send">Send</string>
+    <string name="entities">Entity\'s economic activity in Nitaqat</string>
+    <string name="entitiesDesc">The International Standard Industrial Classification of All Economic Activities (ISIC4) is a global classification standard used to identify the economic activities of establishments. To determine the economic activity of an establishment in Nitaqat, select its corresponding ISIC4 code.</string>
+    <string name="termsAndCondition">Compare with the expected Nitaqat if the number of employees changes</string>
+    <string name="hyperLinkDesc"><u>What is Nitaqat and how is it calculated?</u></string>
+    <string name="readMore">Read more on</string>
+    <string name="nitiqatDescription3">The entity’s Nitaqat corresponds to the Nationalization rate, which is based on economic activity.</string>
+    <string name="nitiqatDescription1">The Nitaqat level and the Nationalization rate are calculated based on the number of Saudi and non-Saudi employees in the entity.</string>
+    <string name="nitiqatDescription">With the Nitaqat calculator, business owners can analyze their establishments\' current or future performance in the labor market.</string>
     <string name="messageValidation">Please enter the feedback message</string>
     <string name="emailValidation">"Enter a valid email address</string>
     <string name="iqamaValidation" translatable="false">Please enter Iqama ID/National ID</string>
     <string name="for10Digits" translatable="false">The National ID/Iqama field must contain exactly 10 digits.</string>
+    <string name="nitaqat_calculator">Nitaqat Calculator</string>
+    <string name="nitaqat_description">Check the calculator for Saudi labor market regulation program.</string>
+    <string name="end_of_service_reward_calculator">End of Service Reward Calculator</string>
+    <string name="end_of_service_rewards_description">Calculate your employees’ end-of-service rewards.</string>
+    <string name="certificate_validation">Certificate Validation</string>
+    <string name="certificateValidatorDesc">Validate certificates for your establishment, including the Nationalization Certificate.</string>
+    <string name="linkingOccupationsCalculator">Linking Occupations to Nitaqat Activities</string>
+    <string name="linkingValidatorCalculatorDesc">View a list of occupations related to economic activities.</string>
+    <string name="work_permit_calculator">Work Permit Calculator</string>
+    <string name="workPermitDesc">Calculate the total fee for work permits and determine the number of exempt workers.</string>
+    <string name="calculate_nitaqat_level">Calculate Nitaqat Level</string>
 </resources>

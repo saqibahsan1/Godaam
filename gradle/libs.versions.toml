@@ -1,5 +1,5 @@
 [versions]
-agp = "8.3.0-alpha11"
+agp = "8.3.0-alpha18"
 kotlin = "1.9.10"
 core-ktx = "1.12.0"
 junit = "4.13.2"
@@ -24,6 +24,7 @@ splash = "1.0.1"
 timber = "5.0.1"
 dimensions = "1.1.0"
 lottie = "5.2.0"
+searchableSpinner = "1.5.0"
 gradleBuildVersion = "8.2.0"
 
 [libraries]
@@ -60,6 +61,7 @@ splash = { group = "androidx.core", name = "core-splashscreen", version.ref = "s
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 dimension = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "dimensions" }
 lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
+searchable_spinner = { group = "com.github.chivorns", name = "smartmaterialspinner", version.ref = "searchableSpinner" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

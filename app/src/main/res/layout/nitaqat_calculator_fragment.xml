@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="qiwa.gov.sa.ui.calculators.domain.NitaqatViewModel" />
+
+        <import type="qiwa.gov.sa.utils.LinkTouchMovementMethod" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/heading"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:fontFamily="sans-serif-black"
+                android:gravity="start"
+                android:maxWidth="@dimen/_180sdp"
+                android:text="@string/nitaqat_calculator"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_30sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/description1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:fontFamily="sans-serif"
+                android:text="@string/nitiqatDescription1"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/heading"
+                app:layout_constraintTop_toBottomOf="@+id/heading" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/description2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:fontFamily="sans-serif"
+                android:text="@string/nitiqatDescription1"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/heading"
+                app:layout_constraintTop_toBottomOf="@+id/description1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/description3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:fontFamily="sans-serif"
+                android:text="@string/nitiqatDescription3"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/heading"
+                app:layout_constraintTop_toBottomOf="@+id/description2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/readMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="sans-serif"
+                android:text="@string/readMore"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="@+id/heading"
+                app:layout_constraintTop_toBottomOf="@+id/description3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/linkToDesc"
+                single_on_click="@{()->viewModel.navigateToWebView()}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:fontFamily="sans-serif"
+                android:maxLines="2"
+                android:text="@string/hyperLinkDesc"
+                android:textAlignment="viewStart"
+                android:textColor="@color/blue"
+                android:textSize="19sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/readMore"
+                app:layout_constraintTop_toBottomOf="@id/description3" />
+
+            <qiwa.gov.sa.editText.CustomEditTextField
+                android:id="@+id/dropDownSubEconomic"
+                remove_error_on_typing="@{true}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:hint_text_animate="@{@string/subEconomic}"
+                app:imeOptions="actionNext"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linkToDesc"
+                app:maxLength="10"
+                app:type="plainText" />
+
+
+            <qiwa.gov.sa.editText.CustomEditTextField
+                android:id="@+id/numberOfSaudisDropDown"
+                remove_error_on_typing="@{true}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:hint_text_animate="@{@string/numberOfSaudis}"
+                app:imeOptions="actionNext"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dropDownSubEconomic"
+                app:maxLength="10"
+                app:type="number" />
+
+            <qiwa.gov.sa.editText.CustomEditTextField
+                android:id="@+id/numberOfNonSaudisDropDown"
+                remove_error_on_typing="@{true}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:hint_text_animate="@{@string/numberOfNonSaudis}"
+                app:imeOptions="actionNext"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/numberOfSaudisDropDown"
+                app:maxLength="10"
+                app:type="number" />
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/checkBoxTermsAndConditions"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:button="@drawable/selected_check_box"
+                app:layout_constraintBottom_toBottomOf="@+id/checkboxDescription"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/numberOfNonSaudisDropDown"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/checkboxDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@{@string/termsAndCondition}"
+                android:textAlignment="viewStart"
+                android:textColorLink="@color/text_color_dark"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/checkBoxTermsAndConditions"
+                app:layout_constraintTop_toBottomOf="@id/numberOfNonSaudisDropDown"
+                app:set_movement_method="@{LinkTouchMovementMethod.INSTANCE}"
+                tools:text="I agree to all the Tawkeel Conditions I agree to all the Tawkeel Conditions" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/calculateButton"
+                style="@style/CommonButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/calculate_nitaqat_level"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/checkboxDescription"
+                app:layout_constraintStart_toStartOf="@id/checkBoxTermsAndConditions"
+                app:layout_constraintTop_toBottomOf="@+id/checkboxDescription" />
+
+
+            <qiwa.gov.sa.utils.ExpandableLayout
+                android:id="@+id/roadSideText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:background="@color/white"
+                app:attach_toggle_listener="@{true}"
+                app:description="@{@string/entitiesDesc}"
+                app:expandableLayout="@layout/item_faq_expandable_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculateButton"
+                app:title="@{@string/entities}"
+                app:topLayout="@layout/item_expandable_header_layout"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

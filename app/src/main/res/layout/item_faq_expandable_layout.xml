@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_8sdp"
+        android:textColor="@color/teal_700"
+        android:id="@+id/content"
+        android:textSize="@dimen/_12sdp"
+        android:background="@android:color/white"
+        tools:text="Lorem Ipsum is a simple dummy text?">
+
+    </androidx.appcompat.widget.AppCompatTextView>
+</layout>

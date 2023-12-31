@@ -9,24 +9,70 @@
         android:id="@+id/nav_home"
         android:name="qiwa.gov.sa.ui.home.HomeFragment"
         android:label="@string/menu_home"
+        app:enterAnim="@anim/slide_in"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/slide_out"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_calculators"
-        android:name="qiwa.gov.sa.ui.gallery.GalleryFragment"
+        android:name="qiwa.gov.sa.ui.calculators.presentation.CalculatorFragment"
         android:label="@string/menu_calculators"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_calculator">
+
+        <action
+            android:id="@+id/nav_calculators_to_nitaqat"
+            app:destination="@id/nav_nitaqat_calculator_fragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpToInclusive="true" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_feedback"
         android:name="qiwa.gov.sa.ui.feedback.FeedbackFragment"
         android:label="@string/feedback"
+        app:enterAnim="@anim/slide_in"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/slide_out"
         tools:layout="@layout/fragment_feedback" />
 
-<!--    <action-->
-<!--        android:id="@+id/global_action_to_login"-->
-<!--        app:destination="@id/nav_home"-->
-<!--        app:popUpTo="@id/mobile_navigation"-->
-<!--        app:popUpToInclusive="true"/>-->
+    <fragment
+        android:id="@+id/nav_nitaqat_calculator_fragment"
+        android:name="qiwa.gov.sa.ui.calculators.presentation.NitaqatCalculator"
+        android:label="@string/nitaqat_calculator"
+        app:enterAnim="@anim/slide_in"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/slide_out"
+        tools:layout="@layout/nitaqat_calculator_fragment" >
+
+        <action
+            android:id="@+id/nav_nitaqat_to_webView"
+            app:destination="@id/nav_web_view"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_web_view"
+        android:name="qiwa.gov.sa.ui.webView.WebviewFragment"
+        android:label="Calculation Details"
+        tools:layout="@layout/webview_fragment">
+
+        <argument
+            android:name="webUrl"
+            app:argType="string"/>
+    </fragment>
+
 
 </navigation>
