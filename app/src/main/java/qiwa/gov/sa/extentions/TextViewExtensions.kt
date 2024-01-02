@@ -5,6 +5,8 @@ import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
 import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
 import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.text.method.MovementMethod
 import android.text.method.ScrollingMovementMethod

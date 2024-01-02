@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="qiwa.gov.sa.ui.calculators.domain.EndServiceCalculatorViewModel" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/scrollViewEndService"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/calculateMainLayout"
+                view_visibility="@{!viewModel.displayResult}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/heading"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="start"
+                    android:maxWidth="@dimen/_250sdp"
+                    android:text="@string/end_of_service_reward_calculator"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_30sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/description1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/endOfServiceDesc1"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/heading"
+                    app:layout_constraintTop_toBottomOf="@+id/heading" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/description2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/endOfServiceDesc2"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/description1"
+                    app:layout_constraintTop_toBottomOf="@+id/description1" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/description2">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text_empty_background"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/limited_period" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/edit_text_empty_background"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/unlimited_period" />
+                </RadioGroup>
+
+                <qiwa.gov.sa.editText.CustomEditTextField
+                    android:id="@+id/dropDownContractReason"
+                    remove_error_on_typing="@{true}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:hint_text_animate="@{@string/contractReason}"
+                    app:imeOptions="actionNext"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/radioGroup"
+                    app:maxLength="10"
+                    app:type="plainText" />
+
+                <qiwa.gov.sa.editText.CustomEditTextField
+                    android:id="@+id/salaryEditText"
+                    remove_error_on_typing="@{true}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:hint_text_animate="@{@string/salary}"
+                    app:imeOptions="actionNext"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dropDownContractReason"
+                    app:maxLength="10"
+                    app:type="number" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/startDateTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:fontFamily="sans-serif"
+                    android:includeFontPadding="false"
+                    android:text="@string/startDate"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/salaryEditText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/endDateTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/endDate"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.44"
+                    app:layout_constraintStart_toEndOf="@+id/startDateTitle"
+                    app:layout_constraintTop_toBottomOf="@id/salaryEditText" />
+
+                <LinearLayout
+                    android:id="@+id/mainCalenderLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/startDateTitle">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/startDateCalender"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        single_on_click="@{()->viewModel.showDatePicker(context,0)}"
+                        android:background="@drawable/edit_text_empty_background"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/salaryEditText">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/calenderImg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            app:srcCompat="@drawable/ic_calender" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/startDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:includeFontPadding="false"
+                            android:paddingTop="@dimen/_3sdp"
+                            android:hint="@string/dateFormat"
+                            android:text="@{viewModel.startDate}"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        single_on_click="@{()->viewModel.showDatePicker(context,1)}"
+                        android:background="@drawable/edit_text_empty_background"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
+                        app:layout_constraintStart_toEndOf="@+id/startDateCalender"
+                        app:layout_constraintTop_toBottomOf="@id/salaryEditText">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/calenderImg2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            app:srcCompat="@drawable/ic_calender" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/endDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:includeFontPadding="false"
+                            android:paddingTop="@dimen/_3sdp"
+                            android:hint="@string/dateFormat"
+                            android:text="@{viewModel.endDate}"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/calculateButton"
+                    style="@style/CommonButtonStyle"
+                    single_on_click="@{()->viewModel.calculateNitaqat(true)}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/calculateEndService"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/mainCalenderLayout"
+                    app:layout_constraintStart_toStartOf="@id/mainCalenderLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/mainCalenderLayout" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/resultLayout"
+                view_visibility="@{viewModel.displayResult}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculateMainLayout"
+                tools:visibility="gone">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_empty_background"
+                    android:padding="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/endOfServiceTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:gravity="start"
+                        android:text="@string/end_of_service_reward"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_30sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/endOfServiceTitle" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/contractReason"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/contractReason"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/view1"
+                        app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/contractReasonDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif-black"
+                        android:includeFontPadding="false"
+                        android:text="@string/contractDetails"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/contractReason"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/contractReason" />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/contractReasonDesc" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/salaryText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/contractReason"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/view2"
+                        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/salaryTextDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif-black"
+                        android:includeFontPadding="false"
+                        android:text="@string/sar_2100"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/salaryText"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/salaryText" />
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/salaryTextDesc" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/startContract"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/startDate"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/view3"
+                        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/startContractDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif-black"
+                        android:includeFontPadding="false"
+                        android:text="@string/_01_01_2024"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/startContract"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/startContract" />
+
+                    <View
+                        android:id="@+id/view4"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/startContractDesc" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/endContract"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/endDate"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/view4"
+                        app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/endContractDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif-black"
+                        android:includeFontPadding="false"
+                        android:text="@string/_01_01_2024"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/endContract"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/endContract" />
+
+                    <View
+                        android:id="@+id/view5"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/endContractDesc" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/calculatedReward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/calculateReward"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/view5"
+                        app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/calculatedRewardDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:fontFamily="sans-serif-black"
+                        android:includeFontPadding="false"
+                        android:text="@string/sar00"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/calculatedReward" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/recalculate"
+                single_on_click="@{()->viewModel.calculateNitaqat(false)}"
+                view_visibility="@{viewModel.displayResult}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/recalculate"
+                android:textAlignment="center"
+                android:textColor="@color/blue"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/resultLayout"
+                tools:ignore="TooManyViews" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

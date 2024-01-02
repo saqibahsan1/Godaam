@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        android:background="@android:color/white"
+        android:background="@drawable/edit_text_empty_background"
         android:padding="@dimen/_8sdp">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -16,7 +16,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_4sdp"
-            android:textColor="@color/teal_700"
+            android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/icon"

@@ -42,6 +42,9 @@ import androidx.databinding.ViewDataBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import qiwa.gov.sa.R
+import qiwa.gov.sa.databinding.ItemExpandableHeaderLayoutBinding
+import qiwa.gov.sa.databinding.ItemFaqExpandableLayoutBinding
+import qiwa.gov.sa.utils.ExpandableLayout
 import timber.log.Timber
 import java.util.Locale
 
@@ -330,6 +333,36 @@ fun View.disableByApplyingAlpha(enable: Boolean, alphaValue: Float = 0.5f) {
     if (enable.inverse) {
         alpha = alphaValue
     }
+}
+
+@BindingAdapter(value = ["attach_toggle_listener", "title", "description"], requireAll = false)
+fun ExpandableLayout.handleFAQsExpandableLayout(
+    attachToggleListener: Boolean?,
+    titleText: String?,
+    descriptionText: String?
+) {
+    if (attachToggleListener.default) {
+        attachCallback(object : ExpandableLayout.Callback {
+            override fun <TVB : ViewDataBinding, EVB : ViewDataBinding> onExpanded(
+                expanded: Boolean,
+                topLayout: TVB?,
+                expandableLayout: EVB?
+            ) {
+                (topLayout as? ItemExpandableHeaderLayoutBinding)?.run {
+                    icon.setImageResource(if (expanded) R.drawable.ic_chevron_down else R.drawable.ic_chevron_right)
+//                    parent.setBackgroundColor(color(if (expanded) R.color.white else R.color.text_hint_color))
+                    title.applyTextColor(R.color.black)
+                }
+            }
+        })
+    }
+    getTopLayoutBinding<ItemExpandableHeaderLayoutBinding> {
+        title.text = titleText
+    }
+    getExpandableLayoutBinding<ItemFaqExpandableLayoutBinding> {
+        content.text = descriptionText
+    }
+    setDefaultState()
 }
 
 fun <V : View> BottomSheetBehavior<V>.toggle(open: Boolean = true) {

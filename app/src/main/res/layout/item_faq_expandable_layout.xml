@@ -5,10 +5,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_8sdp"
-        android:textColor="@color/teal_700"
+        android:textColor="@color/black"
         android:id="@+id/content"
         android:textSize="@dimen/_12sdp"
-        android:background="@android:color/white"
+        android:background="@drawable/edit_text_empty_background"
         tools:text="Lorem Ipsum is a simple dummy text?">
 
     </androidx.appcompat.widget.AppCompatTextView>

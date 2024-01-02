@@ -29,6 +29,14 @@
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_out"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/nav_calculators_to_end_service"
+            app:destination="@id/nav_end_service_calculator_fragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpToInclusive="true" />
 
     </fragment>
 
@@ -43,9 +51,19 @@
         tools:layout="@layout/fragment_feedback" />
 
     <fragment
+        android:id="@+id/nav_end_service_calculator_fragment"
+        android:name="qiwa.gov.sa.ui.calculators.presentation.EndServiceCalculator"
+        android:label="@string/calculator"
+        app:enterAnim="@anim/slide_in"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/slide_out"
+        tools:layout="@layout/end_service_calculator_fragment" />
+
+    <fragment
         android:id="@+id/nav_nitaqat_calculator_fragment"
         android:name="qiwa.gov.sa.ui.calculators.presentation.NitaqatCalculator"
-        android:label="@string/nitaqat_calculator"
+        android:label="@string/calculator"
         app:enterAnim="@anim/slide_in"
         app:exitAnim="@anim/fade_out"
         app:popEnterAnim="@anim/fade_in"

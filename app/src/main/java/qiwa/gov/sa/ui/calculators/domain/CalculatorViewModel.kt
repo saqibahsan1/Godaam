@@ -19,4 +19,8 @@ class CalculatorViewModel @Inject constructor(): BaseViewModel() {
     fun navigateToNitaqat(){
         navigate(CalculatorFragmentDirections.navCalculatorsToNitaqat())
     }
+
+    fun navigateToEndOfService(){
+        navigate(CalculatorFragmentDirections.navCalculatorsToEndService())
+    }
 }
