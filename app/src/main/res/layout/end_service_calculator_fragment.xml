@@ -502,13 +502,16 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/recalculate"
-                single_on_click="@{()->viewModel.calculateNitaqat(false)}"
                 view_visibility="@{viewModel.displayResult}"
+                single_on_click="@{()->viewModel.calculateNitaqat(false)}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:padding="@dimen/_10sdp"
                 android:text="@string/recalculate"
+                android:background="@drawable/edit_text_empty_background"
                 android:textAlignment="center"
                 android:textColor="@color/blue"
                 android:textSize="18sp"

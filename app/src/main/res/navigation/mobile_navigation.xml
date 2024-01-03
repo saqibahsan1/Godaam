@@ -38,6 +38,15 @@
             app:popExitAnim="@anim/slide_out"
             app:popUpToInclusive="true" />
 
+        <action
+            android:id="@+id/nav_calculators_to_work_permit"
+            app:destination="@id/nav_work_permit_calculator"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <fragment
@@ -59,6 +68,16 @@
         app:popEnterAnim="@anim/fade_in"
         app:popExitAnim="@anim/slide_out"
         tools:layout="@layout/end_service_calculator_fragment" />
+
+    <fragment
+        android:id="@+id/nav_work_permit_calculator"
+        android:name="qiwa.gov.sa.ui.calculators.presentation.WorkPermitFragment"
+        android:label="@string/calculator"
+        app:enterAnim="@anim/slide_in"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/slide_out"
+        tools:layout="@layout/work_permit_fragment" />
 
     <fragment
         android:id="@+id/nav_nitaqat_calculator_fragment"

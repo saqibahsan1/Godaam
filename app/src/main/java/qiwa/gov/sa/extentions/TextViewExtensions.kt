@@ -5,8 +5,6 @@ import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
 import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
 import android.text.SpannableString
-import android.text.SpannableStringBuilder
-import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.text.method.MovementMethod
 import android.text.method.ScrollingMovementMethod
@@ -23,7 +21,7 @@ import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import qiwa.gov.sa.utils.Constants
 import timber.log.Timber
-import java.util.*
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 

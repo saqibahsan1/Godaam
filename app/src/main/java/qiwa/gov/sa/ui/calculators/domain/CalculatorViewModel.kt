@@ -23,4 +23,7 @@ class CalculatorViewModel @Inject constructor(): BaseViewModel() {
     fun navigateToEndOfService(){
         navigate(CalculatorFragmentDirections.navCalculatorsToEndService())
     }
+    fun navigateToWorkPermitFragment(){
+        navigate(CalculatorFragmentDirections.navCalculatorsToWorkPermit())
+    }
 }

@@ -1,0 +1,1030 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="qiwa.gov.sa.ui.calculators.domain.WorkPermitViewModel" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/scrollViewWorkPermit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                view_visibility="@{!viewModel.displayResult}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/calculateMainLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/heading"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:fontFamily="sans-serif-black"
+                        android:gravity="start"
+                        android:maxWidth="@dimen/_250sdp"
+                        android:text="@string/workPermitCalculator"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_30sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/description1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/workPermitDetails"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="19sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/heading"
+                        app:layout_constraintTop_toBottomOf="@+id/heading" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/description2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/workPermitDetails1"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="19sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/description1"
+                        app:layout_constraintTop_toBottomOf="@+id/description1" />
+
+                    <qiwa.gov.sa.editText.CustomEditTextField
+                        android:id="@+id/saudisNonOwners"
+                        remove_error_on_typing="@{true}"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:hint_text_animate="@{@string/saudisNonOwners}"
+                        app:imeOptions="actionNext"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/description2"
+                        app:maxLength="10"
+                        app:type="plainText" />
+
+                    <qiwa.gov.sa.editText.CustomEditTextField
+                        android:id="@+id/NonSaudis"
+                        remove_error_on_typing="@{true}"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:hint_text_animate="@{@string/NonSaudis}"
+                        app:imeOptions="actionNext"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/saudisNonOwners"
+                        app:maxLength="10"
+                        app:type="plainText" />
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="@+id/NonSaudis"
+                        app:layout_constraintStart_toStartOf="@+id/NonSaudis"
+                        app:layout_constraintTop_toBottomOf="@+id/NonSaudis" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/nonSaudiEmployees"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:includeFontPadding="false"
+                        android:text="@string/nonSaudiEmployees"
+                        android:textColor="@color/black"
+                        android:textSize="19sp"
+                        app:layout_constraintStart_toStartOf="@+id/NonSaudis"
+                        app:layout_constraintTop_toBottomOf="@id/view1" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/categories"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/nonSaudiEmployees"
+                        app:layout_constraintTop_toBottomOf="@+id/nonSaudiEmployees" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/privateExpat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:includeFontPadding="false"
+                        android:text="@string/pvtExpat"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/view1"
+                        app:layout_constraintTop_toBottomOf="@id/category" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/privateExpatDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/citizens"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/light_color"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/privateExpat"
+                        app:layout_constraintTop_toBottomOf="@+id/privateExpat" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/citizensLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:elevation="@dimen/_2sdp"
+                        android:gravity="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/privateExpatDesc">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            single_on_click_no_delay="@{() -> viewModel.onSubAmountClick(citizensField)}"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:background="@drawable/transparent_background_oval"
+                            app:srcCompat="@drawable/ic_minus" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/citizensField"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/edit_text_empty_background"
+                            android:gravity="center"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@{`0`}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            tools:text="350" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            single_on_click_no_delay="@{() -> viewModel.onAddAmountClick(citizensField)}"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:background="@drawable/transparent_background_oval"
+                            app:srcCompat="@drawable/ic_add_line" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/deportationText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:includeFontPadding="false"
+                        android:text="@string/nationalitiesTitle"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/view1"
+                        app:layout_constraintTop_toBottomOf="@id/citizensLayout" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/deportationTextDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/nationalitiesDesc"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/light_color"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/deportationText"
+                        app:layout_constraintTop_toBottomOf="@+id/deportationText" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/enter_amount_field"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:elevation="@dimen/_2sdp"
+                        android:gravity="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/deportationTextDesc">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            single_on_click_no_delay="@{() -> viewModel.onSubAmountClick(deportationAmount)}"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:background="@drawable/transparent_background_oval"
+                            app:srcCompat="@drawable/ic_minus" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/deportationAmount"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/edit_text_empty_background"
+                            android:gravity="center"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@{`0`}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            tools:text="350" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            single_on_click_no_delay="@{() -> viewModel.onAddAmountClick(deportationAmount)}"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:background="@drawable/transparent_background_oval"
+                            app:srcCompat="@drawable/ic_add_line" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/displacedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:includeFontPadding="false"
+                        android:text="@string/displacedTitle"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/view1"
+                        app:layout_constraintTop_toBottomOf="@id/enter_amount_field" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/displacedTextDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/displacedDesc"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/light_color"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/displacedText"
+                        app:layout_constraintTop_toBottomOf="@+id/displacedText" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/displacedLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:elevation="@dimen/_2sdp"
+                        android:gravity="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/displacedTextDesc">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            single_on_click_no_delay="@{() -> viewModel.onSubAmountClick(displacedField)}"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:background="@drawable/transparent_background_oval"
+                            app:srcCompat="@drawable/ic_minus" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/displacedField"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/edit_text_empty_background"
+                            android:gravity="center"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@{`0`}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            tools:text="350" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            single_on_click_no_delay="@{() -> viewModel.onAddAmountClick(displacedField)}"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:background="@drawable/transparent_background_oval"
+                            app:srcCompat="@drawable/ic_add_line" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/gulfText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:includeFontPadding="false"
+                        android:text="@string/gulfTitle"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/view1"
+                        app:layout_constraintTop_toBottomOf="@id/displacedLayout" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/gulfTextDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/gulfDesc"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/light_color"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/gulfText"
+                        app:layout_constraintTop_toBottomOf="@+id/gulfText" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/gulfLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:elevation="@dimen/_2sdp"
+                        android:gravity="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/gulfTextDesc">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            single_on_click_no_delay="@{() -> viewModel.onSubAmountClick(gulfField)}"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:background="@drawable/transparent_background_oval"
+                            app:srcCompat="@drawable/ic_minus" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/gulfField"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/edit_text_empty_background"
+                            android:gravity="center"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@{`0`}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            tools:text="350" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            single_on_click_no_delay="@{() -> viewModel.onAddAmountClick(gulfField)}"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:background="@drawable/transparent_background_oval"
+                            app:srcCompat="@drawable/ic_add_line" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/recruitmentText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:includeFontPadding="false"
+                        android:text="@string/recruitmentText"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/view1"
+                        app:layout_constraintTop_toBottomOf="@id/gulfLayout" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/recruitmentDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/recruitmentDesc"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/light_color"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/recruitmentText"
+                        app:layout_constraintTop_toBottomOf="@+id/recruitmentText" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/recruitmentLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:elevation="@dimen/_2sdp"
+                        android:gravity="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/recruitmentDesc">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            single_on_click_no_delay="@{() -> viewModel.onSubAmountClick(recruitmentField)}"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:background="@drawable/transparent_background_oval"
+                            app:srcCompat="@drawable/ic_minus" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/recruitmentField"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/edit_text_empty_background"
+                            android:gravity="center"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@{`0`}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            tools:text="350" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            single_on_click_no_delay="@{() -> viewModel.onAddAmountClick(recruitmentField)}"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:background="@drawable/transparent_background_oval"
+                            app:srcCompat="@drawable/ic_add_line" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/agricultureText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:includeFontPadding="false"
+                        android:text="@string/agricultureText"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/view1"
+                        app:layout_constraintTop_toBottomOf="@id/recruitmentLayout" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/agricultureDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/agricultureDesc"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/light_color"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/agricultureText"
+                        app:layout_constraintTop_toBottomOf="@+id/agricultureText" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/agricultureLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:elevation="@dimen/_2sdp"
+                        android:gravity="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/agricultureDesc">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            single_on_click_no_delay="@{() -> viewModel.onSubAmountClick(agricultureField)}"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:background="@drawable/transparent_background_oval"
+                            app:srcCompat="@drawable/ic_minus" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/agricultureField"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/edit_text_empty_background"
+                            android:gravity="center"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@{`0`}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            tools:text="350" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            single_on_click_no_delay="@{() -> viewModel.onAddAmountClick(agricultureField)}"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:background="@drawable/transparent_background_oval"
+                            app:srcCompat="@drawable/ic_add_line" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/calculateButton"
+                        style="@style/CommonButtonStyle"
+                        single_on_click="@{()->viewModel.calculateNitaqat(true)}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/calculateWorkPermits"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/agricultureLayout"
+                        app:layout_constraintStart_toStartOf="@id/agricultureLayout"
+                        app:layout_constraintTop_toBottomOf="@+id/agricultureLayout" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                view_visibility="@{viewModel.displayResult}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_empty_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/subHeading"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="start"
+                        android:maxWidth="@dimen/_250sdp"
+                        android:text="@string/workPermitPayment"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_30sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/v1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/subHeading" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/saudis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_26sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/saudis"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/v1" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/saudisNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@string/_6"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/saudis"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/saudis" />
+
+                    <View
+                        android:id="@+id/v2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/saudisNum" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/nonSaudis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_26sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/nonSaudis"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/v2" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/nonSaudisNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@string/_6"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/nonSaudis"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/nonSaudis" />
+
+                    <View
+                        android:id="@+id/v3"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/nonSaudisNum" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/equalSaudiCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_26sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/totalEmployee"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/v3" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/equalSaudiCountNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@string/_6"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/equalSaudiCount"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/equalSaudiCount" />
+
+                    <View
+                        android:id="@+id/v9"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/equalSaudiCount" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/totalNumOfEmployees"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_26sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/overSaudiCount"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/v9" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/totalNumOfEmployeesNum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@string/_6"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/totalNumOfEmployees"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/totalNumOfEmployees"
+                        app:layout_constraintTop_toTopOf="@+id/totalNumOfEmployees" />
+
+                    <View
+                        android:id="@+id/v4"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/totalNumOfEmployeesNum" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/saudiCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_26sdp"
+                        android:fontFamily="sans-serif"
+                        android:maxWidth="@dimen/_250sdp"
+                        android:text="@string/financialTitle"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toStartOf="@+id/saudiCountNum"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/v4" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/saudiCountNum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@string/_6"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/saudiCount"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/saudiCount"
+                        app:layout_constraintTop_toTopOf="@+id/saudiCount" />
+
+                    <View
+                        android:id="@+id/v5"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/saudiCount" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/exemptCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_26sdp"
+                        android:fontFamily="sans-serif"
+                        android:maxWidth="@dimen/_250sdp"
+                        android:text="@string/exemptCount"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toStartOf="@+id/saudiCountNum"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/v5" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/exemptCountNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@string/_14"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/exemptCount"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/exemptCount" />
+
+                    <View
+                        android:id="@+id/v6"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/exemptCount" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/exemptDiscount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_26sdp"
+                        android:fontFamily="sans-serif"
+                        android:maxWidth="@dimen/_250sdp"
+                        android:text="@string/exemptDiscount"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toStartOf="@+id/saudiCountNum"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/v6" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/exemptDiscountNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@string/_6"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/exemptDiscount"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/exemptDiscount" />
+
+                    <View
+                        android:id="@+id/v7"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/exemptDiscount" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/workPermitFee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_26sdp"
+                        android:fontFamily="sans-serif"
+                        android:maxWidth="@dimen/_250sdp"
+                        android:text="@string/workPermitFee"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toStartOf="@+id/saudiCountNum"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/v7" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/workPermitFeeNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@string/sar_2100"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/workPermitFee"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/workPermitFee" />
+
+                    <View
+                        android:id="@+id/v8"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/text_hint_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/workPermitFee" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/totalFee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_26sdp"
+                        android:fontFamily="sans-serif"
+                        android:maxWidth="@dimen/_250sdp"
+                        android:text="@string/totalAmount"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/v8" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/totalFeeNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif-black"
+                        android:includeFontPadding="false"
+                        android:text="@string/sar_2100_year"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/black"
+                        android:textSize="19sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/totalFee"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/totalFee" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/recalculate"
+                        single_on_click="@{()->viewModel.calculateNitaqat(false)}"
+                        view_visibility="@{viewModel.displayResult}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_20sdp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@drawable/edit_text_empty_background"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@string/recalculate"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/totalFeeNum"
+                        tools:ignore="TooManyViews" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>
