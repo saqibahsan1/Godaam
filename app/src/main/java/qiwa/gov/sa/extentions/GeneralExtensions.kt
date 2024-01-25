@@ -15,6 +15,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import qiwa.gov.sa.header.AppHeader
 import qiwa.gov.sa.header.HeaderConfig
+import java.lang.reflect.Type
 
 @BindingAdapter("set_ui_data")
 fun AppHeader.setUiDataFromBinding(config: HeaderConfig?) {
@@ -103,15 +104,10 @@ inline fun <reified T> convertJsonToModel(string: String): T? =
             T::class.java
         )
 
-inline fun <reified T> convertJsonToRegexModel(string: String): T? =
-    GsonBuilder()
-        .enableComplexMapKeySerialization()
-        .setPrettyPrinting()
-        .create()
-        .fromJson(
-            string.replace("^\"|\"$".toRegex(), "").replace("\\n", "").trim(),
-            T::class.java
-        )
+inline fun <reified T> parseArray(json: String, typeToken: Type): T {
+    val gson = GsonBuilder().create()
+    return gson.fromJson(json, typeToken)
+}
 
 fun MutableMap<String, Any>?.getPayFortResponseMessage(): String =
     this?.get("response_message").toString()

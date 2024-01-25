@@ -1,17 +1,34 @@
 package qiwa.gov.sa.ui.calculators.domain
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.reflect.TypeToken
+import com.leo.searchablespinner.SearchableSpinner
+import com.leo.searchablespinner.interfaces.OnItemSelectListener
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import qiwa.gov.sa.base.domain.BaseViewModel
+import com.leo.searchablespinner.utils.data.NitaqatDropDownDataItem
+import qiwa.gov.sa.extentions.parseArray
 import qiwa.gov.sa.ui.calculators.presentation.NitaqatCalculatorDirections
 import javax.inject.Inject
 
+@SuppressLint("StaticFieldLeak")
 @HiltViewModel
-class NitaqatViewModel @Inject constructor() : BaseViewModel()  {
+class NitaqatViewModel @Inject constructor(
+    @ApplicationContext private val context: Context
+) : BaseViewModel() {
 
-    private val url ="https://www.qiwa.sa/en/business-owners/manage-establishment/what-nitaqat-and-how-it-calculated"
-    fun navigateToWebView(){
+    private val nitaqatFile = "nitaqat.json"
+    private val url =
+        "https://www.qiwa.sa/en/business-owners/manage-establishment/what-nitaqat-and-how-it-calculated"
+
+    fun navigateToWebView() {
         navigate(NitaqatCalculatorDirections.navNitaqatToWebView(url))
     }
 
@@ -21,8 +38,34 @@ class NitaqatViewModel @Inject constructor() : BaseViewModel()  {
         MutableLiveData(false)
     }
 
-    fun calculateNitaqat(calculate: Boolean){
+    fun calculateNitaqat(calculate: Boolean) {
         _displayResult.value = calculate
     }
 
+    fun readFromJson(): List<NitaqatDropDownDataItem> {
+        val fileInString: String =
+            context.assets.open(nitaqatFile).bufferedReader().use { it.readText() }
+        val type = object : TypeToken<List<NitaqatDropDownDataItem>>() {}.type
+        return parseArray<List<NitaqatDropDownDataItem>>(json = fileInString, typeToken = type)
+    }
+
+    fun searchableSpinner(context: FragmentActivity, dropDownSubEconomic: TextInputLayout) {
+        val searchableSpinner = SearchableSpinner(context)
+        searchableSpinner.windowTitle = "SEARCHABLE SPINNER"
+        searchableSpinner.onItemSelectListener = object : OnItemSelectListener {
+            override fun setOnItemSelectListener(position: Int, selectedString: String) {
+                Toast.makeText(
+                    context,
+                    "${searchableSpinner.selectedItem}  ${searchableSpinner.selectedItemPosition}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                dropDownSubEconomic.editText?.setText(selectedString)
+            }
+        }
+        searchableSpinner.setSpinnerListItems(readFromJson())
+        dropDownSubEconomic.editText?.keyListener = null
+        dropDownSubEconomic.editText?.setOnClickListener {
+            searchableSpinner.show()
+        }
+    }
 }

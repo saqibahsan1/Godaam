@@ -44,6 +44,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildToolsVersion = "34.0.0"
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -63,6 +64,7 @@ android {
 
 dependencies {
     implementation(project(":network"))
+    implementation(project(":searchablespinner"))
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -83,6 +85,7 @@ dependencies {
     implementation(libs.hiltNavigationFragment)
     kapt(libs.hilt.android.compiler)
     kapt(libs.lifeCycle.compiler)
+
     // retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
@@ -91,13 +94,10 @@ dependencies {
     implementation(libs.coil)
     // coroutines
     implementation(libs.coroutines)
-    // dimensions
+    // dimenions
     implementation(libs.dimension)
     // Timber
     implementation(libs.timber)
     // lottie
     implementation(libs.lottie)
-    // searchable spinner
-    implementation(libs.searchable.spinner)
-
 }

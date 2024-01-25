@@ -29,4 +29,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Qiwa"
 include(":app")
-include(":network")
+include(":network",":searchablespinner")

@@ -1,0 +1,162 @@
+[
+  {
+    "Economic_Activity_Id": 2,
+    "Economic_Activity": "المزارعين والصيادين والرعاة (خاصة)"
+  },
+  {
+    "Economic_Activity_Id": 47,
+    "Economic_Activity": "عقود مشاريع التشييد والبناء الحكومية (الباب الرابع)"
+  },
+  {
+    "Economic_Activity_Id": 54,
+    "Economic_Activity": "تأجير خدمات عمالة المنشآت"
+  },
+  {
+    "Economic_Activity_Id": 55,
+    "Economic_Activity": "تأجير خدمات العمالة المنزلية"
+  },
+  {
+    "Economic_Activity_Id": 84,
+    "Economic_Activity": "إسناد الموظفين السعوديين"
+  },
+  {
+    "Economic_Activity_Id": 410,
+    "Economic_Activity": "الإنتاج الزراعي والحيواني وخدماتها واندية الفروسية"
+  },
+  {
+    "Economic_Activity_Id": 422,
+    "Economic_Activity": "تعدين المعادن الفلزية والأحجار الكريمة"
+  },
+  {
+    "Economic_Activity_Id": 423,
+    "Economic_Activity": "تعدين المعادن غير الفلزية والصناعية"
+  },
+  {
+    "Economic_Activity_Id": 424,
+    "Economic_Activity": "تعدين مواد البناء"
+  },
+  {
+    "Economic_Activity_Id": 425,
+    "Economic_Activity": "أنشطة الطاقة والمياه وخدماتها"
+  },
+  {
+    "Economic_Activity_Id": 430,
+    "Economic_Activity": "الصناعات"
+  },
+  {
+    "Economic_Activity_Id": 450,
+    "Economic_Activity": "مقاولات التشييد والبناء والنظافة"
+  },
+  {
+    "Economic_Activity_Id": 451,
+    "Economic_Activity": "التشغيل والصيانة"
+  },
+  {
+    "Economic_Activity_Id": 460,
+    "Economic_Activity": "الجملة والتجزئة"
+  },
+  {
+    "Economic_Activity_Id": 462,
+    "Economic_Activity": "السلع النسائية، بيع الهواتف المحمولة وصيانتها"
+  },
+  {
+    "Economic_Activity_Id": 463,
+    "Economic_Activity": "حلول الاتصالات"
+  },
+  {
+    "Economic_Activity_Id": 464,
+    "Economic_Activity": "أنشطة البريد"
+  },
+  {
+    "Economic_Activity_Id": 465,
+    "Economic_Activity": "البنية التحتية لتقنية المعلومات"
+  },
+  {
+    "Economic_Activity_Id": 466,
+    "Economic_Activity": "البنية التحتية للاتصالات"
+  },
+  {
+    "Economic_Activity_Id": 467,
+    "Economic_Activity": "التشغيل والصيانة للاتصالات"
+  },
+  {
+    "Economic_Activity_Id": 468,
+    "Economic_Activity": "التشغيل والصيانة لتقنية المعلومات"
+  },
+  {
+    "Economic_Activity_Id": 469,
+    "Economic_Activity": "حلول تقنية المعلومات"
+  },
+  {
+    "Economic_Activity_Id": 471,
+    "Economic_Activity": "النقل البري والتخزين"
+  },
+  {
+    "Economic_Activity_Id": 472,
+    "Economic_Activity": "النقل البحري والجوي"
+  },
+  {
+    "Economic_Activity_Id": 473,
+    "Economic_Activity": "مطاعم مع الخدمة لا تشمل مطاعم الوجبات السريعة"
+  },
+  {
+    "Economic_Activity_Id": 474,
+    "Economic_Activity": "مطاعم خدمة سريعة ومحلات الآيسكريم"
+  },
+  {
+    "Economic_Activity_Id": 475,
+    "Economic_Activity": "المقاهي و محلات تقديم المشروبات"
+  },
+  {
+    "Economic_Activity_Id": 476,
+    "Economic_Activity": "التموين والاعاشة"
+  },
+  {
+    "Economic_Activity_Id": 477,
+    "Economic_Activity": "حراسات أمنية ومكاتب التوظيف الأهلية"
+  },
+  {
+    "Economic_Activity_Id": 479,
+    "Economic_Activity": "مدارس البنين ومجمعات البنين والبنات"
+  },
+  {
+    "Economic_Activity_Id": 480,
+    "Economic_Activity": "المؤسسات المالية"
+  },
+  {
+    "Economic_Activity_Id": 481,
+    "Economic_Activity": "خدمات الاعمال"
+  },
+  {
+    "Economic_Activity_Id": 491,
+    "Economic_Activity": "الخدمات الاجتماعية"
+  },
+  {
+    "Economic_Activity_Id": 492,
+    "Economic_Activity": "الخدمات الشخصية"
+  },
+  {
+    "Economic_Activity_Id": 493,
+    "Economic_Activity": "التعليم العالي"
+  },
+  {
+    "Economic_Activity_Id": 494,
+    "Economic_Activity": "مدارس البنات ورياض الأطفال والحضانات"
+  },
+  {
+    "Economic_Activity_Id": 495,
+    "Economic_Activity": "المدارس الأجنبية"
+  },
+  {
+    "Economic_Activity_Id": 496,
+    "Economic_Activity": "المختبرات والخدمات الصحية"
+  },
+  {
+    "Economic_Activity_Id": 497,
+    "Economic_Activity": "الايواء والترفيه والسياحة"
+  },
+  {
+    "Economic_Activity_Id": 499,
+    "Economic_Activity": "السلع الأساسية والمحروقات"
+  }
+]

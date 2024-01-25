@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="qiwa.gov.sa.ui.calculators.domain.NitaqatViewModel" />
@@ -22,13 +23,13 @@
             android:layout_height="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                view_visibility="@{!viewModel.displayResult}"
+                    view_visibility="@{!viewModel.displayResult}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="gone">
+                tools:visibility="visible">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/heading"
@@ -50,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_10sdp"
                     android:fontFamily="sans-serif"
-                    android:text="@string/nitiqatDescription1"
+                    android:text="@string/nitiqatDescription"
                     android:textAlignment="viewStart"
                     android:textColor="@color/black"
                     android:textSize="19sp"
@@ -116,13 +117,37 @@
                     app:layout_constraintStart_toEndOf="@+id/readMore"
                     app:layout_constraintTop_toBottomOf="@id/description3" />
 
-                <qiwa.gov.sa.editText.CustomEditTextField
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/dropDownSubEconomic"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:hint="@string/hint"
+                    app:boxBackgroundColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/linkToDesc">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:inputType="none" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <qiwa.gov.sa.editText.CustomEditTextField
+                    android:id="@+id/dropDownSubEconomic2"
                     remove_error_on_typing="@{true}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="gone"
                     app:hint_text_animate="@{@string/subEconomic}"
                     app:imeOptions="actionNext"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -243,10 +268,10 @@
                 view_visibility="@{viewModel.displayResult}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/resultLayout"
@@ -965,16 +990,16 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/recalculate"
-                    view_visibility="@{viewModel.displayResult}"
                     single_on_click="@{()->viewModel.calculateNitaqat(false)}"
+                    view_visibility="@{viewModel.displayResult}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="@dimen/_10sdp"
-                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:background="@drawable/edit_text_empty_background"
                     android:padding="@dimen/_10sdp"
                     android:text="@string/recalculate"
-                    android:background="@drawable/edit_text_empty_background"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
                     android:textSize="18sp"

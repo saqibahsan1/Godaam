@@ -35,12 +35,16 @@ class NitaqatCalculator : BaseFragment<NitaqatCalculatorFragmentBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         spannableText()
+        nitaqatCalculatorViewModel.readFromJson()
     }
 
     override val viewModel: BaseViewModel
         get() = nitaqatCalculatorViewModel
 
     private fun spannableText() {
+        nitaqatCalculatorViewModel.searchableSpinner(requireActivity(),binding.dropDownSubEconomic)
+//        val items = arrayOf("Item 1", "Item 2", "Item 3", "Item 4")
+//        (binding.dropDownSubEconomic.editText as? MaterialAutoCompleteTextView)?.setSimpleItems(items)
         observeLiveData(nitaqatCalculatorViewModel.displayResult) {
             binding.scrollView.fullScroll(View.FOCUS_UP)
         }
@@ -59,4 +63,6 @@ class NitaqatCalculator : BaseFragment<NitaqatCalculatorFragmentBinding>() {
             .append(stringsResourceManager.getString(R.string.pendingVisas))
         binding.quotaText.text = quotaText
     }
+
+
 }
