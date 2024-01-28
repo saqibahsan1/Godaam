@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.android.wearecovered.resources.StringsResourceManager
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.reflect.TypeToken
 import com.leo.searchablespinner.SearchableSpinner
@@ -14,6 +15,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import qiwa.gov.sa.base.domain.BaseViewModel
 import com.leo.searchablespinner.utils.data.NitaqatDropDownDataItem
+import qiwa.gov.sa.R
 import qiwa.gov.sa.extentions.parseArray
 import qiwa.gov.sa.ui.calculators.presentation.NitaqatCalculatorDirections
 import javax.inject.Inject
@@ -21,7 +23,8 @@ import javax.inject.Inject
 @SuppressLint("StaticFieldLeak")
 @HiltViewModel
 class NitaqatViewModel @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
+    private val stringsResourceManager: StringsResourceManager
 ) : BaseViewModel() {
 
     private val nitaqatFile = "nitaqat.json"
@@ -51,12 +54,12 @@ class NitaqatViewModel @Inject constructor(
 
     fun searchableSpinner(context: FragmentActivity, dropDownSubEconomic: TextInputLayout) {
         val searchableSpinner = SearchableSpinner(context)
-        searchableSpinner.windowTitle = "SEARCHABLE SPINNER"
+        searchableSpinner.windowTitle = stringsResourceManager.getString(R.string.subEconomic)
         searchableSpinner.onItemSelectListener = object : OnItemSelectListener {
             override fun setOnItemSelectListener(position: Int, selectedString: String) {
                 Toast.makeText(
                     context,
-                    "${searchableSpinner.selectedItem}  ${searchableSpinner.selectedItemPosition}",
+                    "${searchableSpinner.selectedItem?.Economic_Activity}  ${searchableSpinner.selectedItem?.Economic_Activity_Id}",
                     Toast.LENGTH_SHORT
                 ).show()
                 dropDownSubEconomic.editText?.setText(selectedString)

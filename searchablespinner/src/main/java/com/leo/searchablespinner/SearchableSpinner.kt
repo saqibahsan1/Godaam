@@ -1,7 +1,6 @@
 package com.leo.searchablespinner
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
@@ -64,14 +63,13 @@ class SearchableSpinner(private val context: Context) : LifecycleObserver {
     var spinnerCancelable: Boolean = false
     var windowTitle: String? = null
     var searchQueryHint: String = context.getString(android.R.string.search_go)
-    var negativeButtonText: String = context.getString(android.R.string.cancel)
     var dismissSpinnerOnItemClick: Boolean = true
     var highlightSelectedItem: Boolean = true
     var negativeButtonVisibility: SpinnerView = SpinnerView.VISIBLE
     var windowTitleVisibility: SpinnerView = SpinnerView.GONE
     var searchViewVisibility: SpinnerView = SpinnerView.VISIBLE
     var selectedItemPosition: Int = -1
-    var selectedItem: String? = null
+    var selectedItem: NitaqatDropDownDataItem? = null
 
     @Suppress("unused")
     enum class SpinnerView(val visibility: Int) {
@@ -96,7 +94,6 @@ class SearchableSpinner(private val context: Context) : LifecycleObserver {
 
             dialog = dialogBuilder.create()
             dialog.initView()
-            initDialogColorScheme()
             dialog.show()
             dialog.initAlertDialogWindow()
         }
@@ -117,7 +114,7 @@ class SearchableSpinner(private val context: Context) : LifecycleObserver {
             SpinnerRecyclerAdapter(context, spinnerList!!, object : OnItemSelectListener {
                 override fun setOnItemSelectListener(position: Int, selectedString: String) {
                     selectedItemPosition = position
-                    selectedItem = selectedString
+                    selectedItem = spinnerList[position]
                     if (dismissSpinnerOnItemClick) dismiss()
                     if (::onItemSelectListener.isInitialized) onItemSelectListener.setOnItemSelectListener(
                         position,
@@ -200,32 +197,12 @@ class SearchableSpinner(private val context: Context) : LifecycleObserver {
             })
         } else dialogView.searchView.visibility = searchViewVisibility.visibility
 
-
-        //init NegativeButton
-        if (negativeButtonVisibility.visibility == SearchView.VISIBLE) {
-            dialogView.buttonClose.setOnClickListener {
-                it.isClickable = false
-                this@SearchableSpinner.dismiss()
-            }
-            dialogView.buttonClose.text = negativeButtonText
-            dialogView.buttonClose.setTextColor(negativeButtonTextColor)
-        } else dialogView.buttonClose.visibility = negativeButtonVisibility.visibility
-
         //set Recycler Adapter
         if (::recyclerAdapter.isInitialized) {
             recyclerAdapter.highlightSelectedItem = highlightSelectedItem
             dialogView.recyclerView.adapter = recyclerAdapter
         }
     }
-
-    private fun initDialogColorScheme() {
-        if (windowTopBackgroundColor != null)
-            dialogView.headLayout.background = ColorDrawable(windowTopBackgroundColor!!)
-        if (negativeButtonBackgroundColor != null)
-            dialogView.buttonClose.backgroundTintList =
-                ColorStateList.valueOf(negativeButtonBackgroundColor!!)
-    }
-
     private fun AlertDialog.initAlertDialogWindow() {
         val colorDrawable = ColorDrawable(Color.TRANSPARENT)
         val insetBackgroundDrawable = InsetDrawable(colorDrawable, 50, 40, 50, 40)
