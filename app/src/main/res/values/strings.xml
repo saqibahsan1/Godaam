@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Qiwa</string>
+    <string name="app_name">BallparkBuddy</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -60,7 +60,7 @@
     <string name="displacedTitle">Displaced tribe members</string>
     <string name="nationalitiesTitle">Nationalities exempt from deportation</string>
     <string name="endDate">Contract end date</string>
-    <string name="endOfServiceDesc2">Therefore, Qiwa made it easier to calculate the end-of-service reward amount, the due date of the reward, and how to calculate it according to the rules of the Saudi labor system.</string>
+    <string name="endOfServiceDesc2">Therefore, made it easier to calculate the end-of-service reward amount, the due date of the reward, and how to calculate it according to the rules of the Saudi labor system.</string>
     <string name="endOfServiceDesc1">The end-of-service reward is the employee’s rights over the employer in the event of terminating the contractual relationship. The Saudi legislator obliges the employer to pay it to the employee at the end of the work contract, whether the work contract is for a limited period or an unlimited period.</string>
     <string name="nitiqatDescription3">The entity’s Nitaqat corresponds to the Nationalization rate, which is based on economic activity.</string>
     <string name="nitiqatDescription1">The Nitaqat level and the Nationalization rate are calculated based on the number of Saudi and non-Saudi employees in the entity.</string>

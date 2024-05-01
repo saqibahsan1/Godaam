@@ -7,9 +7,9 @@
 
         <variable
             name="viewModel"
-            type="qiwa.gov.sa.ui.calculators.domain.NitaqatViewModel" />
+            type="ballpark.buddy.android.ui.calculators.domain.NitaqatViewModel" />
 
-        <import type="qiwa.gov.sa.utils.LinkTouchMovementMethod" />
+        <import type="ballpark.buddy.android.utils.LinkTouchMovementMethod" />
     </data>
 
     <ScrollView
@@ -140,7 +140,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <qiwa.gov.sa.editText.CustomEditTextField
+                <ballpark.buddy.android.editText.CustomEditTextField
                     android:id="@+id/dropDownSubEconomic2"
                     remove_error_on_typing="@{true}"
                     android:layout_width="match_parent"
@@ -157,7 +157,7 @@
                     app:type="plainText" />
 
 
-                <qiwa.gov.sa.editText.CustomEditTextField
+                <ballpark.buddy.android.editText.CustomEditTextField
                     android:id="@+id/numberOfSaudisDropDown"
                     remove_error_on_typing="@{true}"
                     android:layout_width="match_parent"
@@ -172,7 +172,7 @@
                     app:maxLength="10"
                     app:type="number" />
 
-                <qiwa.gov.sa.editText.CustomEditTextField
+                <ballpark.buddy.android.editText.CustomEditTextField
                     android:id="@+id/numberOfNonSaudisDropDown"
                     remove_error_on_typing="@{true}"
                     android:layout_width="match_parent"
@@ -231,7 +231,7 @@
                     app:layout_constraintStart_toStartOf="@id/checkBoxTermsAndConditions"
                     app:layout_constraintTop_toBottomOf="@+id/checkboxDescription" />
 
-                <qiwa.gov.sa.utils.ExpandableLayout
+                <ballpark.buddy.android.utils.ExpandableLayout
                     android:id="@+id/activityInNitaqatExp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -246,7 +246,7 @@
                     app:title="@{@string/entities}"
                     app:topLayout="@layout/item_expandable_header_layout" />
 
-                <qiwa.gov.sa.utils.ExpandableLayout
+                <ballpark.buddy.android.utils.ExpandableLayout
                     android:id="@+id/totalEmployeesExp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

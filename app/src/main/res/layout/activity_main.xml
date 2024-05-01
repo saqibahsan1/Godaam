@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="qiwa.gov.sa.host.HostViewModel"/>
+            type="ballpark.buddy.android.host.HostViewModel"/>
     </data>
 
     <androidx.drawerlayout.widget.DrawerLayout

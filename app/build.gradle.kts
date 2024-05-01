@@ -10,7 +10,7 @@ plugins {
 }
 
 android {
-    namespace = "qiwa.gov.sa"
+    namespace = "ballpark.buddy.android"
     compileSdk = 34
 
     buildFeatures {
@@ -18,7 +18,7 @@ android {
         viewBinding = true
     }
     defaultConfig {
-        applicationId = "qiwa.gov.sa"
+        applicationId = "ballpark.buddy.android"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

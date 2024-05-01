@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="qiwa.gov.sa.ui.calculators.domain.CalculatorViewModel" />
+            type="ballpark.buddy.android.ui.calculators.domain.CalculatorViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView

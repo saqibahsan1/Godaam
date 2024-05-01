@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "qiwa.gov.network"
+    namespace = "ballpark.buddy.network"
     compileSdk = 34
 
     defaultConfig {

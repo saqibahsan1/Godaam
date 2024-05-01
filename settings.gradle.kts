@@ -27,6 +27,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Qiwa"
+rootProject.name = "BallparkBuddy"
 include(":app")
 include(":network",":searchablespinner")

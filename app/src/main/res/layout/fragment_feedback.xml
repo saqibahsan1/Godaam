@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="qiwa.gov.sa.ui.feedback.FeedbackViewModel" />
+            type="ballpark.buddy.android.ui.feedback.FeedbackViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <qiwa.gov.sa.editText.CustomEditTextField
+                <ballpark.buddy.android.editText.CustomEditTextField
                     android:id="@+id/idNumberEditText"
                     remove_error_on_typing="@{true}"
                     android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-                <qiwa.gov.sa.editText.CustomEditTextField
+                <ballpark.buddy.android.editText.CustomEditTextField
                     android:id="@+id/emailEditText"
                     remove_error_on_typing="@{true}"
                     android:layout_width="match_parent"

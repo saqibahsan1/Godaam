@@ -7,9 +7,9 @@
 
         <variable
             name="data"
-            type="qiwa.gov.sa.header.HeaderConfig" />
+            type="ballpark.buddy.android.header.HeaderConfig" />
 
-        <import type="qiwa.gov.sa.header.HeaderRightButtonType" />
+        <import type="ballpark.buddy.android.header.HeaderRightButtonType" />
 
         <import type="kotlin.Unit" />
 

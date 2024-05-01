@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="qiwa.gov.sa.ui.home.HomeFragment"
+        android:name="ballpark.buddy.android.ui.home.HomeFragment"
         android:label="@string/menu_home"
         app:enterAnim="@anim/slide_in"
         app:exitAnim="@anim/fade_out"
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/nav_calculators"
-        android:name="qiwa.gov.sa.ui.calculators.presentation.CalculatorFragment"
+        android:name="ballpark.buddy.android.ui.calculators.presentation.CalculatorFragment"
         android:label="@string/menu_calculators"
         tools:layout="@layout/fragment_calculator">
 
@@ -51,7 +51,7 @@
 
     <fragment
         android:id="@+id/nav_feedback"
-        android:name="qiwa.gov.sa.ui.feedback.FeedbackFragment"
+        android:name="ballpark.buddy.android.ui.feedback.FeedbackFragment"
         android:label="@string/feedback"
         app:enterAnim="@anim/slide_in"
         app:exitAnim="@anim/fade_out"
@@ -61,7 +61,7 @@
 
     <fragment
         android:id="@+id/nav_end_service_calculator_fragment"
-        android:name="qiwa.gov.sa.ui.calculators.presentation.EndServiceCalculator"
+        android:name="ballpark.buddy.android.ui.calculators.presentation.EndServiceCalculator"
         android:label="@string/calculator"
         app:enterAnim="@anim/slide_in"
         app:exitAnim="@anim/fade_out"
@@ -71,7 +71,7 @@
 
     <fragment
         android:id="@+id/nav_work_permit_calculator"
-        android:name="qiwa.gov.sa.ui.calculators.presentation.WorkPermitFragment"
+        android:name="ballpark.buddy.android.ui.calculators.presentation.WorkPermitFragment"
         android:label="@string/calculator"
         app:enterAnim="@anim/slide_in"
         app:exitAnim="@anim/fade_out"
@@ -81,7 +81,7 @@
 
     <fragment
         android:id="@+id/nav_nitaqat_calculator_fragment"
-        android:name="qiwa.gov.sa.ui.calculators.presentation.NitaqatCalculator"
+        android:name="ballpark.buddy.android.ui.calculators.presentation.NitaqatCalculator"
         android:label="@string/calculator"
         app:enterAnim="@anim/slide_in"
         app:exitAnim="@anim/fade_out"
@@ -102,7 +102,7 @@
 
     <fragment
         android:id="@+id/nav_web_view"
-        android:name="qiwa.gov.sa.ui.webView.WebviewFragment"
+        android:name="ballpark.buddy.android.ui.webView.WebviewFragment"
         android:label="Calculation Details"
         tools:layout="@layout/webview_fragment">
 
