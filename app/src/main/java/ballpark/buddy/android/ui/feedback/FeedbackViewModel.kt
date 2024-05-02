@@ -4,7 +4,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
-import com.android.wearecovered.resources.StringsResourceManager
+import ballpark.buddy.android.resources.StringsResourceManager
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ballpark.buddy.android.R

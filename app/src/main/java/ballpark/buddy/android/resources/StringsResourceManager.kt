@@ -1,4 +1,4 @@
-package com.android.wearecovered.resources
+package ballpark.buddy.android.resources
 
 import android.content.Context
 import androidx.annotation.ArrayRes

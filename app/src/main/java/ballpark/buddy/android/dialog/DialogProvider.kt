@@ -5,6 +5,7 @@ import ballpark.buddy.android.click_callback.ClickCallback
 import javax.inject.Inject
 
 interface DialogProvider {
+    fun showGeneralDialog(context: Context, generalDialogUiData: GeneralDialogUiData)
     fun showNoInternetDialog(context: Context, noInternetDialogUiData: NoInternetDialogUiData)
     fun showErrorDialog(
         context: Context,
@@ -16,6 +17,7 @@ interface DialogProvider {
 }
 
 class DefaultDialogProvider @Inject constructor(
+    private val generalDialogProvider: GeneralDialogProvider,
     private val noInternetDialogProvider: NoInternetDialogProvider,
 ) : DialogProvider {
 
@@ -23,7 +25,9 @@ class DefaultDialogProvider @Inject constructor(
     override fun showNoInternetDialog(context: Context, noInternetDialogUiData: NoInternetDialogUiData) {
         noInternetDialogProvider.show(context, noInternetDialogUiData)
     }
-
+    override fun showGeneralDialog(context: Context, generalDialogUiData: GeneralDialogUiData) {
+        generalDialogProvider.show(context, generalDialogUiData)
+    }
     override fun showErrorDialog(
         context: Context,
         message: String,

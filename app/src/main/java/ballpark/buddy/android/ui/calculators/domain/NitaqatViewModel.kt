@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.android.wearecovered.resources.StringsResourceManager
+import ballpark.buddy.android.resources.StringsResourceManager
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.reflect.TypeToken
 import com.leo.searchablespinner.SearchableSpinner

@@ -125,4 +125,18 @@
     <string name="sar00">6350.00 SAR</string>
     <string name="_01_01_2024">01/01/2024</string>
     <string name="totalAmount">Total Amount</string>
+    <string name="email_address">Email</string>
+    <string name="email_point">email body</string>
+    <string name="sign_in">Login\n</string>
+    <string name="password">Password</string>
+    <string name="password_hint">Enter your password\n</string>
+    <string name="create_account_u">Don\'t have account?</string>
+    <string name="forgotPassword_u">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="register">Register\n</string>
+    <string name="account_created">Create Profile</string>
+    <string name="create_account">Create Profile</string>
+    <string name="i_already_have_an_account">Already have an account?</string>
+    <string name="confirmPassword">Confirm Password\n</string>
+    <string name="create_password">Create password\n</string>
 </resources>

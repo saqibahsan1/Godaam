@@ -14,44 +14,37 @@
             android:id="@+id/fieldLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_empty_background"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/namex"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:tag="textInputLayout"
-                app:hintTextColor="@color/text_hint_color"
-                android:textColorHint="@color/text_hint_color"
-                app:boxBackgroundMode="outline"
-                app:layout_constraintEnd_toStartOf="@+id/rightIcon"
+                app:layout_constraintEnd_toStartOf="@id/rightIcon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:boxBackgroundMode="none"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false"
+                android:gravity="center_vertical"
+                android:tag="textInputLayout"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/name"
+                    style="@style/CustomEditTextFieldStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:gravity="center_vertical"
                     android:tag="editText"
-                    android:hint="@string/hint"
-                    android:inputType="number"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
+                    android:nestedScrollingEnabled="true"
+                    android:saveEnabled="true"
+                    tools:hint="Hint" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
-
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/rightIcon"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="0dp"
-                android:background="@drawable/transparent_background_oval"
                 android:padding="14dp"
                 android:src="@drawable/ic_chevron_down"
                 android:visibility="gone"

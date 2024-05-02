@@ -7,7 +7,9 @@ import dagger.hilt.components.SingletonComponent
 import ballpark.buddy.android.resources.ColorResourceManager
 import ballpark.buddy.android.resources.DefaultColorResourceManager
 import ballpark.buddy.android.resources.DefaultDrawableResourceManager
+import ballpark.buddy.android.resources.DefaultStringsResourceManager
 import ballpark.buddy.android.resources.DrawableResourceManager
+import ballpark.buddy.android.resources.StringsResourceManager
 
 @Module
 @InstallIn(SingletonComponent::class)

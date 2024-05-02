@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="uiData"
+            type="ballpark.buddy.android.dialog.GeneralDialogUiData" />
+
+        <variable
+            name="dismissListener"
+            type="ballpark.buddy.android.base.data.DismissListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_16sdp"
+        android:background="@drawable/dialog_background">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleText"
+            style="@style/BoldFontRoboto"
+            set_text_or_hide_if_empty="@{uiData.title}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_22sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Email Address" />
+
+        <View
+            android:layout_width="match_parent"
+            android:id="@+id/v1"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/titleText"
+            android:layout_marginTop="@dimen/_10sdp"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dotIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:single_on_click="@{() -> dismissListener.onDismiss(false)}"
+            app:srcCompat="@drawable/cross_icon" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/descriptionText"
+            style="@style/RegularFont"
+            set_text_or_hide_if_empty="@{uiData.description}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:gravity="start"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/titleText"
+            app:layout_constraintTop_toBottomOf="@id/v1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/descriptionText2"
+            style="@style/RegularFont"
+            set_text_or_hide_if_empty="@{uiData.description2}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:gravity="start"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/descriptionText"
+            app:layout_constraintTop_toBottomOf="@id/descriptionText" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionText2"
+            app:layout_goneMarginTop="@dimen/_20sdp">
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/primaryButton"
+                style="@style/CommonButtonStyle"
+                set_text_or_hide_if_empty="@{uiData.primaryButtonText}"
+                android:backgroundTint="@color/app_orange"
+                android:layout_width="match_parent"
+                app:single_on_click="@{() -> dismissListener.onDismiss(true)}"
+                tools:text="Yes" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/secondaryButton"
+                android:layout_height="wrap_content"
+                set_text_or_hide_if_empty="@{uiData.secondaryButtonText}"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:textSize="@dimen/_14sdp"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:fontFamily="@font/nunito_regular"
+                android:textColor="@color/black"
+                app:single_on_click="@{() -> dismissListener.onDismiss(false)}"
+                tools:text="Yes" />
+
+        </LinearLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

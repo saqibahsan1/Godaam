@@ -2,7 +2,7 @@ package ballpark.buddy.android.cache
 
 import android.content.Context
 import androidx.core.content.edit
-import com.android.wearecovered.resources.StringsResourceManager
+import ballpark.buddy.android.resources.StringsResourceManager
 import dagger.hilt.android.qualifiers.ApplicationContext
 import ballpark.buddy.network.NetworkPreferencesManager
 import ballpark.buddy.android.R

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.bold
 import androidx.fragment.app.viewModels
-import com.android.wearecovered.resources.StringsResourceManager
+import ballpark.buddy.android.resources.StringsResourceManager
 import dagger.hilt.android.AndroidEntryPoint
 import ballpark.buddy.android.R
 import ballpark.buddy.android.base.domain.BaseViewModel

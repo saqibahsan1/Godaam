@@ -18,10 +18,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:elevation="@dimen/_25sdp"
+        android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        app:drawable="@{data.itemBackground}">
+        app:drawable="@{@color/white}">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/backButton"
@@ -57,23 +56,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:set_text_or_hide_if_empty="@{data.titleConfig.title}"
             tools:text="Header " />
-
-        <FrameLayout
-            view_visibility="@{data.itemBackground != null}"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guideline20">
-
-            <!-- **** Place Your Content Here **** -->
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:background="@drawable/custom_shadow" />
-
-        </FrameLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline20"

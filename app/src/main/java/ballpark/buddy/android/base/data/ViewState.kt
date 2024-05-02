@@ -6,6 +6,7 @@ import ballpark.buddy.network.ApiErrors
 import ballpark.buddy.network.ErrorWithCode
 import ballpark.buddy.android.click_callback.ClickCallback
 import ballpark.buddy.android.click_callback.EMPTY_CLICK_CALL_BACK
+import ballpark.buddy.android.dialog.GeneralDialogUiData
 import ballpark.buddy.android.dialog.NoInternetDialogUiData
 
 sealed class ViewState<out T> {
@@ -37,7 +38,7 @@ sealed interface DialogMessageType {
 //    data class Success(val successDialogUiData: SuccessDialogUiData) : DialogMessageType
     data class Error(val message: String, val description: String? = null, var isCancelable: Boolean = true, val errorCode:Int? = null) :
         DialogMessageType
-//    data class GeneralDialog(val generalDialogUiData: GeneralDialogUiData) : DialogMessageType
+    data class GeneralDialog(val generalDialogUiData: GeneralDialogUiData) : DialogMessageType
     data class NoInternet(val noInternetDialogUiData: NoInternetDialogUiData) : DialogMessageType
 }
 
