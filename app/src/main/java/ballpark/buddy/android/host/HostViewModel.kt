@@ -14,6 +14,7 @@ import ballpark.buddy.android.base.domain.SingleLiveEvent
 import ballpark.buddy.android.cache.SharedPreferencesManager
 import ballpark.buddy.android.click_callback.ClickCallback
 import ballpark.buddy.android.dialog.DialogProvider
+import ballpark.buddy.android.dialog.GeneralDialogUiData
 import ballpark.buddy.android.dialog.NoInternetDialogUiData
 import ballpark.buddy.android.header.HeaderConfig
 import javax.inject.Inject
@@ -116,12 +117,22 @@ class HostViewModel @Inject constructor(
                     dialogMessageType.description,
                     clickCallback
                 )
-
+            is DialogMessageType.GeneralDialog ->
+                showGeneralDialogMessage(
+                    context,dialogMessageType.generalDialogUiData
+                )
 
             is DialogMessageType.NoInternet ->
                 showNoInternetDialog(context, dialogMessageType.noInternetDialogUiData)
 
         }
+    }
+
+    private fun showGeneralDialogMessage(
+        context: Context,
+        generalDialogUiData: GeneralDialogUiData
+    ) {
+        dialogProvider.showGeneralDialog(context, generalDialogUiData)
     }
 
     fun updateBottomNavigation(@MenuRes menu: Int) {

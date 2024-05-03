@@ -134,8 +134,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/qiwa_logo" />
+                android:layout_weight="1" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="0dp"

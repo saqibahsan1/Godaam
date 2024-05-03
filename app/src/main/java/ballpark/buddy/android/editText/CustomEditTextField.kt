@@ -437,9 +437,9 @@ fun showErrorViews(show: Boolean) {
     binding.run {
         viewVisibility(error, show)
         when {
-//                isPasswordField && show -> {
-//                    attachPasswordIconClickListener()
-//                }
+                isPasswordField && show -> {
+                    attachPasswordIconClickListener()
+                }
             else -> {
                 rightIcon.imageTintList = null
                 showSupportIconIfRequired()

@@ -62,7 +62,7 @@ class SplashViewModel @Inject constructor(
             else
                 navigateWithDelay(SplashFragmentDirections.actionSplashToHome())
         } else {
-            navigateWithDelay(SplashFragmentDirections.actionSplashToOnBoarding())
+            navigateWithDelay(SplashFragmentDirections.actionSplashToLogin())
         }
     }
 

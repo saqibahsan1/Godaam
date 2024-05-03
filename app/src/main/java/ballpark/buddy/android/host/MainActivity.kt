@@ -7,6 +7,9 @@ import android.view.View
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.ui.AppBarConfiguration
 import ballpark.buddy.android.base.presentation.ProgressLoader
 import ballpark.buddy.android.databinding.ActivityMainBinding
@@ -28,15 +31,20 @@ class MainActivity : AppCompatActivity() {
     private val progressLoader: ProgressLoader by lazy {
         ProgressLoader(this)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
+        // Get the window insets controller
+        val controller = WindowInsetsControllerCompat(window, window.decorView)
 
+        // Set the status bar to light mode
+        controller.isAppearanceLightStatusBars = true
         binding = ActivityMainBinding.inflate(layoutInflater).apply {
             lifecycleOwner = this@MainActivity
             viewModel = hostViewModel
         }
         setContentView(binding.root)
-        setSupportActionBar(binding.appBarMain.toolbar)
         observeLiveData()
     }
 

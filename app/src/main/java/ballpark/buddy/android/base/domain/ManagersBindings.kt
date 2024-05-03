@@ -7,8 +7,10 @@ import dagger.hilt.components.SingletonComponent
 import ballpark.buddy.android.cache.DefaultSharedPreferencesManager
 import ballpark.buddy.android.cache.SharedPreferencesManager
 import ballpark.buddy.android.dialog.DefaultDialogProvider
+import ballpark.buddy.android.dialog.DefaultGeneralDialogProvider
 import ballpark.buddy.android.dialog.DefaultNoInternetDialogProvider
 import ballpark.buddy.android.dialog.DialogProvider
+import ballpark.buddy.android.dialog.GeneralDialogProvider
 import ballpark.buddy.android.dialog.NoInternetDialogProvider
 import javax.inject.Singleton
 
@@ -36,9 +38,10 @@ interface ProvidersBindings {
 //    fun bindSuccessDialogProvider(default: DefaultSuccessDialogProvider): SuccessDialogProvider
 
     @Binds
+    fun bindInfoDialogProvider(default: DefaultGeneralDialogProvider): GeneralDialogProvider
+
+    @Binds
     fun bindNoInternetDialogProvider(default: DefaultNoInternetDialogProvider): NoInternetDialogProvider
 
-//    @Binds
-//    fun bindInfoDialogProvider(default: DefaultGeneralDialogProvider): GeneralDialogProvider
 
 }

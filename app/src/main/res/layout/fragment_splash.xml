@@ -15,9 +15,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
            android:id="@+id/splashMainLogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/splash_bg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/splash_bg"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -18,12 +18,22 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/appCompatImageView"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_120sdp"
+            android:layout_height="@dimen/_110sdp"
             android:src="@drawable/app_icon"
-            android:layout_marginBottom="@dimen/_10sdp"
             app:layout_constraintBottom_toTopOf="@+id/createAccountTitle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatImageView2" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView2"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_margin="@dimen/_15sdp"
+            single_on_click="@{()->viewModel.navigateBack()}"
+            android:src="@drawable/back_button_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/createAccountTitle"
@@ -31,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:lineSpacingExtra="-28dp"
+            android:lineSpacingExtra="-30dp"
             android:text="@string/sign_in"
             android:textColor="@color/black"
             android:textSize="@dimen/_22sdp"
@@ -141,10 +151,11 @@
                 single_on_click="@{()->viewModel.onTapOfLoginButton(emailEditText,passwordEditText)}"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/common_button_bg"
                 android:text="@string/sign_in"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/guideline2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -153,14 +164,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.7" />
+                app:layout_constraintGuide_percent="0.65" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/createMyAccount"
                 single_on_click="@{()->viewModel.navigateToCreateAccount()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/nunito_regular"
                 android:text="@string/create_account_u"
                 android:textAlignment="center"
@@ -169,14 +180,14 @@
                 app:layout_constraintEnd_toEndOf="@+id/loginButton"
                 app:layout_constraintHorizontal_bias="0.35"
                 app:layout_constraintStart_toStartOf="@+id/loginButton"
-                app:layout_constraintTop_toBottomOf="@id/guideline2" />
+                app:layout_constraintTop_toBottomOf="@id/loginButton" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/forgetPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:elevation="@dimen/_5sdp"
                 android:fontFamily="@font/nunito_regular"
                 android:text="@string/forgotPassword_u"

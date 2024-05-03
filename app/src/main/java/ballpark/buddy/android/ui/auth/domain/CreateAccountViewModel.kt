@@ -41,6 +41,8 @@ class CreateAccountViewModel @Inject constructor(
         )
     }
 
+    fun navigateToLogin(){}
+
     fun onTapOfSignupButton(email: CustomEditTextField, password: CustomEditTextField, confirmPassword: CustomEditTextField) {
         if (email.isValid().inverse) {
             email.setError("Please enter you email address", email)
