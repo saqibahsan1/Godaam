@@ -25,6 +25,7 @@ import com.leo.searchablespinner.interfaces.OnItemSelectListener
 import com.leo.searchablespinner.utils.AccountTypeRecyclerAdapter
 import com.leo.searchablespinner.utils.CircularReveal
 import com.leo.searchablespinner.utils.SpinnerRecyclerAdapter
+import com.leo.searchablespinner.utils.data.AccountItems
 import com.leo.searchablespinner.utils.data.LeagueItems
 import com.leo.searchablespinner.utils.data.NitaqatDropDownDataItem
 
@@ -74,7 +75,7 @@ class SearchableSpinner(private val context: Context) : LifecycleObserver {
     var selectedItemPosition: Int = -1
     var selectedItem: NitaqatDropDownDataItem? = null
     var leagueItems: LeagueItems? = null
-    var accountType: String? = null
+    var accountType: AccountItems? = null
 
     @Suppress("unused")
     enum class SpinnerView(val visibility: Int) {
@@ -110,23 +111,11 @@ class SearchableSpinner(private val context: Context) : LifecycleObserver {
                 override fun onAnimationEndListener(isRevealed: Boolean) {
                     toggleKeyBoard(false)
                     if (::recyclerAdapter.isInitialized) recyclerAdapter.filter(null)
+                    if (::accountTypeRecyclerAdapter.isInitialized) accountTypeRecyclerAdapter.filter(null)
                 }
             }, animationDuration)
     }
 
-//    fun setSpinnerListItems(spinnerList: List<NitaqatDropDownDataItem>) {
-//        recyclerAdapter = SpinnerRecyclerAdapter(context, spinnerList, object : OnItemSelectListener {
-//                override fun setOnItemSelectListener(position: Int, selectedString: String) {
-//                    selectedItemPosition = position
-//                    selectedItem = spinnerList[position]
-//                    if (dismissSpinnerOnItemClick) dismiss()
-//                    if (::onItemSelectListener.isInitialized) onItemSelectListener.setOnItemSelectListener(
-//                        position,
-//                        selectedString
-//                    )
-//                }
-//            })
-//    }
     fun setSpinnerListItems(spinnerList: List<LeagueItems>) {
         recyclerAdapter = SpinnerRecyclerAdapter(context, spinnerList, object : OnItemSelectListener {
                 override fun setOnItemSelectListener(position: Int, selectedString: String) {
@@ -140,7 +129,7 @@ class SearchableSpinner(private val context: Context) : LifecycleObserver {
                 }
             })
     }
-    fun setAccountTypeSpinnerListItems(spinnerList: List<String>) {
+    fun setAccountTypeSpinnerListItems(spinnerList: List<AccountItems>) {
         accountTypeRecyclerAdapter = AccountTypeRecyclerAdapter(context, spinnerList, object : OnItemSelectListener {
                 override fun setOnItemSelectListener(position: Int, selectedString: String) {
                     selectedItemPosition = position
@@ -194,6 +183,9 @@ class SearchableSpinner(private val context: Context) : LifecycleObserver {
                 if (::recyclerAdapter.isInitialized) recyclerAdapter.filter(
                     null
                 )
+                if (::accountTypeRecyclerAdapter.isInitialized) accountTypeRecyclerAdapter.filter(
+                    null
+                )
             }
 
         dialog.setOnKeyListener { _, keyCode, event ->
@@ -216,11 +208,13 @@ class SearchableSpinner(private val context: Context) : LifecycleObserver {
             dialogView.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     if (::recyclerAdapter.isInitialized) recyclerAdapter.filter(query)
+                    if (::accountTypeRecyclerAdapter.isInitialized) accountTypeRecyclerAdapter.filter(query)
                     return false
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
                     if (::recyclerAdapter.isInitialized) recyclerAdapter.filter(newText)
+                    if (::accountTypeRecyclerAdapter.isInitialized) accountTypeRecyclerAdapter.filter(newText)
                     return false
                 }
 
@@ -230,7 +224,13 @@ class SearchableSpinner(private val context: Context) : LifecycleObserver {
         //set Recycler Adapter
         if (::recyclerAdapter.isInitialized) {
             recyclerAdapter.highlightSelectedItem = highlightSelectedItem
+            recyclerAdapter.highlightSelectedItem = highlightSelectedItem
             dialogView.recyclerView.adapter = recyclerAdapter
+        }     //set Recycler Adapter
+        if (::accountTypeRecyclerAdapter.isInitialized) {
+            accountTypeRecyclerAdapter.highlightSelectedItem = highlightSelectedItem
+            accountTypeRecyclerAdapter.highlightSelectedItem = highlightSelectedItem
+            dialogView.recyclerView.adapter = accountTypeRecyclerAdapter
         }
     }
     private fun AlertDialog.initAlertDialogWindow() {

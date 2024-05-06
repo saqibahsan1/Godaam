@@ -8,9 +8,11 @@ data class NitaqatDropDownDataItem(
     val Economic_Activity_Id: Int
 )
 
-class LeagueName : ArrayList<LeagueItems>()
-
 data class LeagueItems(
     val ID: String? = null,
     val leagueName: String? = null
+)
+data class AccountItems(
+    val id: String? = null,
+    val name: String? = null
 )

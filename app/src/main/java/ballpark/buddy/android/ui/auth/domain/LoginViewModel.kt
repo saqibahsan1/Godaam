@@ -10,6 +10,8 @@ import ballpark.buddy.android.editText.CustomEditTextField
 import ballpark.buddy.android.extentions.inverse
 import ballpark.buddy.android.resources.StringsResourceManager
 import ballpark.buddy.android.ui.auth.presentation.LoginFragmentDirections
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -19,7 +21,7 @@ class LoginViewModel @Inject constructor(
     private val sharedPreferencesManager: SharedPreferencesManager,
 ) : BaseViewModel() {
 
-
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     fun showDialogUiMessageForEmail() {
         setUiMessage(
             UIMessage.DialogMessage(
@@ -58,6 +60,42 @@ class LoginViewModel @Inject constructor(
             password.setError("PLease enter your password", password)
             return
         }
+        setLoading(true)
+        loginUser(
+            email = email.getFieldText(),
+            password = password.getFieldText()
+        ) { success, message ->
+            if (success) {
+                navigateToHome()
+            } else {
+                showErrorMessage(message)
+            }
+            setLoading(false)
+        }
     }
+
+    private fun showErrorMessage(message: String?){
+        setUiMessage(
+            UIMessage.DialogMessage(
+                DialogMessageType.Error(
+                    message = stringsResourceManager.getString(R.string.LoginError),
+                    description = message,
+                    isCancelable = false
+                )
+            )
+        )
+    }
+    private fun loginUser(email: String, password: String, onComplete: (Boolean, String?) -> Unit) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    onComplete(true, null)
+                } else {
+                    val exception = task.exception as? FirebaseAuthException
+                    onComplete(false, exception?.message ?: "Login failed.")
+                }
+            }
+    }
+
 
 }

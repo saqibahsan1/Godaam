@@ -1,8 +1,11 @@
 package ballpark.buddy.android.ui.auth.domain
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import androidx.core.view.isEmpty
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,14 +19,19 @@ import ballpark.buddy.android.extentions.EMPTY_STRING
 import ballpark.buddy.android.extentions.inverse
 import ballpark.buddy.android.resources.DrawableResourceManager
 import ballpark.buddy.android.resources.StringsResourceManager
+import ballpark.buddy.android.ui.auth.data.User
 import ballpark.buddy.android.utils.Constants
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.leo.searchablespinner.SearchableSpinner
 import com.leo.searchablespinner.interfaces.OnItemSelectListener
+import com.leo.searchablespinner.utils.data.AccountItems
 import com.leo.searchablespinner.utils.data.LeagueItems
 import dagger.hilt.android.lifecycle.HiltViewModel
 import timber.log.Timber
@@ -33,11 +41,11 @@ import javax.inject.Inject
 class CreateAccountViewModel @Inject constructor(
     private val stringsResourceManager: StringsResourceManager,
 ) : BaseViewModel() {
-
-    val accountCreatedSuccess: LiveData<Boolean>
+    private lateinit var auth: FirebaseAuth
+    val accountCreatedSuccess: LiveData<Pair<Boolean, String?>>
         get() = _accountCreatedSuccess
-    private val _accountCreatedSuccess: MutableLiveData<Boolean> by lazy {
-        MutableLiveData(false)
+    private val _accountCreatedSuccess: MutableLiveData<Pair<Boolean, String?>> by lazy {
+        MutableLiveData()
     }
 
     private fun showDialogUiMessageForEmail() {
@@ -55,7 +63,7 @@ class CreateAccountViewModel @Inject constructor(
     fun navigateToLogin(){}
 
     private var checkBoxValue : String = EMPTY_STRING
-
+    private val db = FirebaseFirestore.getInstance()
     fun onTapOfSignupButton(email: CustomEditTextField, password: CustomEditTextField, confirmPassword: CustomEditTextField,
                             firsNameEditText: CustomEditTextField, lastNameEditText: CustomEditTextField
                             ,zipCodeEditText: CustomEditTextField ,accountTypeEt: CustomEditTextField ,leagueEt: CustomEditTextField
@@ -76,23 +84,23 @@ class CreateAccountViewModel @Inject constructor(
             confirmPassword.setError("password did not matched", confirmPassword)
             return
         }
-        if (firsNameEditText.isValid()){
+        if (firsNameEditText.isEmpty()){
             firsNameEditText.setError("Please enter your first name", firsNameEditText)
             return
         }
-        if (lastNameEditText.isValid()){
+        if (lastNameEditText.isEmpty()){
             lastNameEditText.setError("Please enter your last name", lastNameEditText)
             return
         }
-        if (zipCodeEditText.isValid()){
+        if (zipCodeEditText.isEmpty()){
             zipCodeEditText.setError("Please enter your zip code", zipCodeEditText)
             return
         }
-        if (accountTypeEt.isValid()){
+        if (accountTypeEt.isEmpty()){
             accountTypeEt.setError("Please select account type", accountTypeEt)
             return
         }
-        if (leagueEt.isValid()){
+        if (leagueEt.isEmpty()){
             leagueEt.setError("Please select the league", leagueEt)
             return
         }
@@ -112,11 +120,67 @@ class CreateAccountViewModel @Inject constructor(
             showDialogUiMessageForEmail()
             return
         }
+        setLoading(true)
+        createUser(
+            firstName = firsNameEditText.getFieldText(),
+            lastName = lastNameEditText.getFieldText(),
+            email = email.getFieldText(),
+            password = password.getFieldText(),
+            league = leagueEt.getFieldText(),
+            accountType = accountTypeEt.getFieldText(),
+            zipCode = zipCodeEditText.getFieldText()
+        )
+    }
+    private fun createUser(
+        firstName: String,
+        lastName: String,
+        email: String,
+        password: String,
+        league: String?,
+        accountType: String?,
+        zipCode: String?,
+    ) {
+        val user = User(
+            Constants.getCurrentUnixTimestamp(), firstName = firstName, lastName = lastName, email = email, fcmToken = EMPTY_STRING,accountType = accountType,
+            league = league, userId = EMPTY_STRING, paymentType = checkBoxValue, zipCode = zipCode
+        )
+        registerUser(email, password, user){ success, errorMessage ->
+            setLoading(false)
+            _accountCreatedSuccess.value = Pair(success, errorMessage)
+        }
     }
 
+    private fun registerUser(
+        email: String,
+        password: String,
+        user: User,
+        onComplete: (Boolean, String?) -> Unit
+    ) {
+        auth = Firebase.auth
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val currentUser = auth.currentUser
+                    currentUser?.uid?.let { userId ->
+                        user.userId = userId
+                        db.collection(Constants.USER_TABLE_STAGE).document(userId)
+                            .set(user)
+                            .addOnCompleteListener { firestoreTask ->
+                                if (firestoreTask.isSuccessful) {
+                                    onComplete(true, null)
+                                } else {
+                                    onComplete(false, firestoreTask.exception?.message)
+                                }
+                            }
+                    }
+                } else {
+                    val exception = task.exception as? FirebaseAuthException
+                    onComplete(false, exception?.message ?: "Registration failed.")
+                }
+            }
+    }
     private fun getDropDownItems():List<LeagueItems>{
         val items = mutableListOf<LeagueItems>()
-        val db = FirebaseFirestore.getInstance()
         db.collection(Constants.LEAGUE_NAME_TABLE).get()
             .addOnSuccessListener { documentSnapshot ->
             for (document in documentSnapshot.documents) {
@@ -149,23 +213,18 @@ class CreateAccountViewModel @Inject constructor(
     }
     fun accountTypeSearchableSpinner(context: FragmentActivity, accountTypeItem: CustomEditTextField) {
         val searchableSpinner = SearchableSpinner(context)
-        searchableSpinner.windowTitle = stringsResourceManager.getString(R.string.selectLeague)
+        searchableSpinner.windowTitle = stringsResourceManager.getString(R.string.accountType)
         searchableSpinner.onItemSelectListener = object : OnItemSelectListener {
             override fun setOnItemSelectListener(position: Int, selectedString: String) {
                 accountTypeItem.editText.setText(selectedString)
             }
         }
-        val accountType = listOf("Parent", "Book Keeper")
-        searchableSpinner.setAccountTypeSpinnerListItems(accountType)
+        val list = listOf(AccountItems(EMPTY_STRING, "Parent"),AccountItems(EMPTY_STRING, "Book keeper"))
+        searchableSpinner.setAccountTypeSpinnerListItems(list)
         accountTypeItem.editText.keyListener = null
         accountTypeItem.editText.setOnClickListener {
             searchableSpinner.show()
         }
     }
 
-
-
-    private fun accountCreatedSuccessfully() {
-        _accountCreatedSuccess.value = true
-    }
 }

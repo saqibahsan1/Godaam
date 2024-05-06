@@ -19,6 +19,7 @@ interface DialogProvider {
 class DefaultDialogProvider @Inject constructor(
     private val generalDialogProvider: GeneralDialogProvider,
     private val noInternetDialogProvider: NoInternetDialogProvider,
+    private val errorDialogProvider: ErrorDialogProvider,
 ) : DialogProvider {
 
 
@@ -35,6 +36,6 @@ class DefaultDialogProvider @Inject constructor(
         clickCallback: ClickCallback<Any>?,
         cancelable: Boolean
     ) {
-//        TODO("Not yet implemented")
+        errorDialogProvider.show(context, message, description, clickCallback = clickCallback, isCancelable = cancelable)
     }
 }

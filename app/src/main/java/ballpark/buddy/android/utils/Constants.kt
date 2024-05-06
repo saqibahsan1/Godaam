@@ -8,6 +8,11 @@ object Constants {
 
     //Table names
     const val LEAGUE_NAME_TABLE = "league_name_table"
+    const val ACCOUNT_TYPE_TABLE = "account_type"
+    const val USER_TABLE_STAGE = "user_table_stage"
+    fun getCurrentUnixTimestamp(): Long {
+        return System.currentTimeMillis() / 1000
+    }
 }
 object BuildType {
     const val DEBUG = "debug"

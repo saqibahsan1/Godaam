@@ -150,4 +150,5 @@
     <string name="ZipCode">Zip Code</string>
     <string name="paymentType">Please select payment type\n</string>
     <string name="paymentError">Payment Error</string>
+    <string name="LoginError">Login Error</string>
 </resources>
