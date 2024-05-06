@@ -36,7 +36,7 @@ class LoginViewModel @Inject constructor(
     }
 
     fun navigateToCreateAccount() {
-//        navigate(LoginFragmentDirections.navLoginToCreateAccount())
+        navigate(LoginFragmentDirections.navLoginToCreateAccount())
     }
 
 //    fun navigateToForgetPassword() {
@@ -44,7 +44,7 @@ class LoginViewModel @Inject constructor(
 //    }
 
     private fun navigateToHome() {
-        navigate(LoginFragmentDirections.navLoginToHome())
+//        navigate(LoginFragmentDirections.navLoginToHome())
     }
 
 

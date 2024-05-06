@@ -139,4 +139,15 @@
     <string name="i_already_have_an_account">Already have an account?</string>
     <string name="confirmPassword">Confirm Password\n</string>
     <string name="create_password">Create password\n</string>
+    <string name="firstName">First Name</string>
+    <string name="LastName">Last Name\n</string>
+    <string name="accountType">Account Type\n</string>
+    <string name="selectLeague">Select League</string>
+    <string name="cash">Cash</string>
+    <string name="Venmo">Venmo\n</string>
+    <string name="CashApp">Cashapp</string>
+    <string name="Zelle">Zelle</string>
+    <string name="ZipCode">Zip Code</string>
+    <string name="paymentType">Please select payment type\n</string>
+    <string name="paymentError">Payment Error</string>
 </resources>

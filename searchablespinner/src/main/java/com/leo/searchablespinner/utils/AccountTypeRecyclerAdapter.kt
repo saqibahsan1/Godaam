@@ -14,14 +14,14 @@ import com.leo.searchablespinner.utils.data.LeagueItems
 import com.leo.searchablespinner.utils.data.NitaqatDropDownDataItem
 
 
-internal class SpinnerRecyclerAdapter(
+internal class AccountTypeRecyclerAdapter(
     private val context: Context,
-    private val list: List<LeagueItems>,
+    private val list: List<String>,
     private val onItemSelectListener: OnItemSelectListener
 ) :
-    RecyclerView.Adapter<SpinnerRecyclerAdapter.SpinnerHolder>() {
+    RecyclerView.Adapter<AccountTypeRecyclerAdapter.SpinnerHolder>() {
 
-    private var spinnerListItems: List<LeagueItems> = list
+    private var spinnerListItems: List<String> = list
     private lateinit var selectedItem: String
     var highlightSelectedItem: Boolean = true
 
@@ -37,7 +37,7 @@ internal class SpinnerRecyclerAdapter(
 
     override fun onBindViewHolder(holder: SpinnerHolder, position: Int) {
         val item = spinnerListItems[position]
-        holder.textViewSpinnerItem.text = item.leagueName
+        holder.textViewSpinnerItem.text = item
         if (highlightSelectedItem && ::selectedItem.isInitialized) {
             val colorDrawable: ColorDrawable =
                 if (item.equals(selectedItem)) {
@@ -59,11 +59,11 @@ internal class SpinnerRecyclerAdapter(
         }
         holder.textViewSpinnerItem.setOnClickListener {
             holder.textViewSpinnerItem.isClickable = false
-            selectedItem = item.leagueName.toString()
+            selectedItem = item
             notifyDataSetChanged()
             onItemSelectListener.setOnItemSelectListener(
                 getOriginalItemPosition(item),
-                item.leagueName.toString()
+                item
             )
         }
     }
@@ -75,12 +75,12 @@ internal class SpinnerRecyclerAdapter(
     }
 
     fun filter(query: CharSequence?) {
-        val filteredNames: ArrayList<LeagueItems> = ArrayList()
+        val filteredNames: ArrayList<String> = ArrayList()
         if (query.isNullOrEmpty()) {
             filterList(list)
         } else {
             for (s in list) {
-                if (s.leagueName?.contains(query, true) == true) {
+                if (s.contains(query, true)) {
                     filteredNames.add(s)
                 }
             }
@@ -88,12 +88,12 @@ internal class SpinnerRecyclerAdapter(
         }
     }
 
-    private fun filterList(filteredNames: List<LeagueItems>) {
+    private fun filterList(filteredNames: List<String>) {
         spinnerListItems = filteredNames
         notifyDataSetChanged()
     }
 
-    private fun getOriginalItemPosition(selectedString: LeagueItems): Int {
+    private fun getOriginalItemPosition(selectedString: String): Int {
         return list.indexOf(selectedString)
     }
 }

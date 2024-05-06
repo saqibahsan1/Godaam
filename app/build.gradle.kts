@@ -7,6 +7,7 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-kapt")
     id("kotlin-parcelize")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -76,6 +77,7 @@ dependencies {
     implementation(libs.lifeCycle.core)
     implementation(libs.lifeCycle.savedInstance)
     implementation(libs.navigation.ui.ktx)
+    implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -100,4 +102,11 @@ dependencies {
     implementation(libs.timber)
     // lottie
     implementation(libs.lottie)
+    // firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.core)
+    implementation (libs.firebase.auth)
+    implementation (libs.firebase.firestore.ktx)
+    implementation (libs.firebase.storage.ktx)
 }

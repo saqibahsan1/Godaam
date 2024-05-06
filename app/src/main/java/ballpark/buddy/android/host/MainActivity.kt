@@ -17,6 +17,7 @@ import ballpark.buddy.android.extentions.hideKeyboard
 import ballpark.buddy.android.extentions.inverse
 import ballpark.buddy.network.NetworkPreferencesManager
 import ballpark.buddy.network.providers.AppLocaleProvider
+import com.google.firebase.FirebaseApp
 import dagger.hilt.android.AndroidEntryPoint
 
 

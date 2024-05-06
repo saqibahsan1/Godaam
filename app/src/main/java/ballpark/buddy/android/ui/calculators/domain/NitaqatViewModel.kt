@@ -65,7 +65,7 @@ class NitaqatViewModel @Inject constructor(
                 dropDownSubEconomic.editText?.setText(selectedString)
             }
         }
-        searchableSpinner.setSpinnerListItems(readFromJson())
+//        searchableSpinner.setSpinnerListItems(readFromJson())
         dropDownSubEconomic.editText?.keyListener = null
         dropDownSubEconomic.editText?.setOnClickListener {
             searchableSpinner.show()

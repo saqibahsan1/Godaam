@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.androidLibrary) apply false
     alias(libs.plugins.ktLint) apply false
     alias(libs.plugins.org.jetbrains.kotlin.kapt) apply false
-
+    alias(libs.plugins.firebase) apply false
 }
 buildscript {
     repositories {
@@ -14,6 +14,7 @@ buildscript {
         maven ( "https://jitpack.io" )
     }
     dependencies {
+        classpath(libs.google.services)
         classpath(libs.androidx.navigation.safe.args.gradle.plugin)
         classpath(libs.hilt.classpath)
     }

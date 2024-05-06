@@ -22,8 +22,10 @@ import androidx.lifecycle.OnLifecycleEvent
 import com.leo.searchablespinner.databinding.SearchableSpinnerBinding
 import com.leo.searchablespinner.interfaces.OnAnimationEnd
 import com.leo.searchablespinner.interfaces.OnItemSelectListener
+import com.leo.searchablespinner.utils.AccountTypeRecyclerAdapter
 import com.leo.searchablespinner.utils.CircularReveal
 import com.leo.searchablespinner.utils.SpinnerRecyclerAdapter
+import com.leo.searchablespinner.utils.data.LeagueItems
 import com.leo.searchablespinner.utils.data.NitaqatDropDownDataItem
 
 @Suppress("MemberVisibilityCanBePrivate", "RedundantSetter", "RedundantGetter")
@@ -33,6 +35,7 @@ class SearchableSpinner(private val context: Context) : LifecycleObserver {
     //private lateinit var clickedView: View
     private lateinit var dialogView: SearchableSpinnerBinding
     private lateinit var recyclerAdapter: SpinnerRecyclerAdapter
+    private lateinit var accountTypeRecyclerAdapter: AccountTypeRecyclerAdapter
 
     var windowTopBackgroundColor: Int? = null
         @ColorInt get() = field
@@ -70,6 +73,8 @@ class SearchableSpinner(private val context: Context) : LifecycleObserver {
     var searchViewVisibility: SpinnerView = SpinnerView.VISIBLE
     var selectedItemPosition: Int = -1
     var selectedItem: NitaqatDropDownDataItem? = null
+    var leagueItems: LeagueItems? = null
+    var accountType: String? = null
 
     @Suppress("unused")
     enum class SpinnerView(val visibility: Int) {
@@ -109,12 +114,37 @@ class SearchableSpinner(private val context: Context) : LifecycleObserver {
             }, animationDuration)
     }
 
-    fun setSpinnerListItems(spinnerList: List<NitaqatDropDownDataItem>?) {
-        recyclerAdapter =
-            SpinnerRecyclerAdapter(context, spinnerList!!, object : OnItemSelectListener {
+//    fun setSpinnerListItems(spinnerList: List<NitaqatDropDownDataItem>) {
+//        recyclerAdapter = SpinnerRecyclerAdapter(context, spinnerList, object : OnItemSelectListener {
+//                override fun setOnItemSelectListener(position: Int, selectedString: String) {
+//                    selectedItemPosition = position
+//                    selectedItem = spinnerList[position]
+//                    if (dismissSpinnerOnItemClick) dismiss()
+//                    if (::onItemSelectListener.isInitialized) onItemSelectListener.setOnItemSelectListener(
+//                        position,
+//                        selectedString
+//                    )
+//                }
+//            })
+//    }
+    fun setSpinnerListItems(spinnerList: List<LeagueItems>) {
+        recyclerAdapter = SpinnerRecyclerAdapter(context, spinnerList, object : OnItemSelectListener {
                 override fun setOnItemSelectListener(position: Int, selectedString: String) {
                     selectedItemPosition = position
-                    selectedItem = spinnerList[position]
+                    leagueItems = spinnerList[position]
+                    if (dismissSpinnerOnItemClick) dismiss()
+                    if (::onItemSelectListener.isInitialized) onItemSelectListener.setOnItemSelectListener(
+                        position,
+                        selectedString
+                    )
+                }
+            })
+    }
+    fun setAccountTypeSpinnerListItems(spinnerList: List<String>) {
+        accountTypeRecyclerAdapter = AccountTypeRecyclerAdapter(context, spinnerList, object : OnItemSelectListener {
+                override fun setOnItemSelectListener(position: Int, selectedString: String) {
+                    selectedItemPosition = position
+                    accountType = spinnerList[position]
                     if (dismissSpinnerOnItemClick) dismiss()
                     if (::onItemSelectListener.isInitialized) onItemSelectListener.setOnItemSelectListener(
                         position,
