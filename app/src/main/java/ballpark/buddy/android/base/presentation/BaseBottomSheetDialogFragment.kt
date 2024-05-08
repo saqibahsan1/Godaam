@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.activityViewModels
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import ballpark.buddy.android.R
 import androidx.databinding.library.baseAdapters.BR
+import androidx.fragment.app.activityViewModels
+import ballpark.buddy.android.R
 import ballpark.buddy.android.base.data.DismissListener
 import ballpark.buddy.android.base.data.UIMessage
 import ballpark.buddy.android.base.domain.BaseViewModel
@@ -19,6 +18,7 @@ import ballpark.buddy.android.extentions.observeLiveData
 import ballpark.buddy.android.extentions.showToast
 import ballpark.buddy.android.host.HostViewModel
 import ballpark.buddy.android.navigation.FragmentNavigator
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 abstract class BaseBottomSheetDialogFragment<VB : ViewDataBinding> : BottomSheetDialogFragment() {
 

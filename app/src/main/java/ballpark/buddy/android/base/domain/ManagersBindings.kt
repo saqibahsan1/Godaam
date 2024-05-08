@@ -1,5 +1,7 @@
 package ballpark.buddy.android.base.domain
 
+import ballpark.buddy.android.base.presentation.DefaultLogoutManager
+import ballpark.buddy.android.base.presentation.LogoutManager
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -22,6 +24,9 @@ interface ManagersBindings {
 
     @Binds
     fun bindDialogProvider(default: DefaultDialogProvider): DialogProvider
+
+    @Binds
+    fun bindLogoutManager(default: DefaultLogoutManager): LogoutManager
 
     @Binds
     @Singleton

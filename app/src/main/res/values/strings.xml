@@ -151,4 +151,13 @@
     <string name="paymentType">Please select payment type\n</string>
     <string name="paymentError">Payment Error</string>
     <string name="LoginError">Login Error</string>
+    <string name="title_home">Home</string>
+    <string name="profile">Profile\n</string>
+    <string name="contact">Contact</string>
+    <string name="chat">Chat\n</string>
+    <string name="credits">Credits</string>
+    <string name="amount">$13</string>
+    <string name="purchaseCreditsText">Purchase Credits\n</string>
+    <string name="postGame">Post Game</string>
+    <string name="parentHome">Parent Home</string>
 </resources>

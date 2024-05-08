@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="uiData"
+            type="ballpark.buddy.android.ui.home.data.HomeUiData" />
+
+        <variable
+            name="showCode"
+            type="java.lang.Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_44sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:background="@drawable/edit_text_empty_background">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:paddingTop="@dimen/_3sdp"
+            android:paddingBottom="@dimen/_3sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:background="@drawable/common_button_border_orange_color_bg"
+            android:singleLine="true"
+            android:text="@{uiData.postedDisplayTime}"
+            android:textColor="@color/app_orange"
+            android:textSize="@dimen/_11sdp"
+            tools:text="28, mar, 2024"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/postGameText"
+            style="@style/MediumFont"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{uiData.leagueName}"
+            android:textColor="@color/blackish"
+            android:textSize="@dimen/_10sdp"
+            android:singleLine="true"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/dateText"
+            app:layout_constraintEnd_toStartOf="@+id/bookIcon"
+            app:layout_constraintStart_toEndOf="@+id/dateText"
+            app:layout_constraintTop_toTopOf="@+id/dateText"
+            tools:text="@string/postGame"
+            tools:visibility='visible' />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/nextIcon"
+            android:layout_width="@dimen/_26sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:src="@drawable/ic_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/amount"
+            style="@style/MediumFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`$`+uiData.payAmount}"
+            android:textColor="@color/blackish"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/dateText"
+            app:layout_constraintEnd_toStartOf="@+id/nextIcon"
+            app:layout_constraintTop_toTopOf="@+id/dateText"
+            tools:text="@string/amount"
+            tools:visibility='visible' />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/bookIcon"
+            android:layout_width="@dimen/_26sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:src="@drawable/ic_book"
+            app:layout_constraintEnd_toStartOf="@+id/amount"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

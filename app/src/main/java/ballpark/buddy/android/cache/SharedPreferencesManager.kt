@@ -7,15 +7,21 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import ballpark.buddy.network.NetworkPreferencesManager
 import ballpark.buddy.android.R
 import ballpark.buddy.android.extentions.EMPTY_STRING
+import ballpark.buddy.android.extentions.convertJsonToModel
+import ballpark.buddy.android.extentions.convertModelToJsonString
+import ballpark.buddy.android.extentions.convertObjectToJsonString
 import ballpark.buddy.android.extentions.default
+import ballpark.buddy.android.ui.auth.data.User
 import javax.inject.Inject
 
 interface SharedPreferencesManager {
-    fun setAuthToken(token: String?)
+    fun setUserId(userId: String?)
+    fun setUserObject(userData: User?)
     fun setEmail(email: String?)
     fun setLocale(locale: String?)
     fun getEmail(): String
-    fun getAuthToken(): String
+    fun getUserId(): String
+    fun getUserObject(): User?
     fun removeAuthToken()
     fun isOnBoardingVisited(): Boolean
     fun setOnBoardingVisited(visited: Boolean)
@@ -36,8 +42,13 @@ class DefaultSharedPreferencesManager @Inject constructor(
         )
     }
 
-    override fun setAuthToken(token: String?) {
+    override fun setUserId(token: String?) {
         networkPreferencesManager.setAuthToken(token)
+    }
+
+    override fun setUserObject(userData: User?) {
+        val userDataString = convertObjectToJsonString(userData)
+        setString(USER_OBJECT, userDataString.default)
     }
 
     override fun setEmail(email: String?) {
@@ -51,9 +62,13 @@ class DefaultSharedPreferencesManager @Inject constructor(
     override fun getEmail(): String =
         getString(USER_EMAIL)
 
-    override fun getAuthToken(): String =
+    override fun getUserId(): String =
         networkPreferencesManager.getAuthToken()
 
+    override fun getUserObject(): User? {
+        val jsonText =  sharedPreferences.getString(USER_OBJECT, EMPTY_STRING)
+        return convertJsonToModel<User>(jsonText?.let { getString(it) }.default)
+    }
 
     override fun removeAuthToken() {
         networkPreferencesManager.removeAuthToken()
@@ -95,6 +110,7 @@ class DefaultSharedPreferencesManager @Inject constructor(
     companion object {
         private const val IS_ON_BOARDING_VISITED = "IS_ON_BOARDING_VISITED"
         private const val USER_EMAIL = "email"
+        private const val USER_OBJECT = "user_object"
         private const val LOCALE = "locale"
     }
 }

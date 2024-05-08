@@ -10,7 +10,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
-import ballpark.buddy.network.ApiErrors
 import ballpark.buddy.android.base.data.ActivityResultContractData
 import ballpark.buddy.android.base.data.DialogMessageType
 import ballpark.buddy.android.base.data.FragmentConfig
@@ -24,6 +23,7 @@ import ballpark.buddy.android.extentions.observeLiveData
 import ballpark.buddy.android.extentions.showToast
 import ballpark.buddy.android.host.HostViewModel
 import ballpark.buddy.android.navigation.FragmentNavigator
+import ballpark.buddy.network.ApiErrors
 
 
 abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
@@ -59,6 +59,10 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
     }
 
     private fun observeLoadingAndUiMessageLiveData() {
+        observeLiveData(viewModel.isLogout) {
+            if (it)
+                hostViewModel.logout()
+        }
         observeLiveData(viewModel.uiMessageLiveData, ::handleUiMessage)
         observeLiveData(viewModel.loadingLiveData) { canShow ->
             hostViewModel.setLoadingFromHost(canShow)

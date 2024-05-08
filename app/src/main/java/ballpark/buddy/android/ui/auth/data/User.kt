@@ -12,4 +12,5 @@ data class User(
     var accountType: String? = null,
     var league: String? = null,
     var userId: String? = null,
+    var credits: Int? = 0,
 )

@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import ballpark.buddy.android.R
 import ballpark.buddy.android.click_callback.ClickCallback
 import ballpark.buddy.android.click_callback.EMPTY_CLICK_CALL_BACK
+import ballpark.buddy.android.extentions.EMPTY_STRING
 
 data class HeaderConfig(
     val itemBackground: Drawable? = null,
@@ -28,9 +29,9 @@ data class TitleConfig(
 ) {
     companion object {
         internal val DEFAULT = TitleConfig(
-            title = ballpark.buddy.android.extentions.EMPTY_STRING,
-            textColor = R.color.text_color_dark,
-            textSize = com.intuit.sdp.R.dimen._12sdp
+            title = EMPTY_STRING,
+            textColor = R.color.black,
+            textSize = com.intuit.sdp.R.dimen._15sdp
         )
     }
 }
@@ -38,7 +39,7 @@ data class TitleConfig(
 
 data class BackButtonConfig(
     val canShowBackButton: Boolean,
-    val backButtonIconRes: Int = R.drawable.back_button_icon,
+    val backButtonIconRes: Int = R.drawable.ic_app_back_button,
     val clickCallback: ClickCallback<Unit> = EMPTY_CLICK_CALL_BACK
 ) {
     companion object {
@@ -59,7 +60,7 @@ data class HeaderRightButtonConfig(
     companion object {
         internal val DEFAULT =
             HeaderRightButtonConfig(
-                headerRightButtonType = HeaderRightButtonType.None
+                headerRightButtonType = HeaderRightButtonType.Home
             )
     }
 }

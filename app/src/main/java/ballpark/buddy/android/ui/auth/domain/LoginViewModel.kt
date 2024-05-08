@@ -9,9 +9,12 @@ import ballpark.buddy.android.dialog.GeneralDialogUiData
 import ballpark.buddy.android.editText.CustomEditTextField
 import ballpark.buddy.android.extentions.inverse
 import ballpark.buddy.android.resources.StringsResourceManager
+import ballpark.buddy.android.ui.auth.data.User
 import ballpark.buddy.android.ui.auth.presentation.LoginFragmentDirections
+import ballpark.buddy.android.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -22,6 +25,8 @@ class LoginViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
+
     fun showDialogUiMessageForEmail() {
         setUiMessage(
             UIMessage.DialogMessage(
@@ -46,9 +51,8 @@ class LoginViewModel @Inject constructor(
 //    }
 
     private fun navigateToHome() {
-//        navigate(LoginFragmentDirections.navLoginToHome())
+        navigate(LoginFragmentDirections.navLoginToHome())
     }
-
 
 
     fun onTapOfLoginButton(email: CustomEditTextField, password: CustomEditTextField) {
@@ -66,15 +70,17 @@ class LoginViewModel @Inject constructor(
             password = password.getFieldText()
         ) { success, message ->
             if (success) {
-                navigateToHome()
+                val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
+                getUserData(userId)
+                sharedPreferencesManager.setUserId(userId)
             } else {
+                setLoading(false)
                 showErrorMessage(message)
             }
-            setLoading(false)
         }
     }
 
-    private fun showErrorMessage(message: String?){
+    private fun showErrorMessage(message: String?) {
         setUiMessage(
             UIMessage.DialogMessage(
                 DialogMessageType.Error(
@@ -85,6 +91,7 @@ class LoginViewModel @Inject constructor(
             )
         )
     }
+
     private fun loginUser(email: String, password: String, onComplete: (Boolean, String?) -> Unit) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -94,6 +101,24 @@ class LoginViewModel @Inject constructor(
                     val exception = task.exception as? FirebaseAuthException
                     onComplete(false, exception?.message ?: "Login failed.")
                 }
+            }
+    }
+
+    private fun getUserData(userId: String) {
+        firestore.collection(Constants.USER_TABLE_STAGE).document(userId)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val document = task.result
+                    if (document != null && document.exists()) {
+                        val userData = document.toObject(User::class.java)
+                        sharedPreferencesManager.setUserObject(userData)
+                        navigateToHome()
+                    }else{
+                        showErrorMessage("User not found")
+                    }
+                }
+                setLoading(false)
             }
     }
 

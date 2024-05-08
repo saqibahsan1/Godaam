@@ -9,32 +9,51 @@
             type="ballpark.buddy.android.host.HostViewModel"/>
     </data>
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:openDrawer="start">
+        android:background="@android:color/white">
 
-        <include
-            android:id="@+id/app_bar_main"
-            layout="@layout/app_bar_main"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/mobile_navigation"
+            app:top_margin="@{viewModel.fragNavContainerTopMargin}"/>
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:itemTextColor="@color/white"
-            app:itemIconTint="@color/white"
-            android:backgroundTint="@color/title_bar_color"
-            android:fitsSystemWindows="true"
-            app:menu="@menu/activity_main_drawer" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:defaultNavHost="true"
+            app:itemIconTint="@drawable/item_bottom_nav"
+            android:background="@color/grey"
+            app:itemTextAppearanceActiveBoldEnabled="false"
+            app:itemTextColor="@drawable/bottom_nav_text_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:navGraph="@navigation/mobile_navigation"
+            app:menu="@menu/bottom_nav_menu"
+            app:labelVisibilityMode="labeled"
+            app:set_bottom_menu="@{viewModel.updateBottomNavigation}"
+            app:view_visibility="@{viewModel.showBottomNavigation}" />
+
+        <ballpark.buddy.android.header.AppHeader
+            android:id="@+id/header"
+            set_ui_data="@{viewModel.appHeaderLiveData}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
 
-
-    </androidx.drawerlayout.widget.DrawerLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

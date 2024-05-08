@@ -8,26 +8,19 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.navigation.ui.AppBarConfiguration
+import ballpark.buddy.android.R
 import ballpark.buddy.android.base.presentation.ProgressLoader
 import ballpark.buddy.android.databinding.ActivityMainBinding
 import ballpark.buddy.android.extentions.hideKeyboard
 import ballpark.buddy.android.extentions.inverse
-import ballpark.buddy.network.NetworkPreferencesManager
-import ballpark.buddy.network.providers.AppLocaleProvider
-import com.google.firebase.FirebaseApp
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private lateinit var appLocaleProvider: AppLocaleProvider
-    private lateinit var networkPreferencesManager: NetworkPreferencesManager
     private val hostViewModel: HostViewModel by viewModels()
     private val progressLoader: ProgressLoader by lazy {
         ProgressLoader(this)
@@ -54,6 +47,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeLiveData() {
+        hostViewModel.updateBottomNavigation(R.menu.bottom_nav_menu)
         hostViewModel.run {
             loadingLiveData.observe(this@MainActivity, ::showOrHideProgress)
         }
@@ -76,12 +70,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(newBase: Context?) {
-//        newBase?.let {
-//            networkPreferencesManager = DefaultNetworkPreferencesManager(context = newBase)
-//            appLocaleProvider = DefaultAppLocaleProvider(newBase, networkPreferencesManager)
-//            val locale = Locale(appLocaleProvider.getLocaleCode())
-//            super.attachBaseContext(ContextWrapper.wrap(newBase, locale))
-        /*} ?: */super.attachBaseContext(newBase)
+        super.attachBaseContext(newBase)
     }
 
 }

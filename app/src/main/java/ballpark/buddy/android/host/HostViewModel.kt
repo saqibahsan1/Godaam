@@ -11,6 +11,7 @@ import ballpark.buddy.android.base.data.DialogMessageType
 import ballpark.buddy.android.base.data.FragmentConfig
 import ballpark.buddy.android.base.domain.BaseViewModel
 import ballpark.buddy.android.base.domain.SingleLiveEvent
+import ballpark.buddy.android.base.presentation.LogoutManager
 import ballpark.buddy.android.cache.SharedPreferencesManager
 import ballpark.buddy.android.click_callback.ClickCallback
 import ballpark.buddy.android.dialog.DialogProvider
@@ -24,6 +25,7 @@ import javax.inject.Inject
 class HostViewModel @Inject constructor(
     private val sharedPreferencesManager: SharedPreferencesManager,
     private val dialogProvider: DialogProvider,
+    private val logoutManager: LogoutManager,
 ) : BaseViewModel() {
 
     val appHeaderLiveData: LiveData<HeaderConfig>
@@ -135,6 +137,10 @@ class HostViewModel @Inject constructor(
         dialogProvider.showGeneralDialog(context, generalDialogUiData)
     }
 
+    fun logout(): Boolean {
+        logoutManager.logout()
+        return true
+    }
     fun updateBottomNavigation(@MenuRes menu: Int) {
         _updateBottomNavigation.value = menu
     }

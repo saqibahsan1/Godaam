@@ -10,9 +10,9 @@ import ballpark.buddy.android.click_callback.NoInternetClickHandler
 import ballpark.buddy.android.dialog.NoInternetDialogUiData
 import ballpark.buddy.android.header.HeaderConfig
 import ballpark.buddy.android.header.HeaderRightButtonType
-import ballpark.buddy.network.NetworkUtils
 import ballpark.buddy.android.resources.StringsResourceManager
 import ballpark.buddy.android.ui.splash.presentation.SplashFragmentDirections
+import ballpark.buddy.network.NetworkUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -56,14 +56,10 @@ class SplashViewModel @Inject constructor(
     }
 
     private fun navigateToOnBoarding() {
-        if (sharedPreferencesManager.isOnBoardingVisited()) {
-            if (sharedPreferencesManager.getAuthToken().isEmpty())
-                navigateWithDelay(SplashFragmentDirections.actionSplashToLogin())
-            else
-                navigateWithDelay(SplashFragmentDirections.actionSplashToHome())
-        } else {
+        if (sharedPreferencesManager.getUserId().isEmpty())
             navigateWithDelay(SplashFragmentDirections.actionSplashToLogin())
-        }
+        else
+            navigateWithDelay(SplashFragmentDirections.actionSplashToHome())
     }
 
     private fun showNoInternetDialog() {

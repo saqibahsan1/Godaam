@@ -7,7 +7,8 @@ import ballpark.buddy.android.R
 import ballpark.buddy.android.databinding.AppHeaderBinding
 import ballpark.buddy.android.extentions.getBinding
 
-class AppHeader @JvmOverloads constructor(context: Context, attributeSet: AttributeSet? = null, defStyleRes: Int = 0) :
+class
+AppHeader @JvmOverloads constructor(context: Context, attributeSet: AttributeSet? = null, defStyleRes: Int = 0) :
     ConstraintLayout(context, attributeSet, defStyleRes) {
 
     private val binding: AppHeaderBinding = getBinding(R.layout.app_header)

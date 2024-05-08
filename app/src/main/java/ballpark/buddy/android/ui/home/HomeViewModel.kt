@@ -1,82 +1,98 @@
 package ballpark.buddy.android.ui.home
 
-import android.annotation.SuppressLint
-import android.graphics.Bitmap
-import android.webkit.WebChromeClient
-import android.webkit.WebResourceError
-import android.webkit.WebResourceRequest
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.graphics.drawable.Drawable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import dagger.hilt.android.lifecycle.HiltViewModel
-import ballpark.buddy.network.providers.AppLocales
+import ballpark.buddy.android.R
 import ballpark.buddy.android.base.domain.BaseViewModel
 import ballpark.buddy.android.cache.SharedPreferencesManager
-import ballpark.buddy.android.databinding.FragmentHomeBinding
 import ballpark.buddy.android.extentions.default
+import ballpark.buddy.android.header.HeaderConfig
+import ballpark.buddy.android.header.HeaderRightButtonType
+import ballpark.buddy.android.resources.DrawableResourceManager
+import ballpark.buddy.android.resources.StringsResourceManager
+import ballpark.buddy.android.ui.home.data.HomeUiData
+import ballpark.buddy.android.utils.Constants
+import com.google.firebase.firestore.FirebaseFirestore
+import dagger.hilt.android.lifecycle.HiltViewModel
+import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val sharedPreferencesManager: SharedPreferencesManager
+    private val sharedPreferencesManager: SharedPreferencesManager,
+    private val stringsResourceManager: StringsResourceManager,
+    private val drawableResourceManager: DrawableResourceManager,
 ) : BaseViewModel() {
 
-    private val _url = MutableLiveData<String>().apply {
-        value = "https://qiwa.sa/"
+    private val firestore = FirebaseFirestore.getInstance()
+
+    val homeUiLiveData: LiveData<List<HomeUiData>>
+        get() = _homeUiData
+    private val _homeUiData: MutableLiveData<List<HomeUiData>> by lazy {
+        MutableLiveData()
     }
-    private val qiwaUrl: LiveData<String> = _url
 
-    @SuppressLint("SetJavaScriptEnabled")
-    fun loadWebData(binding: FragmentHomeBinding) {
-        setLoading(true)
-        binding.webview.settings.javaScriptEnabled = true
-        binding.webview.clearHistory()
-        binding.webview.clearCache(false)
-        binding.webview.getSettings().domStorageEnabled = true
-        binding.webview.getSettings().cacheMode = WebSettings.LOAD_NO_CACHE
-        binding.webview.setWebChromeClient(WebChromeClient())
-        binding.webview.loadUrl(qiwaUrl.value.toString())
-        binding.webview.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(
-                view: WebView?,
-                request: WebResourceRequest?
-            ): Boolean {
-                val url = request?.url.toString()
-                view?.loadUrl(url)
-                return super.shouldOverrideUrlLoading(view, request)
-            }
+    override fun getHeaderConfig(
+        background: Drawable?,
+        title: String,
+        rightButtonType: HeaderRightButtonType,
+        showBackButton: Boolean
+    ): HeaderConfig {
+        return super.getHeaderConfig(
+            background = drawableResourceManager.getDrawable(R.drawable.common_square),
+            title = stringsResourceManager.getString(R.string.parentHome),
+            rightButtonType = HeaderRightButtonType.Home,
+            showBackButton = false
+        )
+    }
 
-            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                super.onPageStarted(view, url, favicon)
-            }
-
-            override fun onPageFinished(view: WebView?, url: String?) {
-                super.onPageFinished(view, url)
-                setLoading(false)
-            }
-
-            override fun onReceivedError(
-                view: WebView,
-                request: WebResourceRequest,
-                error: WebResourceError
-            ) {
-                super.onReceivedError(view, request, error)
-                setLoading(false)
-            }
-
-            override fun doUpdateVisitedHistory(view: WebView?, url: String?, isReload: Boolean) {
-                if (url?.contains("en").default)
-                    sharedPreferencesManager.run {
-                        setLocale(AppLocales.English.code)
-                    }
-                else
-                    sharedPreferencesManager.run {
-                        setLocale(AppLocales.Arabic.code)
-                    }
-                super.doUpdateVisitedHistory(view, url, isReload)
-            }
+    private fun getDateTime(s: Long): String? {
+        try {
+            val sdf = SimpleDateFormat("dd MMM, yyyy", Locale.US)
+            val netDate = Date(s * 1000)
+            return sdf.format(netDate)
+        } catch (e: Exception) {
+            return e.toString()
         }
     }
+
+    fun creditAmount() = sharedPreferencesManager.getUserObject()?.credits.default.toString()
+    fun getPostsByUserID() {
+        setLoading(true)
+        val collectionRef = firestore.collection(Constants.GAME_TABLE_STAGE)
+        collectionRef.whereEqualTo("postedBy", sharedPreferencesManager.getUserId())
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                setLoading(false)
+                val posts = querySnapshot.toObjects(HomeUiData::class.java)
+                val gameList = posts.map {
+                    HomeUiData(
+                        postedDisplayTime = getDateTime(it.postTime.default),
+                        field = it.field,
+                        bookKeeper = it.bookKeeper,
+                        gameId = it.gameId,
+                        isNewUpdates = it.isNewUpdates,
+                        jobDuty = it.jobDuty,
+                        leagueName = it.leagueName,
+                        parent = it.parent,
+                        payAmount = it.payAmount,
+                        postedByName = it.postedByName,
+                        streetAddress = it.streetAddress,
+                        team = it.team,
+                        postedBy = it.postedBy,
+                    )
+                }
+                _homeUiData.value = gameList.sortedByDescending { it.postedDisplayTime }.toList()
+            }
+            .addOnFailureListener { exception ->
+                setLoading(false)
+                Timber.e(exception.localizedMessage)
+            }
+    }
+
+
 }

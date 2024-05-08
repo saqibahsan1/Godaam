@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        app:drawable="@{@color/white}">
+        app:drawable="@{data.itemBackground}">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/backButton"
@@ -31,7 +31,6 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:background="@drawable/transparent_background_oval"
             android:scaleType="centerInside"
-            android:visibility="gone"
             app:drawable_res="@{data.backButtonConfig.backButtonIconRes}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,14 +41,14 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/appCompatTextView5"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/BoldFontRoboto"
+            android:layout_height="0dp"
             android:layout_marginVertical="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_15sdp"
             android:gravity="center"
-            android:maxWidth="@dimen/_200sdp"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/backButton"
@@ -57,12 +56,23 @@
             app:set_text_or_hide_if_empty="@{data.titleConfig.title}"
             tools:text="Header " />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.9" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/notificationButton"
+            view_visibility="@{data.headerRightButtonConfig.headerRightButtonType instanceof HeaderRightButtonType.Home}"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginVertical="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="@drawable/transparent_background_square"
+            android:scaleType="centerInside"
+            android:visibility="gone"
+            app:header_right_icon_drawable_res="@{data.headerRightButtonConfig.headerRightButtonType}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:single_on_click="@{() -> data.headerRightButtonConfig.clickCallback.onClick(data.headerRightButtonConfig.headerRightButtonType)}"
+            tools:src="@drawable/ic_logout"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

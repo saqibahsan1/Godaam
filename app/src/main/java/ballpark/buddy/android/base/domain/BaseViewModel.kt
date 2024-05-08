@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
+import ballpark.buddy.android.MobileNavigationDirections
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -39,6 +40,11 @@ abstract class BaseViewModel : ViewModel(), CustomScreenHeader {
     val isSplash: LiveData<Boolean>
         get() = _isSplash
     private val _isSplash: MutableLiveData<Boolean> by lazy {
+        MutableLiveData(false)
+    }
+   val isLogout: LiveData<Boolean>
+        get() = _isLogout
+    private val _isLogout: MutableLiveData<Boolean> by lazy {
         MutableLiveData(false)
     }
 
@@ -119,8 +125,10 @@ abstract class BaseViewModel : ViewModel(), CustomScreenHeader {
             clickCallback = object : ClickCallback<HeaderRightButtonType> {
                 override fun onClick(type: HeaderRightButtonType) {
                     when (type) {
-                        is HeaderRightButtonType.Home -> {}/*navigate(LoginFragmentDirections.globalActionNotificationsListing())*/
-                        HeaderRightButtonType.Home -> {}/*navigate(LoginFragmentDirections.globalActionPerformerHome())*/
+                        is HeaderRightButtonType.Home -> {
+                            _isLogout.value = true
+                            navigate(MobileNavigationDirections.globalActionToLogin())
+                        }
                         else -> {
                             //
                         }
