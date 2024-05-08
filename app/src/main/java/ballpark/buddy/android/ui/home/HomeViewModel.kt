@@ -72,6 +72,7 @@ class HomeViewModel @Inject constructor(
                 val gameList = posts.map {
                     HomeUiData(
                         postedDisplayTime = getDateTime(it.postTime.default),
+                        postTime = it.postTime,
                         field = it.field,
                         bookKeeper = it.bookKeeper,
                         gameId = it.gameId,
@@ -92,6 +93,10 @@ class HomeViewModel @Inject constructor(
                 setLoading(false)
                 Timber.e(exception.localizedMessage)
             }
+    }
+
+    fun onGameClick(data: HomeUiData) {
+        navigate(HomeFragmentDirections.navHomeToUpdateGame(data))
     }
 
 

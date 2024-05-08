@@ -12,6 +12,11 @@ data class LeagueItems(
     val ID: String? = null,
     val leagueName: String? = null
 )
+
+data class JobItems(
+    val ID: String? = null,
+    val jobDutyTitle: String? = null
+)
 data class AccountItems(
     val id: String? = null,
     val name: String? = null

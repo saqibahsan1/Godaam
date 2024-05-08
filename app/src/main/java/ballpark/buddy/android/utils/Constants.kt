@@ -8,6 +8,7 @@ object Constants {
 
     //Table names
     const val LEAGUE_NAME_TABLE = "league_name_table"
+    const val JOB_DUTY_TABLE = "job_duty_table"
     const val GAME_TABLE_STAGE = "game_table_stage"
     const val USER_TABLE_STAGE = "user_table_stage"
     fun getCurrentUnixTimestamp(): Long {

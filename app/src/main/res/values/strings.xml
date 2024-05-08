@@ -142,7 +142,7 @@
     <string name="firstName">First Name</string>
     <string name="LastName">Last Name\n</string>
     <string name="accountType">Account Type\n</string>
-    <string name="selectLeague">Select League</string>
+    <string name="selectLeague">League</string>
     <string name="cash">Cash</string>
     <string name="Venmo">Venmo\n</string>
     <string name="CashApp">Cashapp</string>
@@ -160,4 +160,13 @@
     <string name="purchaseCreditsText">Purchase Credits\n</string>
     <string name="postGame">Post Game</string>
     <string name="parentHome">Parent Home</string>
+    <string name="jobDuty">Job duty</string>
+    <string name="dateTime"><![CDATA[Date & Time\n]]></string>
+    <string name="field">Field #</string>
+    <string name="pay">Pay\n</string>
+    <string name="team">Team</string>
+    <string name="yourName">Your Name</string>
+    <string name="update">Update</string>
+    <string name="rainOut">Rain Out Request</string>
+    <string name="game">Game</string>
 </resources>

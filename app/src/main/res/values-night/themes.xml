@@ -42,10 +42,7 @@
         <item name="android:paddingBottom">@dimen/_12sdp</item>
         <item name="android:textColor">@color/text_color_dark</item>
         <item name="android:textColorHint">@color/text_hint_color</item>
-        <item name="android:overScrollMode">always</item>
-        <item name="android:scrollbars">vertical</item>
         <item name="android:navigationBarColor">@color/white</item>
-        <item name="android:scrollbarStyle">insideInset</item>
     </style>
 
     <style name="CommonButtonStyle" parent="Widget.AppCompat.Button">

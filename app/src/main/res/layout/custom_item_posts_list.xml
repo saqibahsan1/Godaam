@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_44sdp"
         android:layout_marginTop="@dimen/_5sdp"
+        android:id="@+id/root"
         android:layout_marginHorizontal="@dimen/_15sdp"
         android:background="@drawable/edit_text_empty_background">
 

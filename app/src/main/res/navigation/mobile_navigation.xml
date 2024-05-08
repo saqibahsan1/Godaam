@@ -84,8 +84,33 @@
         app:exitAnim="@anim/fade_out"
         app:popEnterAnim="@anim/fade_in"
         app:popExitAnim="@anim/slide_out"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
 
+        <action
+            android:id="@+id/nav_home_to_update_game"
+            app:destination="@id/nav_update_game"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_update_game"
+        android:name="ballpark.buddy.android.ui.game.presentation.UpdateGameFragment"
+        android:label="@string/game"
+        app:enterAnim="@anim/slide_in"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/slide_out"
+        tools:layout="@layout/update_game" >
+
+        <argument
+            android:name="HomeUiData"
+            app:argType="ballpark.buddy.android.ui.home.data.HomeUiData" />
+    </fragment>
     <fragment
         android:id="@+id/nav_calculators"
         android:name="ballpark.buddy.android.ui.calculators.presentation.CalculatorFragment"

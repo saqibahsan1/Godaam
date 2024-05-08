@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import dagger.hilt.android.AndroidEntryPoint
 import ballpark.buddy.android.base.domain.BaseViewModel
 import ballpark.buddy.android.base.presentation.BaseFragment
 import ballpark.buddy.android.databinding.FragmentHomeBinding
-import ballpark.buddy.android.extentions.getDefaultAppHeaderHeight
 import ballpark.buddy.android.ui.home.domain.GamesAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -18,7 +17,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private val homeViewModel: HomeViewModel by viewModels()
     override fun getBindView(inflater: LayoutInflater, container: ViewGroup?): FragmentHomeBinding {
        return FragmentHomeBinding.inflate(inflater, container, false).apply {
-           adapter = GamesAdapter {  }
+           adapter = GamesAdapter { data->
+               homeViewModel.onGameClick(data)
+           }
        }
     }
 

@@ -2,6 +2,7 @@ package ballpark.buddy.android.ui.auth.domain
 
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -17,6 +18,8 @@ import ballpark.buddy.android.dialog.GeneralDialogUiData
 import ballpark.buddy.android.editText.CustomEditTextField
 import ballpark.buddy.android.extentions.EMPTY_STRING
 import ballpark.buddy.android.extentions.inverse
+import ballpark.buddy.android.header.HeaderConfig
+import ballpark.buddy.android.header.HeaderRightButtonType
 import ballpark.buddy.android.resources.DrawableResourceManager
 import ballpark.buddy.android.resources.StringsResourceManager
 import ballpark.buddy.android.ui.auth.data.User
@@ -60,6 +63,19 @@ class CreateAccountViewModel @Inject constructor(
             )
     }
 
+    override fun getHeaderConfig(
+        background: Drawable?,
+        title: String,
+        rightButtonType: HeaderRightButtonType,
+        showBackButton: Boolean
+    ): HeaderConfig {
+        return super.getHeaderConfig(
+            background,
+            title,
+            rightButtonType = HeaderRightButtonType.None,
+            showBackButton = false
+        )
+    }
     fun navigateToLogin(){}
 
     private var checkBoxValue : String = EMPTY_STRING

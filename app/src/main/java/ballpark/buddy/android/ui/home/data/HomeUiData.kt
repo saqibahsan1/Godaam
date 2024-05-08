@@ -1,5 +1,9 @@
 package ballpark.buddy.android.ui.home.data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class HomeUiData(
     var postTime: Long? = null,
     var postedDisplayTime: String? = null,
@@ -16,4 +20,4 @@ data class HomeUiData(
     var postedByName: String? = null,
     var streetAddress: String? = null,
     var team: String? = null,
-)
+): Parcelable

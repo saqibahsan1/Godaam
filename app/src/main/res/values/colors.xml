@@ -18,7 +18,7 @@
     <color name="stroke_color">#CCCCCC</color>
     <color name="red">#E90000</color>
     <color name="redish">#dc3545</color>
-    <color name="text_color_dark">#F7F7F7</color>
+    <color name="text_color_dark">#E7EAEF</color>
     <color name="text_hint_color">#AFAFAF</color>
     <color name="ripple_color">#414147</color>
     <color name="grey">#F1F5F9</color>

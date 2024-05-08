@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import ballpark.buddy.android.base.presentation.BaseRecyclerViewAdapter
 import ballpark.buddy.android.base.presentation.BaseViewHolder
 import ballpark.buddy.android.databinding.CustomItemPostsListBinding
+import ballpark.buddy.android.extentions.clickToAction
 import ballpark.buddy.android.extentions.inflater
 import ballpark.buddy.android.ui.home.data.HomeUiData
 
@@ -15,6 +16,9 @@ class GamesAdapter(override val itemClickListener: (HomeUiData) -> Unit) :
         BaseViewHolder<HomeUiData>(binding.root) {
         override fun onBind(item: HomeUiData, position: Int) {
             binding.uiData = item
+            binding.root.clickToAction {
+                itemClickListener(item)
+            }
         }
     }
 
