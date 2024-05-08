@@ -29,6 +29,34 @@ class CreateAccountFragment : BaseFragment<CreateAccountFragmentBinding>() {
         super.onViewCreated(view, savedInstanceState)
         createAccountViewModel.accountTypeSearchableSpinner(requireActivity(),binding.accountTypeEt)
         createAccountViewModel.searchableSpinner(requireActivity(),binding.leagueEt)
+        binding.checkBoxCash.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked){
+                binding.checkBoxZelle.isChecked = false
+                binding.checkBoxVenmo.isChecked = false
+                binding.checkBoxCashApp.isChecked = false
+            }
+        }
+        binding.checkBoxZelle.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked){
+                binding.checkBoxCash.isChecked = false
+                binding.checkBoxVenmo.isChecked = false
+                binding.checkBoxCashApp.isChecked = false
+            }
+        }
+        binding.checkBoxVenmo.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked){
+                binding.checkBoxCash.isChecked = false
+                binding.checkBoxZelle.isChecked = false
+                binding.checkBoxCashApp.isChecked = false
+            }
+        }
+        binding.checkBoxCashApp.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked){
+                binding.checkBoxCash.isChecked = false
+                binding.checkBoxZelle.isChecked = false
+                binding.checkBoxVenmo.isChecked = false
+            }
+        }
     }
 
     override fun showFooter(): Boolean = false
