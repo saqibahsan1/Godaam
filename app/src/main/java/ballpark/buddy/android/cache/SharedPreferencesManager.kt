@@ -66,8 +66,8 @@ class DefaultSharedPreferencesManager @Inject constructor(
         networkPreferencesManager.getAuthToken()
 
     override fun getUserObject(): User? {
-        val jsonText =  sharedPreferences.getString(USER_OBJECT, EMPTY_STRING)
-        return convertJsonToModel<User>(jsonText?.let { getString(it) }.default)
+        val jsonText = sharedPreferences.getString(USER_OBJECT, EMPTY_STRING)
+        return convertJsonToModel<User>(jsonText.toString())
     }
 
     override fun removeAuthToken() {

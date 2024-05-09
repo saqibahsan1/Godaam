@@ -7,7 +7,7 @@
 
         <variable
             name="uiData"
-            type="ballpark.buddy.android.ui.home.data.HomeUiData" />
+            type="ballpark.buddy.android.ui.home.data.GameUiData" />
 
         <variable
             name="showCode"

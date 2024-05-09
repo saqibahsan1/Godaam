@@ -1,5 +1,8 @@
 package ballpark.buddy.android.utils
 
+import java.util.Locale
+import java.util.UUID
+
 object Constants {
     const val COUNT_DOWN_TIMER_INTERVAL = 1000L
     const val SCREEN_TRANSITIONS_DELAY = 2000L
@@ -14,6 +17,8 @@ object Constants {
     fun getCurrentUnixTimestamp(): Long {
         return System.currentTimeMillis() / 1000
     }
+
+    fun generateRandomId() =  UUID.randomUUID().toString().uppercase(Locale.ROOT)
 }
 object BuildType {
     const val DEBUG = "debug"

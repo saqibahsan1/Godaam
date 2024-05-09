@@ -3,13 +3,9 @@ package ballpark.buddy.android.ui.game.domain
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
-import android.content.Intent
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.view.isEmpty
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.SavedStateHandle
 import ballpark.buddy.android.R
 import ballpark.buddy.android.base.data.DialogMessageType
 import ballpark.buddy.android.base.data.UIMessage
@@ -18,6 +14,7 @@ import ballpark.buddy.android.cache.SharedPreferencesManager
 import ballpark.buddy.android.click_callback.ClickCallback
 import ballpark.buddy.android.dialog.GeneralDialogUiData
 import ballpark.buddy.android.editText.CustomEditTextField
+import ballpark.buddy.android.extentions.EMPTY_STRING
 import ballpark.buddy.android.extentions.default
 import ballpark.buddy.android.header.HeaderConfig
 import ballpark.buddy.android.header.HeaderRightButtonType
@@ -40,19 +37,11 @@ import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class UpdateGameViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
+class PostGameViewModel @Inject constructor(
     private val stringsResourceManager: StringsResourceManager,
     private val drawableResourceManager: DrawableResourceManager,
     private val sharedPreferencesManager: SharedPreferencesManager,
 ) : BaseViewModel() {
-
-    val gameData: GameUiData by lazy {
-        savedStateHandle.get<GameUiData>("HomeUiData")
-            ?: throw IllegalAccessException("HomeUiData must not be null")
-    }
-
-
     fun onTapOfUpdateGame(
         leagueEt: CustomEditTextField,
         jobDutyTextEt: CustomEditTextField,
@@ -61,82 +50,80 @@ class UpdateGameViewModel @Inject constructor(
         fieldEt: CustomEditTextField,
         payEt: CustomEditTextField,
     ) {
-        if (fieldEt.isEmpty()) {
+        if (leagueEt.getFieldText().isEmpty()){
+            leagueEt.setError("Please select the league", leagueEt)
+            leagueEt.requestFocus()
+            return
+        }
+        if (jobDutyTextEt.getFieldText().isEmpty()){
+            jobDutyTextEt.setError("Please select the Job Duty", jobDutyTextEt)
+            jobDutyTextEt.requestFocus()
+            return
+        }
+        if (fieldEt.getFieldText().isEmpty()) {
             fieldEt.setError("Please enter your field", fieldEt)
+            fieldEt.requestFocus()
             return
         }
-        if (payEt.isEmpty()) {
+        if (payEt.getFieldText().isEmpty()) {
             payEt.setError("Please enter the pay", payEt)
+            payEt.requestFocus()
             return
         }
-        if (teamEt.isEmpty()) {
+        if (teamEt.getFieldText().isEmpty()) {
             teamEt.setError("Please enter your team", teamEt)
+            teamEt.requestFocus()
             return
         }
-        if (nameEt.isEmpty()) {
+        if (nameEt.getFieldText().isEmpty()) {
             nameEt.setError("Please enter your name", nameEt)
+            nameEt.requestFocus()
             return
         }
         val gameUiData = GameUiData(
-            gameId = gameData.gameId,
+            gameId = Constants.generateRandomId(),
             leagueName = leagueEt.getFieldText(),
             jobDuty = jobDutyTextEt.getFieldText(),
             team = teamEt.getFieldText(),
             postedByName = nameEt.getFieldText(),
             field = fieldEt.getFieldText(),
             payAmount = payEt.getFieldText(),
-            postTime = if (dateTimeTimestamp != 0L) dateTimeTimestamp else gameData.postTime,
-            bookKeeper = gameData.bookKeeper,
-            isNewUpdates = gameData.isNewUpdates,
-            parent = gameData.parent,
+            postTime = Constants.getCurrentUnixTimestamp(),
+            bookKeeper = EMPTY_STRING,
+            isNewUpdates = false,
+            parent = "${sharedPreferencesManager.getUserObject()?.firstName} ${sharedPreferencesManager.getUserObject()?.lastName}",
             postedBy = sharedPreferencesManager.getUserId()
         )
         updatePost(gameUiData)
         setLoading(true)
     }
 
+    private fun mergeTimeStamp(): Long{
+        if (dateTimestamp != 0L && timestampTime != 0L) {
+            val dateTimeMills = dateTimestamp + timestampTime
+            dateTimestamp = Date(dateTimeMills).time
+        }else if (dateTimestamp == 0L){
+            val dateTimeMills = Constants.getCurrentUnixTimestamp() + timestampTime
+            dateTimestamp = Date(dateTimeMills).time
+        }else if (timestampTime == 0L){
+            val dateTimeMills = dateTimestamp + Calendar.getInstance().timeInMillis
+            dateTimestamp = Date(dateTimeMills).time
+        }
+        return dateTimestamp
+    }
     private fun updatePost(gameData: GameUiData) {
         val collectionRef = db.collection(Constants.GAME_TABLE_STAGE)
-        val documentRef = collectionRef.document(gameData.gameId.default)
-        documentRef.update(
-            "bookKeeper", gameData.bookKeeper,
-            "field", gameData.field,
-            "gameId", gameData.gameId,
-            "isNewUpdates", gameData.isNewUpdates,
-            "jobDuty", gameData.jobDuty,
-            "leagueName", gameData.leagueName,
-            "parent", gameData.parent,
-            "payAmount", gameData.payAmount,
-            "postTime", gameData.postTime,
-            "postedBy", gameData.postedBy,
-            "postedByName", gameData.postedByName,
-            "streetAddress", gameData.streetAddress,
-            "team", gameData.team,
-        ).addOnCompleteListener { task ->
-            setLoading(false)
-            if (task.isSuccessful)
-                showDialogUiMessageForPassword()
-            else
-                showDialogUiMessage(task.exception?.message.default)
-        }
+        collectionRef.document(gameData.gameId.default).set(gameData)
+            .addOnCompleteListener { task ->
+                setLoading(false)
+                if (task.isSuccessful)
+                    showSuccessDialogUiMessage()
+                else
+                    showDialogUiMessage(task.exception?.message.default)
+            }
     }
 
-    fun sendEmail(context: Context) {
-        val selectorIntent = Intent(Intent.ACTION_SENDTO)
-        selectorIntent.setData(Uri.parse("mailto:"))
-        val emailIntent = Intent(Intent.ACTION_SEND)
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("ballparkbuddy1@gmail.com"))
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Ballpark Rain Out Request")
-        emailIntent.selector = selectorIntent
-        try {
-            context.startActivity(Intent.createChooser(emailIntent, "Choose Email Client..."))
-        }
-        catch (e: Exception){
-            showDialogUiMessage(e.message.default)
-        }
-
-    }
-    private fun showDialogUiMessageForPassword() {
+    private fun showSuccessDialogUiMessage() {
         setUiMessage(
             UIMessage.DialogMessage(
                 DialogMessageType.GeneralDialog(
@@ -157,6 +144,8 @@ class UpdateGameViewModel @Inject constructor(
         )
     }
 
+    fun currentUserName() = "${sharedPreferencesManager.getUserObject()?.firstName} ${sharedPreferencesManager.getUserObject()?.lastName}"
+
     private fun showDialogUiMessage(error: String) {
         setUiMessage(
             UIMessage.DialogMessage(
@@ -172,7 +161,7 @@ class UpdateGameViewModel @Inject constructor(
     fun getDate(): String? {
         try {
             val sdf = SimpleDateFormat("dd MMM yyyy", Locale.US)
-            val netDate = Date(gameData.postTime?.times(1000).default)
+            val netDate = Date(Calendar.getInstance().timeInMillis)
             return sdf.format(netDate)
         } catch (e: Exception) {
             return e.toString()
@@ -182,7 +171,7 @@ class UpdateGameViewModel @Inject constructor(
     fun getTime(): String? {
         try {
             val sdf = SimpleDateFormat("hh:mm a", Locale.US)
-            val netDate = Date(gameData.postTime?.times(1000).default)
+            val netDate = Date(Calendar.getInstance().timeInMillis)
             return sdf.format(netDate)
         } catch (e: Exception) {
             return e.toString()
@@ -190,7 +179,8 @@ class UpdateGameViewModel @Inject constructor(
     }
 
     private val calendar = Calendar.getInstance()
-    private var dateTimeTimestamp: Long = 0
+    private var dateTimestamp: Long = 0
+    private var timestampTime: Long = 0
     fun showDatePicker(context: Context, tvSelectedDate: AppCompatTextView) {
         val datePickerDialog = DatePickerDialog(
             context, { _, year: Int, monthOfYear: Int, dayOfMonth: Int ->
@@ -200,7 +190,7 @@ class UpdateGameViewModel @Inject constructor(
                 val formattedDate = dateFormat.format(selectedDate.time)
                 tvSelectedDate.text = formattedDate
                 val timestamp = Timestamp(Date(selectedDate.timeInMillis))
-                dateTimeTimestamp = timestamp.seconds
+                dateTimestamp = timestamp.seconds
             },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
@@ -216,6 +206,7 @@ class UpdateGameViewModel @Inject constructor(
             cal.set(Calendar.HOUR_OF_DAY, hour)
             cal.set(Calendar.MINUTE, minute)
             tvSelectedTime.text = SimpleDateFormat("HH:mm a", Locale.US).format(cal.time)
+            timestampTime = cal.time.time
         }
         TimePickerDialog(
             context,

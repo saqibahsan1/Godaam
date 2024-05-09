@@ -19,6 +19,39 @@
         android:background="@color/white"
         tools:context=".ui.home.HomeFragment">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            view_visibility="@{viewModel.homeUiLiveData.empty}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/emptyImage"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_110sdp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/empty_list_place_holder"
+                app:layout_constraintBottom_toTopOf="@+id/empty_text_field"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/empty_text_field"
+                style="@style/BoldFontRoboto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_games_found"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_22sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBaseline_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/emptyImage" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/creditsTitle"
             style="@style/MediumFont"
@@ -93,6 +126,7 @@
             android:layout_marginTop="@dimen/_18sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_38sdp"
+            single_on_click="@{()->viewModel.navigateToPostGame()}"
             app:layout_constraintEnd_toStartOf="@+id/purchaseCredits"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/postGameImg"
@@ -106,6 +140,7 @@
             android:layout_marginEnd="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:text="@string/postGame"
+            single_on_click="@{()->viewModel.navigateToPostGame()}"
             android:textColor="@color/blackish"
             android:textSize="@dimen/_10sdp"
             app:layout_constraintEnd_toStartOf="@+id/purchaseCreditsText"

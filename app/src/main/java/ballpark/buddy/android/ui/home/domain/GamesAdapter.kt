@@ -7,14 +7,14 @@ import ballpark.buddy.android.base.presentation.BaseViewHolder
 import ballpark.buddy.android.databinding.CustomItemPostsListBinding
 import ballpark.buddy.android.extentions.clickToAction
 import ballpark.buddy.android.extentions.inflater
-import ballpark.buddy.android.ui.home.data.HomeUiData
+import ballpark.buddy.android.ui.home.data.GameUiData
 
-class GamesAdapter(override val itemClickListener: (HomeUiData) -> Unit) :
-    BaseRecyclerViewAdapter<HomeUiData, GamesAdapter.GamesViewHolder>(diffUtil) {
+class GamesAdapter(override val itemClickListener: (GameUiData) -> Unit) :
+    BaseRecyclerViewAdapter<GameUiData, GamesAdapter.GamesViewHolder>(diffUtil) {
 
     inner class GamesViewHolder(private val binding: CustomItemPostsListBinding) :
-        BaseViewHolder<HomeUiData>(binding.root) {
-        override fun onBind(item: HomeUiData, position: Int) {
+        BaseViewHolder<GameUiData>(binding.root) {
+        override fun onBind(item: GameUiData, position: Int) {
             binding.uiData = item
             binding.root.clickToAction {
                 itemClickListener(item)
@@ -33,14 +33,14 @@ class GamesAdapter(override val itemClickListener: (HomeUiData) -> Unit) :
     }
 }
 
-private val diffUtil = object : DiffUtil.ItemCallback<HomeUiData>() {
-    override fun areItemsTheSame(oldItem: HomeUiData, newItem: HomeUiData): Boolean {
+private val diffUtil = object : DiffUtil.ItemCallback<GameUiData>() {
+    override fun areItemsTheSame(oldItem: GameUiData, newItem: GameUiData): Boolean {
         return oldItem.gameId == newItem.gameId
     }
 
     override fun areContentsTheSame(
-        oldItem: HomeUiData,
-        newItem: HomeUiData
+        oldItem: GameUiData,
+        newItem: GameUiData
     ): Boolean {
         return oldItem == newItem
     }

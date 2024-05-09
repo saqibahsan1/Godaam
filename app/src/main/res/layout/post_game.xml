@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="ballpark.buddy.android.ui.game.domain.UpdateGameViewModel" />
+            type="ballpark.buddy.android.ui.game.domain.PostGameViewModel" />
 
     </data>
 
@@ -50,9 +50,8 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     app:change_appearance_on_focus="true"
                     app:editTextHeight="@dimen/_40sdp"
-                    app:text="@{viewModel.gameData.leagueName}"
                     app:hintText="Please select the league"
-                    app:imeOptions="actionDone"
+                    app:imeOptions="actionNext"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/leagueType"
@@ -94,9 +93,8 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     app:change_appearance_on_focus="true"
                     app:editTextHeight="@dimen/_40sdp"
-                    app:text="@{viewModel.gameData.jobDuty}"
                     app:hintText="Please select the job duty"
-                    app:imeOptions="actionDone"
+                    app:imeOptions="actionNext"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:rightIconDrawable="@drawable/ic_chevron_down"
@@ -200,8 +198,7 @@
                     app:change_appearance_on_focus="true"
                     app:editTextHeight="@dimen/_40sdp"
                     app:hintText="Please select the Field"
-                    app:text="@{viewModel.gameData.field}"
-                    app:imeOptions="actionDone"
+                    app:imeOptions="actionNext"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fieldText"
@@ -243,8 +240,7 @@
                     app:change_appearance_on_focus="true"
                     app:editTextHeight="@dimen/_40sdp"
                     app:hintText="Please select the Pay"
-                    app:text="@{viewModel.gameData.payAmount}"
-                    app:imeOptions="actionDone"
+                    app:imeOptions="actionNext"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/payText"
@@ -296,8 +292,7 @@
                         app:change_appearance_on_focus="true"
                         app:editTextHeight="@dimen/_40sdp"
                         app:hintText="Please enter Team"
-                        app:text="@{viewModel.gameData.team}"
-                        app:imeOptions="actionDone"
+                        app:imeOptions="actionNext"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/teamText"
@@ -338,8 +333,8 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         app:change_appearance_on_focus="true"
                         app:editTextHeight="@dimen/_40sdp"
-                        app:hintText="Please enter your name"
-                        app:text="@{viewModel.gameData.postedByName}"
+                        app:hintText="Please enter name"
+                        app:text="@{viewModel.currentUserName()}"
                         app:imeOptions="actionDone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -351,14 +346,6 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/teamsAndNameLayout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:orientation="vertical">
-
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/updateButton"
                     style="@style/CommonButtonStyle"
@@ -369,28 +356,12 @@
                     android:text="@string/update"
                     single_on_click="@{()->viewModel.onTapOfUpdateGame(leagueEt,jobDutyTextEt,teamEt,nameEt,fieldEt,payEt)}"
                     android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/forgetPassword" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/rainOutButton"
-                    style="@style/CommonButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/common_button_bg"
-                    android:text="@string/rainOut"
-                    single_on_click="@{()->viewModel.sendEmail(context)}"
+                    app:layout_constraintTop_toBottomOf="@+id/teamsAndNameLayout"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginBottom="@dimen/_20sdp"
-                    android:backgroundTint="@color/app_orange"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/forgetPassword" />
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

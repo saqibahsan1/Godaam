@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class HomeUiData(
+data class GameUiData(
     var postTime: Long? = null,
     var postedDisplayTime: String? = null,
     var field: String? = null,

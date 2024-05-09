@@ -14,15 +14,18 @@ import ballpark.buddy.android.R
 import ballpark.buddy.android.base.data.DialogMessageType
 import ballpark.buddy.android.base.data.UIMessage
 import ballpark.buddy.android.base.domain.BaseViewModel
+import ballpark.buddy.android.cache.SharedPreferencesManager
 import ballpark.buddy.android.dialog.GeneralDialogUiData
 import ballpark.buddy.android.editText.CustomEditTextField
 import ballpark.buddy.android.extentions.EMPTY_STRING
 import ballpark.buddy.android.extentions.inverse
+import ballpark.buddy.android.extentions.navigate
 import ballpark.buddy.android.header.HeaderConfig
 import ballpark.buddy.android.header.HeaderRightButtonType
 import ballpark.buddy.android.resources.DrawableResourceManager
 import ballpark.buddy.android.resources.StringsResourceManager
 import ballpark.buddy.android.ui.auth.data.User
+import ballpark.buddy.android.ui.auth.presentation.CreateAccountFragmentDirections
 import ballpark.buddy.android.utils.Constants
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.textfield.TextInputLayout
@@ -43,6 +46,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CreateAccountViewModel @Inject constructor(
     private val stringsResourceManager: StringsResourceManager,
+    private val sharedPreferencesManager: SharedPreferencesManager,
 ) : BaseViewModel() {
     private lateinit var auth: FirebaseAuth
     val accountCreatedSuccess: LiveData<Pair<Boolean, String?>>
@@ -51,12 +55,11 @@ class CreateAccountViewModel @Inject constructor(
         MutableLiveData()
     }
 
-    private fun showDialogUiMessageForEmail() {
+    fun showDialogUiMessage(error: String) {
         setUiMessage(
             UIMessage.DialogMessage(
                 DialogMessageType.Error(
-                        message = stringsResourceManager.getString(R.string.paymentError),
-                        description = stringsResourceManager.getString(R.string.paymentType),
+                        message = error,
                         isCancelable = false
                     )
                 )
@@ -86,38 +89,47 @@ class CreateAccountViewModel @Inject constructor(
                             ,checkBoxCash: MaterialCheckBox,checkBoxVenmo: MaterialCheckBox,checkBoxCashApp: MaterialCheckBox,checkBoxZelle: MaterialCheckBox) {
         if (email.isValid().inverse) {
             email.setError("Please enter you email address", email)
+            email.requestFocus()
+            return
+        }
+        if (firsNameEditText.isValid().inverse){
+            firsNameEditText.setError("Please enter your first name", firsNameEditText)
+            firsNameEditText.requestFocus()
+            return
+        }
+        if (lastNameEditText.isValid().inverse){
+            lastNameEditText.setError("Please enter your last name", lastNameEditText)
+            lastNameEditText.requestFocus()
             return
         }
         if (password.isValid().inverse) {
             password.setError("Please enter your password", password)
+            password.requestFocus()
             return
         }
         if (confirmPassword.isValid().inverse) {
             password.setError("Please enter your password", confirmPassword)
+            confirmPassword.requestFocus()
             return
         }
         if (password.getFieldText() != confirmPassword.getFieldText()){
             confirmPassword.setError("password did not matched", confirmPassword)
+            confirmPassword.requestFocus()
             return
         }
-        if (firsNameEditText.isEmpty()){
-            firsNameEditText.setError("Please enter your first name", firsNameEditText)
-            return
-        }
-        if (lastNameEditText.isEmpty()){
-            lastNameEditText.setError("Please enter your last name", lastNameEditText)
-            return
-        }
-        if (zipCodeEditText.isEmpty()){
+        if (zipCodeEditText.isValid().inverse){
             zipCodeEditText.setError("Please enter your zip code", zipCodeEditText)
+            zipCodeEditText.requestFocus()
             return
         }
-        if (accountTypeEt.isEmpty()){
+        if (accountTypeEt.isValid().inverse){
             accountTypeEt.setError("Please select account type", accountTypeEt)
+            accountTypeEt.requestFocus()
             return
         }
-        if (leagueEt.isEmpty()){
+        if (leagueEt.isValid().inverse){
             leagueEt.setError("Please select the league", leagueEt)
+            leagueEt.requestFocus()
             return
         }
         if (checkBoxCash.isChecked){
@@ -133,7 +145,7 @@ class CreateAccountViewModel @Inject constructor(
             checkBoxValue = checkBoxZelle.text.toString()
         }
         if (checkBoxValue.isEmpty()) {
-            showDialogUiMessageForEmail()
+            showDialogUiMessage(stringsResourceManager.getString(R.string.paymentError))
             return
         }
         setLoading(true)
@@ -162,8 +174,29 @@ class CreateAccountViewModel @Inject constructor(
         )
         registerUser(email, password, user){ success, errorMessage ->
             setLoading(false)
+            val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
+            sharedPreferencesManager.setUserId(userId)
+            getUserData(userId)
             _accountCreatedSuccess.value = Pair(success, errorMessage)
         }
+    }
+
+    private fun getUserData(userId: String) {
+        db.collection(Constants.USER_TABLE_STAGE).document(userId)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val document = task.result
+                    if (document != null && document.exists()) {
+                        val userData = document.toObject(User::class.java)
+                        sharedPreferencesManager.setUserObject(userData)
+                        navigate(CreateAccountFragmentDirections.actionCreateAccountToHome())
+                    }else{
+                        showDialogUiMessage("User not found")
+                    }
+                }
+                setLoading(false)
+            }
     }
 
     private fun registerUser(

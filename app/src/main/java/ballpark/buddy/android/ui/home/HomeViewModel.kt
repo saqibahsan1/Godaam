@@ -11,7 +11,7 @@ import ballpark.buddy.android.header.HeaderConfig
 import ballpark.buddy.android.header.HeaderRightButtonType
 import ballpark.buddy.android.resources.DrawableResourceManager
 import ballpark.buddy.android.resources.StringsResourceManager
-import ballpark.buddy.android.ui.home.data.HomeUiData
+import ballpark.buddy.android.ui.home.data.GameUiData
 import ballpark.buddy.android.utils.Constants
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,9 +30,9 @@ class HomeViewModel @Inject constructor(
 
     private val firestore = FirebaseFirestore.getInstance()
 
-    val homeUiLiveData: LiveData<List<HomeUiData>>
+    val homeUiLiveData: LiveData<List<GameUiData>>
         get() = _homeUiData
-    private val _homeUiData: MutableLiveData<List<HomeUiData>> by lazy {
+    private val _homeUiData: MutableLiveData<List<GameUiData>> by lazy {
         MutableLiveData()
     }
 
@@ -68,9 +68,9 @@ class HomeViewModel @Inject constructor(
             .get()
             .addOnSuccessListener { querySnapshot ->
                 setLoading(false)
-                val posts = querySnapshot.toObjects(HomeUiData::class.java)
+                val posts = querySnapshot.toObjects(GameUiData::class.java)
                 val gameList = posts.map {
-                    HomeUiData(
+                    GameUiData(
                         postedDisplayTime = getDateTime(it.postTime.default),
                         postTime = it.postTime,
                         field = it.field,
@@ -95,7 +95,10 @@ class HomeViewModel @Inject constructor(
             }
     }
 
-    fun onGameClick(data: HomeUiData) {
+    fun navigateToPostGame() {
+        navigate(HomeFragmentDirections.navHomeToPostGame())
+    }
+    fun onGameClick(data: GameUiData) {
         navigate(HomeFragmentDirections.navHomeToUpdateGame(data))
     }
 

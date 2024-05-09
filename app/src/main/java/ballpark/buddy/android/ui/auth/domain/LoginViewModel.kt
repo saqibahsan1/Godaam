@@ -87,8 +87,8 @@ class LoginViewModel @Inject constructor(
         ) { success, message ->
             if (success) {
                 val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
-                getUserData(userId)
                 sharedPreferencesManager.setUserId(userId)
+                getUserData(userId)
             } else {
                 setLoading(false)
                 showErrorMessage(message)

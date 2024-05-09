@@ -169,4 +169,7 @@
     <string name="update">Update</string>
     <string name="rainOut">Rain Out Request</string>
     <string name="game">Game</string>
+    <string name="no_games_found">No Games found</string>
+    <string name="success">Success!</string>
+    <string name="game_updated">Game has been updated successfully!</string>
 </resources>

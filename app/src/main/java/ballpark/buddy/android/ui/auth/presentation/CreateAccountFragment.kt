@@ -8,9 +8,12 @@ import androidx.fragment.app.viewModels
 import ballpark.buddy.android.base.domain.BaseViewModel
 import ballpark.buddy.android.base.presentation.BaseFragment
 import ballpark.buddy.android.databinding.CreateAccountFragmentBinding
+import ballpark.buddy.android.extentions.default
 import ballpark.buddy.android.extentions.getDefaultAppHeaderHeight
+import ballpark.buddy.android.extentions.inverse
+import ballpark.buddy.android.extentions.navigate
+import ballpark.buddy.android.extentions.observeLiveData
 import ballpark.buddy.android.ui.auth.domain.CreateAccountViewModel
-import com.google.firebase.FirebaseApp
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,35 +30,43 @@ class CreateAccountFragment : BaseFragment<CreateAccountFragmentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        createAccountViewModel.accountTypeSearchableSpinner(requireActivity(),binding.accountTypeEt)
-        createAccountViewModel.searchableSpinner(requireActivity(),binding.leagueEt)
-        binding.checkBoxCash.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked){
+        createAccountViewModel.accountTypeSearchableSpinner(
+            requireActivity(),
+            binding.accountTypeEt
+        )
+        createAccountViewModel.searchableSpinner(requireActivity(), binding.leagueEt)
+        binding.checkBoxCash.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
                 binding.checkBoxZelle.isChecked = false
                 binding.checkBoxVenmo.isChecked = false
                 binding.checkBoxCashApp.isChecked = false
             }
         }
-        binding.checkBoxZelle.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked){
+        binding.checkBoxZelle.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
                 binding.checkBoxCash.isChecked = false
                 binding.checkBoxVenmo.isChecked = false
                 binding.checkBoxCashApp.isChecked = false
             }
         }
-        binding.checkBoxVenmo.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked){
+        binding.checkBoxVenmo.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
                 binding.checkBoxCash.isChecked = false
                 binding.checkBoxZelle.isChecked = false
                 binding.checkBoxCashApp.isChecked = false
             }
         }
-        binding.checkBoxCashApp.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked){
+        binding.checkBoxCashApp.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
                 binding.checkBoxCash.isChecked = false
                 binding.checkBoxZelle.isChecked = false
                 binding.checkBoxVenmo.isChecked = false
             }
+        }
+        observeLiveData(createAccountViewModel.accountCreatedSuccess) {
+            if (it.first.inverse)
+                createAccountViewModel.showDialogUiMessage(it.second.default)
+
         }
     }
 

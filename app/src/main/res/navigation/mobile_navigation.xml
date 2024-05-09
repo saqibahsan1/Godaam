@@ -74,7 +74,18 @@
         app:exitAnim="@anim/fade_out"
         app:popEnterAnim="@anim/fade_in"
         app:popExitAnim="@anim/slide_out"
-        tools:layout="@layout/create_account_fragment" />
+        tools:layout="@layout/create_account_fragment">
+        <action
+            android:id="@+id/action_create_account_to_home"
+            app:destination="@+id/nav_home"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpTo="@id/mobile_navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_home"
@@ -84,11 +95,20 @@
         app:exitAnim="@anim/fade_out"
         app:popEnterAnim="@anim/fade_in"
         app:popExitAnim="@anim/slide_out"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
 
         <action
             android:id="@+id/nav_home_to_update_game"
             app:destination="@id/nav_update_game"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/nav_home_to_post_game"
+            app:destination="@id/nav_post_game"
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
@@ -105,107 +125,25 @@
         app:exitAnim="@anim/fade_out"
         app:popEnterAnim="@anim/fade_in"
         app:popExitAnim="@anim/slide_out"
-        tools:layout="@layout/update_game" >
+        tools:layout="@layout/update_game">
 
         <argument
             android:name="HomeUiData"
-            app:argType="ballpark.buddy.android.ui.home.data.HomeUiData" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_calculators"
-        android:name="ballpark.buddy.android.ui.calculators.presentation.CalculatorFragment"
-        android:label="@string/menu_calculators"
-        tools:layout="@layout/fragment_calculator">
-
-        <action
-            android:id="@+id/nav_calculators_to_nitaqat"
-            app:destination="@id/nav_nitaqat_calculator_fragment"
-            app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/nav_calculators_to_end_service"
-            app:destination="@id/nav_end_service_calculator_fragment"
-            app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out"
-            app:popUpToInclusive="true" />
-
-        <action
-            android:id="@+id/nav_calculators_to_work_permit"
-            app:destination="@id/nav_work_permit_calculator"
-            app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out"
-            app:popUpToInclusive="true" />
-
+            app:argType="ballpark.buddy.android.ui.home.data.GameUiData" />
     </fragment>
 
     <fragment
-        android:id="@+id/nav_feedback"
-        android:name="ballpark.buddy.android.ui.feedback.FeedbackFragment"
-        android:label="@string/feedback"
+        android:id="@+id/nav_post_game"
+        android:name="ballpark.buddy.android.ui.game.presentation.PostGameFragment"
+        android:label="@string/game"
         app:enterAnim="@anim/slide_in"
         app:exitAnim="@anim/fade_out"
         app:popEnterAnim="@anim/fade_in"
         app:popExitAnim="@anim/slide_out"
-        tools:layout="@layout/fragment_feedback" />
-
-    <fragment
-        android:id="@+id/nav_end_service_calculator_fragment"
-        android:name="ballpark.buddy.android.ui.calculators.presentation.EndServiceCalculator"
-        android:label="@string/calculator"
-        app:enterAnim="@anim/slide_in"
-        app:exitAnim="@anim/fade_out"
-        app:popEnterAnim="@anim/fade_in"
-        app:popExitAnim="@anim/slide_out"
-        tools:layout="@layout/end_service_calculator_fragment" />
-
-    <fragment
-        android:id="@+id/nav_work_permit_calculator"
-        android:name="ballpark.buddy.android.ui.calculators.presentation.WorkPermitFragment"
-        android:label="@string/calculator"
-        app:enterAnim="@anim/slide_in"
-        app:exitAnim="@anim/fade_out"
-        app:popEnterAnim="@anim/fade_in"
-        app:popExitAnim="@anim/slide_out"
-        tools:layout="@layout/work_permit_fragment" />
-
-    <fragment
-        android:id="@+id/nav_nitaqat_calculator_fragment"
-        android:name="ballpark.buddy.android.ui.calculators.presentation.NitaqatCalculator"
-        android:label="@string/calculator"
-        app:enterAnim="@anim/slide_in"
-        app:exitAnim="@anim/fade_out"
-        app:popEnterAnim="@anim/fade_in"
-        app:popExitAnim="@anim/slide_out"
-        tools:layout="@layout/nitaqat_calculator_fragment">
-
-        <action
-            android:id="@+id/nav_nitaqat_to_webView"
-            app:destination="@id/nav_web_view"
-            app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out"
-            app:popUpToInclusive="true" />
+        tools:layout="@layout/update_game">
 
     </fragment>
 
-    <fragment
-        android:id="@+id/nav_web_view"
-        android:name="ballpark.buddy.android.ui.webView.WebviewFragment"
-        android:label="Calculation Details"
-        tools:layout="@layout/webview_fragment">
-
-        <argument
-            android:name="webUrl"
-            app:argType="string" />
-    </fragment>
 
     <action
         android:id="@+id/global_action_to_login"
