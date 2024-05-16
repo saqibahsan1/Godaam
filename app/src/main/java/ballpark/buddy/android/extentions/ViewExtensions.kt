@@ -45,6 +45,7 @@ import ballpark.buddy.android.R
 import ballpark.buddy.android.databinding.ItemExpandableHeaderLayoutBinding
 import ballpark.buddy.android.databinding.ItemFaqExpandableLayoutBinding
 import ballpark.buddy.android.utils.ExpandableLayout
+import com.google.android.material.textfield.TextInputLayout
 import timber.log.Timber
 import java.util.Locale
 
@@ -277,7 +278,7 @@ fun <T : AttributeSet?, VB : ViewDataBinding> VB.getStyleAttributesFromBinding(
             typedArray(getStyleAttributes(styleableId, t))
         }
 
-fun View.clickToAction(withDelay: Boolean = true, action: () -> Unit = {}) {
+fun View.clickToAction(withDelay: Boolean = false, action: () -> Unit = {}) {
     if (withDelay) {
         setOnClickListener(
                 SafeClickListener {
@@ -292,7 +293,15 @@ fun View.clickToAction(withDelay: Boolean = true, action: () -> Unit = {}) {
         }
     }
 }
+var TextInputLayout.errorMessage: CharSequence?
+    get() = error
+    set(errorMessage) = setErrorMessage(errorMessage)
 
+@JvmName("setErrorMessageWithTogglingErrorEnabled")
+fun TextInputLayout.setErrorMessage(errorMessage: CharSequence?) {
+    error = errorMessage
+    isErrorEnabled = !errorMessage.isNullOrEmpty()
+}
 fun View.hideKeyboard() {
     (context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
             windowToken,

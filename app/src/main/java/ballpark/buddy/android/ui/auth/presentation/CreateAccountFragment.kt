@@ -8,10 +8,10 @@ import androidx.fragment.app.viewModels
 import ballpark.buddy.android.base.domain.BaseViewModel
 import ballpark.buddy.android.base.presentation.BaseFragment
 import ballpark.buddy.android.databinding.CreateAccountFragmentBinding
+import ballpark.buddy.android.extentions.clickToAction
 import ballpark.buddy.android.extentions.default
 import ballpark.buddy.android.extentions.getDefaultAppHeaderHeight
 import ballpark.buddy.android.extentions.inverse
-import ballpark.buddy.android.extentions.navigate
 import ballpark.buddy.android.extentions.observeLiveData
 import ballpark.buddy.android.ui.auth.domain.CreateAccountViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +34,15 @@ class CreateAccountFragment : BaseFragment<CreateAccountFragmentBinding>() {
             requireActivity(),
             binding.accountTypeEt
         )
-        createAccountViewModel.searchableSpinner(requireActivity(), binding.leagueEt)
+        createAccountViewModel.leagueSearchableSpinner(requireActivity(), binding.leagueEt)
+
+        binding.leagueEt.setOnClickListener { createAccountViewModel.onClickLeagueDropDown() }
+        binding.leagueEt.editText?.setOnClickListener { createAccountViewModel.onClickLeagueDropDown() }
+
+        binding.accountTypeEt.setOnClickListener { createAccountViewModel.onClickOnAccountTypeDropDown() }
+        binding.accountTypeEt.editText?.setOnClickListener { createAccountViewModel.onClickOnAccountTypeDropDown() }
+
+
         binding.checkBoxCash.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 binding.checkBoxZelle.isChecked = false

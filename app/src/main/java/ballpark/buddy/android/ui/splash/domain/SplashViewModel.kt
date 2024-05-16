@@ -57,7 +57,7 @@ class SplashViewModel @Inject constructor(
 
     private fun navigateToOnBoarding() {
         if (sharedPreferencesManager.getUserId().isEmpty())
-            navigateWithDelay(SplashFragmentDirections.actionSplashToLogin())
+            navigateWithDelay(SplashFragmentDirections.actionSplashToPreLogin())
         else
             navigateWithDelay(SplashFragmentDirections.actionSplashToHome())
     }
