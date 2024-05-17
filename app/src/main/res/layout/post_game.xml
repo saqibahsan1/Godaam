@@ -353,7 +353,7 @@
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/common_button_bg"
-                    android:text="@string/update"
+                    android:text="@string/post"
                     single_on_click="@{()->viewModel.onTapOfUpdateGame(leagueEt,jobDutyTextEt,teamEt,nameEt,fieldEt,payEt)}"
                     android:textSize="18sp"
                     app:layout_constraintTop_toBottomOf="@+id/teamsAndNameLayout"

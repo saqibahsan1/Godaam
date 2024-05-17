@@ -17,9 +17,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import timber.log.Timber
 import java.text.SimpleDateFormat
+import java.util.Collections
 import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
+
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -87,7 +89,11 @@ class HomeViewModel @Inject constructor(
                         postedBy = it.postedBy,
                     )
                 }
-                _homeUiData.value = gameList.sortedByDescending { it.postedDisplayTime }.toList()
+                if (gameList.size > 1) {
+                    Collections.sort(gameList) { o1, o2 -> o1?.postTime.default.compareTo(o2?.postTime.default) }
+                    _homeUiData.value = gameList
+                } else
+                    _homeUiData.value = gameList
             }
             .addOnFailureListener { exception ->
                 setLoading(false)
@@ -95,9 +101,11 @@ class HomeViewModel @Inject constructor(
             }
     }
 
+
     fun navigateToPostGame() {
         navigate(HomeFragmentDirections.navHomeToPostGame())
     }
+
     fun onGameClick(data: GameUiData) {
         navigate(HomeFragmentDirections.navHomeToUpdateGame(data))
     }

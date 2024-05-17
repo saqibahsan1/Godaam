@@ -350,7 +350,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="@dimen/_10sdp"
-
+                            app:endIconTint="@color/black"
                             app:boxBackgroundMode="outline"
                             app:hintAnimationEnabled="false"
                             app:hintEnabled="false"
@@ -406,6 +406,7 @@
                             android:textColorHint="@color/text_hint_color"
                             app:hintAnimationEnabled="false"
                             app:hintEnabled="false"
+                            app:endIconTint="@color/black"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/leagueType">

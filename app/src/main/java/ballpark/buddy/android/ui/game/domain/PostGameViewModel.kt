@@ -88,13 +88,13 @@ class PostGameViewModel @Inject constructor(
             postedByName = nameEt.getFieldText(),
             field = fieldEt.getFieldText(),
             payAmount = payEt.getFieldText(),
-            postTime = Constants.getCurrentUnixTimestamp(),
+            postTime = dateTimestamp,
             bookKeeper = EMPTY_STRING,
             isNewUpdates = false,
             parent = "${sharedPreferencesManager.getUserObject()?.firstName} ${sharedPreferencesManager.getUserObject()?.lastName}",
             postedBy = sharedPreferencesManager.getUserId()
         )
-        updatePost(gameUiData)
+        postGame(gameUiData)
         setLoading(true)
     }
 
@@ -111,7 +111,7 @@ class PostGameViewModel @Inject constructor(
         }
         return dateTimestamp
     }
-    private fun updatePost(gameData: GameUiData) {
+    private fun postGame(gameData: GameUiData) {
         val collectionRef = db.collection(Constants.GAME_TABLE_STAGE)
         collectionRef.document(gameData.gameId.default).set(gameData)
             .addOnCompleteListener { task ->

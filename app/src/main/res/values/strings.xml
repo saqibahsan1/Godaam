@@ -174,4 +174,5 @@
     <string name="game_updated">Game has been updated successfully!</string>
     <string name="please_select_the_league">Please select the league</string>
     <string name="please_select_your_account_type">Please select your account type</string>
+    <string name="post">Post</string>
 </resources>

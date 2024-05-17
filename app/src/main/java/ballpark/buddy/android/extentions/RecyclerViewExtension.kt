@@ -13,7 +13,7 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: BaseRecyclerViewAdapter<*, *>?
 }
 
 @BindingAdapter("games_listing")
-fun RecyclerView.setUpgradeCoverItems(list: List<GameUiData>?) {
+fun RecyclerView.setGameList(list: List<GameUiData>?) {
     if (list?.isEmpty().default) hide() else {
         (adapter as? GamesAdapter)?.listItems = list.orEmptyArrayList()
         show()
