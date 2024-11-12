@@ -4,6 +4,7 @@ import androidx.databinding.BindingAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import ballpark.buddy.android.base.presentation.BaseRecyclerViewAdapter
+import ballpark.buddy.android.click_callback.PageSelectionCallback
 
 fun ViewPager2.moveToNextItem(smoothScroll: Boolean = true) = kotlin.run {
     if (nextItem <= itemCount) {
@@ -70,6 +71,21 @@ fun ViewPager.currentPageIsLastItem() =
 
 fun ViewPager.currentPageIsFirstItem() =
     currentItem == initialItem
+
+@BindingAdapter("attach_indicators", "callback", requireAll = false)
+fun ViewPager2.attachIndicators(
+    customIndicator: CustomIndicator?,
+    pageSelectionCallback: PageSelectionCallback
+) {
+    customIndicator?.addIndicators(itemCount.default)
+    registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageSelected(position: Int) {
+            super.onPageSelected(position)
+            customIndicator?.updateView(position)
+            pageSelectionCallback.onPageSelected(position)
+        }
+    })
+}
 
 @BindingAdapter("set_recycler_view_adapter")
 fun ViewPager2.setRecyclerViewAdapter(mAdapter: BaseRecyclerViewAdapter<*, *>?) {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BallparkBuddy</string>
+    <string name="app_name">Godaam</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -127,13 +127,13 @@
     <string name="totalAmount">Total Amount</string>
     <string name="email_address">Email</string>
     <string name="email_point">email body</string>
-    <string name="sign_in">Login\n</string>
+    <string name="sign_in">Login</string>
     <string name="password">Password</string>
-    <string name="password_hint">Enter your password\n</string>
+    <string name="password_hint">Enter Password/پاس ورڈ ٹائپ کریں</string>
     <string name="create_account_u">Don\'t have account?</string>
     <string name="forgotPassword_u">Forgot Password?</string>
-    <string name="login">Login</string>
-    <string name="register">Register\n</string>
+    <string name="login"><u>Login</u></string>
+    <string name="register">Register</string>
     <string name="account_created">Create Profile</string>
     <string name="create_account">Create Profile</string>
     <string name="i_already_have_an_account">Already have an account?</string>
@@ -169,10 +169,14 @@
     <string name="update">Update</string>
     <string name="rainOut">Rain Out Request</string>
     <string name="game">Game</string>
-    <string name="no_games_found">No Games found</string>
+    <string name="no_games_found">Dashboard work in progress</string>
     <string name="success">Success!</string>
     <string name="game_updated">Game has been updated successfully!</string>
     <string name="please_select_the_league">Please select the league</string>
     <string name="please_select_your_account_type">Please select your account type</string>
     <string name="post">Post</string>
+    <string name="get_started">GET STARTED</string>
+    <string name="hello_welcome">Hello, Welcome!</string>
+    <string name="signup">Sign Up</string>
+    <string name="first_creat_your_account">First create your account</string>
 </resources>

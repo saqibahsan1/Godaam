@@ -13,230 +13,195 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginVertical="@dimen/_10sdp"
-                android:src="@drawable/app_icon"
-                app:layout_constraintBottom_toTopOf="@+id/createAccountTitle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatImageView2" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatImageView2"
-                single_on_click="@{()->viewModel.navigateBack()}"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_margin="@dimen/_15sdp"
-                android:src="@drawable/back_button_icon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/createAccountTitle"
-                style="@style/BoldFontRoboto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:includeFontPadding="false"
-                android:lineSpacingExtra="-30dp"
-                android:text="@string/sign_in"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_22sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/guideline3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="@string/sign_in"
-                tools:visibility="visible" />
-
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/createAccountLayout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/guideline3"
-                tools:visibility="visible">
+                android:layout_height="match_parent"
+                android:background="@color/white">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dp"
+                    android:layout_marginEnd="-120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cargo_image"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/emailLabel"
-                        style="@style/RegularFont"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/email_address"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/emailEditText"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Email" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-                    <ballpark.buddy.android.editText.CustomEditTextField
-                        android:id="@+id/emailEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        app:change_appearance_on_focus="true"
-                        app:editTextHeight="@dimen/_40sdp"
-                        app:hintText="Enter your email"
-                        app:imeOptions="actionNext"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/emailLabel"
-                        app:remove_error_on_typing="@{true}"
-                        app:type="email" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/welcomeTitle"
+                    style="@style/BoldFontRoboto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:drawableEnd="@drawable/emoji"
+                    android:drawablePadding="10dp"
+                    android:text="@string/hello_welcome"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/guideline3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:visibility="visible" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/passwordLayout"
+                    android:id="@+id/createAccountLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+                    app:layout_constraintTop_toBottomOf="@id/welcomeTitle"
+                    tools:visibility="visible">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/label"
-                        style="@style/RegularFont"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/password"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/passwordEditText"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Password" />
-
-                    <ballpark.buddy.android.editText.CustomEditTextField
-                        android:id="@+id/passwordEditText"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        app:change_appearance_on_focus="true"
-                        app:editTextHeight="@dimen/_40sdp"
-                        app:hintText="@string/password_hint"
-                        app:imeOptions="actionDone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/label"
-                        app:remove_error_on_typing="@{true}"
-                        app:type="password" />
+                        app:layout_constraintTop_toTopOf="parent">
 
+                        <ballpark.buddy.android.editText.CustomEditTextField
+                            android:id="@+id/emailEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_20sdp"
+                            app:change_appearance_on_focus="true"
+                            app:editTextHeight="@dimen/_40sdp"
+                            app:hintText="Enter mobile number /فون نمبر"
+                            app:imeOptions="actionNext"
+                            app:maxLength="12"
+                            app:label="Mobile Number /فون نمبر"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:remove_error_on_typing="@{true}"
+                            app:type="number" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/passwordLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                        <ballpark.buddy.android.editText.CustomEditTextField
+                            android:id="@+id/passwordEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_20sdp"
+                            app:change_appearance_on_focus="true"
+                            app:editTextHeight="@dimen/_40sdp"
+                            app:hintText="@string/password_hint"
+                            app:imeOptions="actionDone"
+                            app:label="Password/پاس ورڈ "
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:remove_error_on_typing="@{true}"
+                            app:type="password" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/loginButton"
+                        style="@style/CommonButtonStyle"
+                        single_on_click="@{()->viewModel.onTapOfLoginButton(emailEditText,passwordEditText)}"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:background="@drawable/common_button_bg"
+                        android:backgroundTint="@color/purple_200"
+                        android:text="@string/sign_in"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.65" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/createMyAccount"
+                        single_on_click="@{()->viewModel.navigateToCreateAccount()}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/nunito_regular"
+                        android:text="@string/create_account_u"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="@+id/loginButton"
+                        app:layout_constraintHorizontal_bias="0.35"
+                        app:layout_constraintStart_toStartOf="@+id/loginButton"
+                        app:layout_constraintTop_toBottomOf="@id/loginButton" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/register"
+                        style="@style/BoldFontRoboto"
+                        single_on_click="@{()->viewModel.navigateToCreateAccount()}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:text="@string/register"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/createMyAccount"
+                        app:layout_constraintStart_toEndOf="@+id/createMyAccount" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/loginButton"
-                    style="@style/CommonButtonStyle"
-                    single_on_click="@{()->viewModel.onTapOfLoginButton(emailEditText,passwordEditText)}"
-                    android:layout_width="match_parent"
-                    android:layout_marginHorizontal="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_30sdp"
-                    android:background="@drawable/common_button_bg"
-                    android:text="@string/sign_in"
-                    android:textSize="18sp"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/lifter"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/forgetPassword" />
+                    app:layout_constraintTop_toBottomOf="@+id/guideline32" />
+
 
                 <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline2"
+                    android:id="@+id/guideline32"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.65" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/createMyAccount"
-                    single_on_click="@{()->viewModel.navigateToCreateAccount()}"
+                    app:layout_constraintGuide_percent="0.53" />
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:paddingTop="@dimen/_20sdp"
-                    android:paddingBottom="@dimen/_20sdp"
-                    android:fontFamily="@font/nunito_regular"
-                    android:text="@string/create_account_u"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="@+id/loginButton"
-                    app:layout_constraintHorizontal_bias="0.35"
-                    app:layout_constraintStart_toStartOf="@+id/loginButton"
-                    app:layout_constraintTop_toBottomOf="@id/loginButton" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/forgetPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:elevation="@dimen/_5sdp"
-                    android:fontFamily="@font/nunito_regular"
-                    android:text="@string/forgotPassword_u"
-                    android:textColor="@color/app_orange"
-                    android:textSize="18sp"
-                    app:fontFamily="@font/nunito_regular"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/passwordLayout" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/register"
-                    single_on_click="@{()->viewModel.navigateToCreateAccount()}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:paddingTop="@dimen/_20sdp"
-                    android:paddingBottom="@dimen/_20sdp"
-                    android:fontFamily="@font/nunito_regular"
-                    android:text="@string/register"
-                    android:textColor="@color/app_orange"
-                    android:textSize="18sp"
-                    app:fontFamily="@font/nunito_regular"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/createMyAccount"
-                    app:layout_constraintStart_toEndOf="@+id/createMyAccount" />
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.36" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.4" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -73,7 +73,7 @@ class LoginViewModel @Inject constructor(
 
     fun onTapOfLoginButton(email: CustomEditTextField, password: CustomEditTextField) {
         if (email.isValid().inverse) {
-            email.setError("PLease enter you email address", email)
+            email.setError("PLease enter your mobile number", email)
             return
         }
         if (password.isValid().inverse) {
@@ -109,7 +109,7 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun loginUser(email: String, password: String, onComplete: (Boolean, String?) -> Unit) {
-        auth.signInWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword("$email@gmail.com", password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     onComplete(true, null)

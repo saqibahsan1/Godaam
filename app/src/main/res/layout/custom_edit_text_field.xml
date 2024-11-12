@@ -9,23 +9,38 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/label"
+            style="@style/MediumFont"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Label" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fieldLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:background="@drawable/edit_text_empty_background"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/label">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="0dp"
                 app:layout_constraintEnd_toStartOf="@id/rightIcon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:boxBackgroundMode="none"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/purple_200"
                 app:hintAnimationEnabled="false"
                 app:hintEnabled="false"
                 android:gravity="center_vertical"
                 android:tag="textInputLayout"
+                style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_height="wrap_content">
 

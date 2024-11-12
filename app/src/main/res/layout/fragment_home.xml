@@ -19,151 +19,32 @@
         android:background="@color/white"
         tools:context=".ui.home.HomeFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            view_visibility="@{viewModel.homeUiLiveData.empty}"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/emptyImage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_310sdp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/under_development"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/emptyImage"
-                android:layout_width="@dimen/_120sdp"
-                android:layout_height="@dimen/_110sdp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/empty_list_place_holder"
-                app:layout_constraintBottom_toTopOf="@+id/empty_text_field"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/empty_text_field"
-                style="@style/BoldFontRoboto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/no_games_found"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="@dimen/_22sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBaseline_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emptyImage" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/creditsTitle"
-            style="@style/MediumFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_17sdp"
-            android:text="@string/credits"
-            android:textColor="@color/black"
-            android:layout_marginTop="@dimen/_25sdp"
-            android:textSize="@dimen/_18sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/postGameImg"
-            tools:text="@string/credits"
-            tools:visibility="visible" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/creditImg"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_36sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:src="@drawable/ic_credit"
-            android:layout_marginTop="@dimen/_19sdp"
-            app:layout_constraintStart_toEndOf="@+id/creditsTitle"
-            app:layout_constraintTop_toTopOf="@+id/postGameImg" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/credit"
-            style="@style/MediumFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_5sdp"
-            android:text="@{viewModel.creditAmount()}"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_18sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/creditsTitle"
-            app:layout_constraintStart_toEndOf="@+id/creditImg"
-            app:layout_constraintTop_toTopOf="@+id/creditsTitle"
-            tools:text="@string/_6"
-            tools:visibility="visible" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_18sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_36sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/purchaseCredits"
-            android:src="@drawable/ic_purchase"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/purchaseCreditsText"
-            style="@style/MediumFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:text="@string/purchaseCreditsText"
-            android:textColor="@color/blackish"
-            android:textSize="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/purchaseCredits"
-            tools:text="@string/purchaseCreditsText"
-            tools:visibility='visible' />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_18sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_38sdp"
-            single_on_click="@{()->viewModel.navigateToPostGame()}"
-            app:layout_constraintEnd_toStartOf="@+id/purchaseCredits"
-            app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/postGameImg"
-            android:src="@drawable/ic_post"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/postGameText"
-            style="@style/MediumFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:text="@string/postGame"
-            single_on_click="@{()->viewModel.navigateToPostGame()}"
-            android:textColor="@color/blackish"
-            android:textSize="@dimen/_10sdp"
-            app:layout_constraintEnd_toStartOf="@+id/purchaseCreditsText"
-            app:layout_constraintTop_toBottomOf="@+id/postGameImg"
-            tools:text="@string/postGame"
-            tools:visibility='visible' />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/myPostRecycler"
-            setAdapter="@{adapter}"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_18sdp"
-            android:paddingBottom="@dimen/_16sdp"
-            app:games_listing="@{viewModel.homeUiLiveData}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/purchaseCreditsText"
-            tools:itemCount="14"
-            tools:listitem="@layout/custom_item_posts_list" />
-
+        <!--        <androidx.viewpager2.widget.ViewPager2-->
+<!--            android:id="@+id/viewPager"-->
+<!--            attach_indicators="@{indicators}"-->
+<!--            callback="@{viewModel.onPageSelected}"-->
+<!--            off_screen_page_limit="@{1}"-->
+<!--            user_input_enabled="@{true}"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="horizontal"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:set_recycler_view_adapter="@{adapter}"-->
+<!--            app:set_on_boarding_list_items="@{viewModel.getOnBoardingItemsList()}" />-->
 
 
 

@@ -28,7 +28,7 @@
     </style>
 
     <style name="MediumFont">
-        <item name="android:fontFamily">@font/nunito_semi_bold</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
     </style>
 
     <style name="RegularFont">
@@ -60,6 +60,7 @@
         <item name="android:paddingStart">@dimen/_10sdp</item>
         <item name="android:paddingEnd">@dimen/_10sdp</item>
         <item name="android:paddingTop">@dimen/_12sdp</item>
+        <item name="font">@font/inter_medium</item>
         <item name="android:paddingBottom">@dimen/_12sdp</item>
         <item name="android:textColor">@color/text_color_dark</item>
         <item name="android:textColorHint">@color/text_hint_color</item>

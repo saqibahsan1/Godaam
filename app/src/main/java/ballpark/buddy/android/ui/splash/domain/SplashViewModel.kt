@@ -26,7 +26,6 @@ class SplashViewModel @Inject constructor(
 
     fun onInit() {
         setSplashLoaderStopped(true)
-        navigateToOnBoarding()
     }
 
     private fun getNoInternetDialogUiData(): NoInternetDialogUiData =
@@ -55,11 +54,11 @@ class SplashViewModel @Inject constructor(
         return super.getHeaderConfig(background, title, rightButtonType, showBackButton = false)
     }
 
-    private fun navigateToOnBoarding() {
-        if (sharedPreferencesManager.getUserId().isEmpty())
-            navigateWithDelay(SplashFragmentDirections.actionSplashToPreLogin())
-        else
-            navigateWithDelay(SplashFragmentDirections.actionSplashToHome())
+    fun navigateToOnBoarding() {
+//        if (sharedPreferencesManager.getUserId().isEmpty())
+            navigate(SplashFragmentDirections.actionSplashToLogin())
+//        else
+//            navigate(SplashFragmentDirections.actionSplashToHome())
     }
 
     private fun showNoInternetDialog() {

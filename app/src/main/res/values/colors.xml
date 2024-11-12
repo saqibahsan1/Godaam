@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#AAE8F1</color>
+    <color name="purple_200">#89509E</color>
     <color name="purple_500">#AAE8F1</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
@@ -18,8 +18,8 @@
     <color name="stroke_color">#CCCCCC</color>
     <color name="red">#E90000</color>
     <color name="redish">#dc3545</color>
-    <color name="text_color_dark">#E7EAEF</color>
-    <color name="text_hint_color">#AFAFAF</color>
+    <color name="text_color_dark">@color/black</color>
+    <color name="text_hint_color">#787878</color>
     <color name="ripple_color">#414147</color>
     <color name="grey">#F1F5F9</color>
     <color name="light_color">#2B313C</color>

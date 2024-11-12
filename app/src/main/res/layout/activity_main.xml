@@ -44,7 +44,7 @@
             app:menu="@menu/bottom_nav_menu"
             app:labelVisibilityMode="labeled"
             app:set_bottom_menu="@{viewModel.updateBottomNavigation}"
-            app:view_visibility="@{viewModel.showBottomNavigation}" />
+            app:view_visibility="@{false}" />
 
         <ballpark.buddy.android.header.AppHeader
             android:id="@+id/header"

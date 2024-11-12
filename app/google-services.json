@@ -1,43 +1,26 @@
 {
   "project_info": {
-    "project_number": "82407166054",
-    "project_id": "keep-my-book-7c223",
-    "storage_bucket": "keep-my-book-7c223.appspot.com"
+    "project_number": "531125362570",
+    "project_id": "godaam-4dbc3",
+    "storage_bucket": "godaam-4dbc3.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:82407166054:android:f9e339a62e6250a9f01da7",
+        "mobilesdk_app_id": "1:531125362570:android:d081d1e7be11646618f273",
         "android_client_info": {
-          "package_name": "ballpark.buddy.android"
+          "package_name": "com.godaam.android"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "82407166054-e99i65jcodjkd1i2m2hvff2nc0oqskpo.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCX9SWj3ZCVhJ1ZAQ_tkHdUKkIwd9sB64Q"
+          "current_key": "AIzaSyBMNOBCODX3gMq0LbyIzK7mjxgypnHMWlY"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "82407166054-e99i65jcodjkd1i2m2hvff2nc0oqskpo.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "82407166054-th7uvrtmj18nvietjc3u9arim5pbud1n.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "drew.keepmybook.com"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

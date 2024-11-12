@@ -19,7 +19,7 @@ android {
         viewBinding = true
     }
     defaultConfig {
-        applicationId = "ballpark.buddy.android"
+        applicationId = "com.godaam.android"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

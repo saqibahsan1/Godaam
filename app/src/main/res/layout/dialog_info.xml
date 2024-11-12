@@ -111,7 +111,8 @@
                 android:id="@+id/primaryButton"
                 style="@style/CommonButtonStyle"
                 set_text_or_hide_if_empty="@{uiData.primaryButtonText}"
-                android:backgroundTint="@color/app_orange"
+                android:backgroundTint="@color/purple_200"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 app:single_on_click="@{() -> dismissListener.onDismiss(true)}"
                 tools:text="Yes" />

@@ -17,8 +17,8 @@ import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.findNavController
-import ballpark.buddy.android.host.MainActivity
 import ballpark.buddy.android.R
+import ballpark.buddy.android.host.MainActivity
 
 fun AppCompatActivity.showToast(message: String, length: Int = Toast.LENGTH_SHORT) =
     Toast.makeText(this, message, length).show()

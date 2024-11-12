@@ -32,6 +32,7 @@ import ballpark.buddy.network.providers.AppLocales
 import ballpark.buddy.android.R
 import ballpark.buddy.android.databinding.CustomEditTextFieldBinding
 import ballpark.buddy.android.extentions.EMPTY_STRING
+import ballpark.buddy.android.extentions.applyFont
 import ballpark.buddy.android.extentions.clickToAction
 import ballpark.buddy.android.extentions.colorStateList
 import ballpark.buddy.android.extentions.default
@@ -43,6 +44,7 @@ import ballpark.buddy.android.extentions.hide
 import ballpark.buddy.android.extentions.inverse
 import ballpark.buddy.android.extentions.isGone
 import ballpark.buddy.android.extentions.isValidDrawableRes
+import ballpark.buddy.android.extentions.setTextOrHideIfEmpty
 import ballpark.buddy.android.extentions.show
 import ballpark.buddy.android.extentions.viewVisibility
 import java.text.SimpleDateFormat
@@ -106,6 +108,11 @@ open class CustomEditTextField @JvmOverloads constructor(
             }
         }
 
+    var label: String = EMPTY_STRING
+        set(value) {
+            field = value
+            binding.label.setTextOrHideIfEmpty(label)
+        }
     private var prefixText: String = EMPTY_STRING
         set(value) {
             field = value
@@ -252,6 +259,7 @@ open class CustomEditTextField @JvmOverloads constructor(
                     ?: defaultHintTextColor
 //                fieldBackground =
 //                    getResourceValueId(this, R.styleable.CustomEditTextField_fieldBackground)
+                label = getString(R.styleable.CustomEditTextField_label).default
                 enableInstantValidation(
                     getBoolean(
                         R.styleable.CustomEditTextField_instantValidation,
@@ -313,7 +321,7 @@ open class CustomEditTextField @JvmOverloads constructor(
             if (hidden) InputType.TYPE_CLASS_TEXT else InputType.TYPE_TEXT_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT
         iconRes = if (hidden) R.drawable.ic_password else R.drawable.ic_password_hide
         setSelection(text?.length.default)
-//        applyFont(R.font.roboto_regular)
+        applyFont(R.font.inter_medium)
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -617,6 +625,11 @@ fun CustomEditTextField.setText(textValue: String?) {
 @BindingAdapter("default_error_message")
 fun CustomEditTextField.setDefaultErrorMessage(message: String?) {
     defaultErrorMessage = message.default
+}
+
+@BindingAdapter("label")
+fun CustomEditTextField.setLabel(labelText: String?) {
+    label = labelText.default
 }
 
 @BindingAdapter("set_translated_hint", "fall_back_hint")

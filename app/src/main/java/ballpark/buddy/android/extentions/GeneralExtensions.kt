@@ -9,17 +9,17 @@ import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.FragmentContainerView
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import org.json.JSONException
-import org.json.JSONObject
 import ballpark.buddy.android.header.AppHeader
 import ballpark.buddy.android.header.HeaderConfig
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import org.json.JSONException
+import org.json.JSONObject
 import java.lang.reflect.Type
 
 @BindingAdapter("set_ui_data")

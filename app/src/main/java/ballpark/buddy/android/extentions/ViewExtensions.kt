@@ -39,12 +39,12 @@ import androidx.core.view.updatePadding
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ballpark.buddy.android.R
 import ballpark.buddy.android.databinding.ItemExpandableHeaderLayoutBinding
 import ballpark.buddy.android.databinding.ItemFaqExpandableLayoutBinding
 import ballpark.buddy.android.utils.ExpandableLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.textfield.TextInputLayout
 import timber.log.Timber
 import java.util.Locale

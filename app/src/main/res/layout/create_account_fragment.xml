@@ -14,51 +14,75 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/splash_bg">
-
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/appCompatImageView2"
-            single_on_click="@{()->viewModel.navigateBack()}"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_margin="@dimen/_15sdp"
-            android:src="@drawable/back_button_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="@dimen/_18sdp"
-            android:background="@drawable/card_background"
+            android:background="@color/white"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatImageView2">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView2"
+                    single_on_click="@{()->viewModel.navigateBack()}"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_margin="@dimen/_15sdp"
+                    android:src="@drawable/back_button_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dp"
+                    android:layout_marginEnd="-250dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cargo_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.22" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/createAccountTitle"
+                    style="@style/BoldFontRoboto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/signup"
+                    android:textColor="@color/black"
+                    android:textSize="36sp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guideline"
+                    tools:visibility="visible" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/createAccountDesc"
                     style="@style/RegularFont"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:fontFamily="@font/nunito_bold"
-                    android:text="@string/create_account"
+                    android:text="@string/first_creat_your_account"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_22sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="16sp"
+                    android:layout_marginStart="@dimen/_20sdp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Create Profile"
+                    app:layout_constraintTop_toBottomOf="@+id/createAccountTitle"
                     tools:visibility="visible" />
-
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/createAccountLayout"
@@ -67,173 +91,51 @@
                     android:layout_marginTop="@dimen/_15sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/createAccountTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/createAccountDesc"
                     tools:visibility="visible">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout"
+                        android:id="@+id/constraintLayoutFirstName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/emailLabel"
-                            style="@style/RegularFont"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/email_address"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/emailEditText"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="Email Address" />
-
-                        <ballpark.buddy.android.editText.CustomEditTextField
-                            android:id="@+id/emailEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            app:change_appearance_on_focus="true"
-                            app:editTextHeight="@dimen/_40sdp"
-                            app:hintText="Enter your email address"
-                            app:imeOptions="actionNext"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/emailLabel"
-                            app:remove_error_on_typing="@{true}"
-                            app:type="email" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayoutFirstName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/firsName"
-                            style="@style/RegularFont"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/firstName"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/firsNameEditText"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="First Name" />
-
                         <ballpark.buddy.android.editText.CustomEditTextField
                             android:id="@+id/firsNameEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginHorizontal="@dimen/_20sdp"
                             app:change_appearance_on_focus="true"
                             app:editTextHeight="@dimen/_40sdp"
-                            app:hintText="Enter your First Name"
+                            app:label="Full name/ پورا نام"
+                            app:hintText="Enter your Full name/پورا نام"
                             app:imeOptions="actionNext"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/firsName"
+                            app:layout_constraintTop_toTopOf="parent"
                             app:remove_error_on_typing="@{true}"
                             app:type="plainText" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayoutLastName"
+                    <ballpark.buddy.android.editText.CustomEditTextField
+                        android:id="@+id/mobileNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_20sdp"
+                        app:change_appearance_on_focus="true"
                         android:layout_marginTop="@dimen/_10sdp"
+                        app:editTextHeight="@dimen/_40sdp"
+                        app:label="Mobile number/فون نمبر"
+                        app:hintText="Enter mobile number /فون نمبر"
+                        app:imeOptions="actionNext"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutFirstName">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/LastName"
-                            style="@style/RegularFont"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:lineSpacingExtra="-20dp"
-                            android:text="@string/LastName"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/LastNameEditText"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="Last Name" />
-
-                        <ballpark.buddy.android.editText.CustomEditTextField
-                            android:id="@+id/LastNameEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            app:change_appearance_on_focus="true"
-                            app:editTextHeight="@dimen/_40sdp"
-                            app:hintText="Enter your Last Name"
-                            app:imeOptions="actionNext"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/LastName"
-                            app:remove_error_on_typing="@{true}"
-                            app:type="plainText" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayoutZipCode"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutLastName">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/ZipCode"
-                            style="@style/RegularFont"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/ZipCode"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/ZipCodeEditText"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="@string/ZipCode" />
-
-                        <ballpark.buddy.android.editText.CustomEditTextField
-                            android:id="@+id/ZipCodeEditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            app:change_appearance_on_focus="true"
-                            app:editTextHeight="@dimen/_40sdp"
-                            app:hintText="Enter your Zip Code"
-                            app:imeOptions="actionNext"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/ZipCode"
-                            app:remove_error_on_typing="@{true}"
-                            app:type="plainText" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutFirstName"
+                        app:remove_error_on_typing="@{true}"
+                        app:type="number" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/passwordLayout"
@@ -242,264 +144,62 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutZipCode">
+                        app:layout_constraintTop_toBottomOf="@+id/mobileNumber">
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/label"
-                            style="@style/RegularFont"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:lineSpacingExtra="-20dp"
-                            android:text="@string/create_password"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/passwordSignup"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="Create password" />
 
                         <ballpark.buddy.android.editText.CustomEditTextField
                             android:id="@+id/passwordSignup"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginHorizontal="@dimen/_20sdp"
                             app:change_appearance_on_focus="true"
                             app:editTextHeight="@dimen/_40sdp"
-                            app:hintText="Enter your password"
+                            app:label="Password/پاس ورڈ "
+                            app:hintText="Enter your password/پاس ورڈ ٹائپ کریں"
                             app:imeOptions="actionNext"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/label"
+                            app:layout_constraintTop_toTopOf="parent"
                             app:remove_error_on_typing="@{true}"
                             app:type="password" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/confirmPasswordLayout"
+                    <ballpark.buddy.android.editText.CustomEditTextField
+                        android:id="@+id/farmArea"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginHorizontal="@dimen/_20sdp"
+                        app:change_appearance_on_focus="true"
+                        app:editTextHeight="@dimen/_40sdp"
+                        app:label="Farm area/ فارم کے علاقے"
+                        app:hintText="Enter farm area /فارم کے علاقےٹائپ کریں"
+                        app:imeOptions="actionNext"
+                        android:layout_marginTop="@dimen/_10sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/passwordLayout">
+                        app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
+                        app:remove_error_on_typing="@{true}"
+                        app:type="plainText" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/labelConfirm"
-                            style="@style/RegularFont"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:lineSpacingExtra="-20dp"
-                            android:text="@string/confirmPassword"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/passwordConfirm"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="Confirm password" />
-
-                        <ballpark.buddy.android.editText.CustomEditTextField
-                            android:id="@+id/passwordConfirm"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            app:change_appearance_on_focus="true"
-                            app:editTextHeight="@dimen/_40sdp"
-                            app:hintText="Please choose a password"
-                            app:imeOptions="actionNext"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelConfirm"
-                            app:remove_error_on_typing="@{true}"
-                            app:type="password" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/accountTypeLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_15sdp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordLayout">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/accountType"
-                            style="@style/RegularFont"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:lineSpacingExtra="-20dp"
-                            android:text="@string/accountType"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/accountTypeEt"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="Account Type" />
-
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/accountTypeEt"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            app:endIconTint="@color/black"
-                            app:boxBackgroundMode="outline"
-                            app:hintAnimationEnabled="false"
-                            app:hintEnabled="false"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/accountType">
-
-                            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_40sdp"
-                                android:background="@drawable/edit_text_empty_background"
-                                android:gravity="center|start"
-                                android:hint="@string/please_select_your_account_type"
-                                android:textColorHint="@color/text_hint_color"
-                                android:inputType="text"
-                                android:minLines="2"
-                                android:padding="10dp" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/leagueLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_15sdp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/accountTypeLayout">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/leagueType"
-                            style="@style/RegularFont"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/selectLeague"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/leagueEt"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="League" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/leagueEt"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:hint="@string/please_select_the_league"
-                            app:boxBackgroundMode="outline"
-                            android:textColorHint="@color/text_hint_color"
-                            app:hintAnimationEnabled="false"
-                            app:hintEnabled="false"
-                            app:endIconTint="@color/black"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/leagueType">
-
-                            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_40sdp"
-                                android:background="@drawable/edit_text_empty_background"
-                                android:gravity="center|start"
-                                android:hint="@string/please_select_your_account_type"
-                                android:textColorHint="@color/text_hint_color"
-                                android:inputType="text"
-                                android:minLines="2"
-                                android:padding="10dp" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/checkboxLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_15sdp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/leagueLayout">
-
-                        <com.google.android.material.checkbox.MaterialCheckBox
-                            android:id="@+id/checkBoxCash"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:button="@drawable/selected_check_box"
-                            android:gravity="center|start"
-                            android:padding="@dimen/_4sdp"
-                            android:text="@string/cash"
-                            app:useMaterialThemeColors="false"
-                            tools:ignore="TouchTargetSizeCheck" />
-
-                        <com.google.android.material.checkbox.MaterialCheckBox
-                            android:id="@+id/checkBoxVenmo"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:button="@drawable/selected_check_box"
-                            android:gravity="center|start"
-                            android:paddingStart="@dimen/_4sdp"
-                            android:paddingTop="@dimen/_10sdp"
-                            android:text="@string/Venmo"
-                            app:useMaterialThemeColors="false"
-                            tools:ignore="RtlSymmetry,TouchTargetSizeCheck" />
-
-                        <com.google.android.material.checkbox.MaterialCheckBox
-                            android:id="@+id/checkBoxCashApp"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:button="@drawable/selected_check_box"
-                            android:padding="@dimen/_4sdp"
-                            android:text="@string/CashApp"
-                            app:useMaterialThemeColors="false"
-                            tools:ignore="TouchTargetSizeCheck" />
-
-                        <com.google.android.material.checkbox.MaterialCheckBox
-                            android:id="@+id/checkBoxZelle"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.8"
-                            android:button="@drawable/selected_check_box"
-                            android:padding="@dimen/_4sdp"
-                            android:text="@string/Zelle"
-                            app:useMaterialThemeColors="false"
-                            tools:ignore="TouchTargetSizeCheck" />
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/createAccount"
                         style="@style/CommonButtonStyle"
-                        single_on_click="@{()->viewModel.onTapOfSignupButton(emailEditText,passwordSignup,passwordConfirm,firsNameEditText, LastNameEditText,ZipCodeEditText,accountTypeEt,leagueEt,checkBoxCash,checkBoxVenmo,checkBoxCashApp,checkBoxZelle)}"
+                        single_on_click="@{()->viewModel.onTapOfSignupButton(mobileNumber,passwordSignup,firsNameEditText,farmArea)}"
                         android:layout_width="match_parent"
-                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginHorizontal="@dimen/_20sdp"
                         android:layout_marginTop="24dp"
                         android:background="@drawable/common_button_bg"
+                        android:backgroundTint="@color/purple_200"
                         android:elevation="@dimen/_5sdp"
-                        android:text="@string/create_account"
-                        android:textColor="@color/black"
+                        android:text="@string/signup"
+                        android:textColor="@color/white"
                         android:textSize="18sp"
                         android:visibility="visible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/checkboxLayout" />
+                        app:layout_constraintTop_toBottomOf="@+id/farmArea" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/skipButton"
@@ -512,8 +212,8 @@
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="18sp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:visibility="visible"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.38"
                         app:layout_constraintStart_toStartOf="parent"
@@ -526,18 +226,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:elevation="@dimen/_5sdp"
-                        android:fontFamily="@font/nunito_regular"
+                        android:fontFamily="@font/poppins_bold"
                         android:padding="@dimen/_10sdp"
-                        android:text="@string/sign_in"
+                        android:text="@string/login"
                         android:textAlignment="center"
-                        android:textColor="@color/app_orange"
+                        android:textColor="@color/purple_200"
                         android:textSize="18sp"
                         android:visibility="visible"
                         app:layout_constraintBaseline_toBaselineOf="@+id/skipButton"
                         app:layout_constraintStart_toEndOf="@+id/skipButton" />
 
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/lifter"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/guideline32" />
+
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.43" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
